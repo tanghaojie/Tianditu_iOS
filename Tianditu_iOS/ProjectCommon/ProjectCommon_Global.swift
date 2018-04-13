@@ -9,6 +9,7 @@ import UIKit
 
 let global_DateAndTimeFormate = "yyyy-MM-dd HH:mm:ss"
 let global_DateFormate = "yyyy-MM-dd"
+
 enum HttpMethod: String {
     case GET = "GET"
     case POST = "POST"
@@ -23,3 +24,5 @@ var global_TodayStartDate: Date? = {
     dateComponents.second = 0
     return cal.date(from: dateComponents)
 }()
+
+

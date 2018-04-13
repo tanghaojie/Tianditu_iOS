@@ -5,8 +5,28 @@
   Created by JT on 2018/4/11.
   Copyright © 2018年 JT. All rights reserved.
 */
-"" = "";
+
+
 "ok" = "确定";
 "cancel" = "取消";
 "loading" = "加载中";
+"warn" = "警告";
+"error" = "错误";
 
+
+
+
+"photoLibrary" = "相册";
+"takePhoto" = "拍照";
+
+
+
+"cameraDisable" = "摄像头不可用";
+"photoLibraryDisable" = "相册不可用";
+"takePhotoOrFromPhotoLibrary" = "拍照或从相册选择";
+
+
+
+"selectHeadPortrait" = "选择头像";
+"doNotGetPortrait" = "未能获取头像";
+"saveHeadPortraitFailed" = "保存头像失败";

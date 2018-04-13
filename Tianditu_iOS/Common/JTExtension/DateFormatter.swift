@@ -6,15 +6,14 @@
 //  Copyright © 2018年 JT. All rights reserved.
 //
 
-import Foundation
 extension DateFormatter {
-    static var JTDateAndTimeFormatter: DateFormatter = {
+    static var jtDateAndTimeFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale.current
         dateFormatter.dateFormat = global_DateAndTimeFormate
         return dateFormatter
     }()
-    static var JTDateFormatter: DateFormatter = {
+    static var jtDateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale.current
         dateFormatter.dateFormat = global_DateFormate

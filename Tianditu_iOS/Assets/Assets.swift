@@ -7,9 +7,5 @@
 //
 
 class Assets {
-    static let shareInstance = Assets()
-    private init() {}
-    
-    
-    
+    static let defaultHeadPortrait = UIImage(named: "defaultHeadPortrait")
 }

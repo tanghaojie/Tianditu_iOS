@@ -6,9 +6,8 @@
 //  Copyright © 2018年 JT. All rights reserved.
 //
 
-import Foundation
 extension Date {
-    var toJTDateAndTimeFormateString: String {
-        return DateFormatter.JTDateAndTimeFormatter.string(from: self)
+    var jtDateAndTimeFormateString: String {
+        return DateFormatter.jtDateAndTimeFormatter.string(from: self)
     }
 }

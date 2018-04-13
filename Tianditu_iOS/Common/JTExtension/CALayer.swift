@@ -6,9 +6,8 @@
 //  Copyright © 2018年 JT. All rights reserved.
 //
 
-import Foundation
 extension CALayer {
-    var borderUIColor: UIColor? {
+    var jtBorderUIColor: UIColor? {
         get {
             guard let c = borderColor else { return nil }
             return UIColor(cgColor: c)
@@ -17,7 +16,7 @@ extension CALayer {
             borderColor = newValue?.cgColor
         }
     }
-    var shadowUIColor: UIColor? {
+    var jtShadowUIColor: UIColor? {
         get {
             guard let c = shadowColor else { return nil }
             return UIColor(cgColor: c)
