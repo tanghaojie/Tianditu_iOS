@@ -6,6 +6,7 @@
 //  Copyright © 2018年 JT. All rights reserved.
 //
 import CoreData
+import JTFramework
 
 class Tianditu_Datas {
     

@@ -7,19 +7,24 @@
 //
 
 import UIKit
+import JTFramework
 
 class MainViewController: UIViewController {
 
     @IBOutlet weak var mapView: UIView!
     @IBOutlet weak var agsMapView: AGSMapView!
+    @IBOutlet weak var transparentView: JTTransparentUIView!
+    
+    private let centerDistance = 0.0002
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         startLocation()
         setupMapView()
         addLayer()
-
     }
+    
     @IBAction func functionTouchUpInside(_ sender: Any) {
         let functionView = FunctionView()
         functionView.translatesAutoresizingMaskIntoConstraints = false
@@ -32,7 +37,8 @@ class MainViewController: UIViewController {
         functionView.transform = CGAffineTransform(translationX: -functionView.pageWidth, y: 0)
         UIView.animate(withDuration: 0.3, animations: {
             functionView.transform = CGAffineTransform(translationX: 0, y: 0)
-        }) { finish in
+        }) {
+            finish in
             if finish {
                 functionView.didFinishAnimation()
             }
@@ -40,6 +46,9 @@ class MainViewController: UIViewController {
     }
     @IBAction func searchTouchUpInside(_ sender: Any) {
         print("search")
+        let n = UINavigationController(rootViewController: SearchViewController())
+        n.isNavigationBarHidden = true
+        present(n, animated: false, completion: nil)
     }
     @IBAction func messageTouchUpInside(_ sender: Any) {
         print("message")
@@ -51,7 +60,17 @@ class MainViewController: UIViewController {
         print("near")
     }
     @IBAction func locationTouchUpInside(_ sender: Any) {
-        print("location")
+        let x = JTLocationManager.shareInstance.location
+        guard let l = x else { return }
+        let px = AGSPoint(location: l)
+        guard let p = px else { return }
+        let d = p.distance(to: agsMapView.visibleAreaEnvelope.center)
+        agsMapView.center(at: p, animated: true)
+        if d > centerDistance {
+            agsMapView.locationDisplay.autoPanMode = .default
+        } else {
+            agsMapView.locationDisplay.autoPanMode = .compassNavigation
+        }
     }
     @IBAction func routeTouchUpInside(_ sender: Any) {
         print("route")

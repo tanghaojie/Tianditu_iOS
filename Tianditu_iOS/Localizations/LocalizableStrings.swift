@@ -14,7 +14,7 @@ class LocalizableStrings {
     static let loading = NSLocalizedString("loading", comment: "")
     static let warn = NSLocalizedString("warn", comment: "")
     static let error = NSLocalizedString("error", comment: "")
-    
+    static let search = NSLocalizedString("search", comment: "")
     
     
     static let photoLibrary = NSLocalizedString("photoLibrary", comment: "")

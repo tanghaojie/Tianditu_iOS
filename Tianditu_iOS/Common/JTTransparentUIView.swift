@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TransparentUIView: UIView {
+class JTTransparentUIView: UIView {
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
         let x = super.hitTest(point, with: event)
         if x == self {

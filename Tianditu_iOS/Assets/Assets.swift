@@ -8,4 +8,6 @@
 
 class Assets {
     static let defaultHeadPortrait = UIImage(named: "defaultHeadPortrait")
+    static let leftArrow = UIImage(named: "leftArrow")
+    static let transparent = UIImage(named: "transparent")
 }
