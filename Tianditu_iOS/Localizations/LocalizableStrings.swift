@@ -16,6 +16,11 @@ class LocalizableStrings {
     static let error = NSLocalizedString("error", comment: "")
     static let search = NSLocalizedString("search", comment: "")
     
+    static let noRequestContent = NSLocalizedString("noRequestContent", comment: "")
+    static let httpRequestFailed = NSLocalizedString("httpRequestFailed", comment: "")
+    static let noResponseContent = NSLocalizedString("noResponseContent", comment: "")
+    static let errorResponseContentDataFormat = NSLocalizedString("errorResponseContentDataFormat", comment: "")
+    
     
     static let photoLibrary = NSLocalizedString("photoLibrary", comment: "")
     static let takePhoto = NSLocalizedString("takePhoto", comment: "")

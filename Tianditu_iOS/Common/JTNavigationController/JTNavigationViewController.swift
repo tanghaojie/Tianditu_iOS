@@ -24,6 +24,9 @@ class JTNavigationViewController: UIViewController {
     public var navigationContent: UIView {
         get { return navigationContentView }
     }
+    public var navigationHeight: CGFloat {
+        get { return navigationViewHeight }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +47,7 @@ extension JTNavigationViewController {
         setupNavigationView()
         setupContentView()
         setupBackButton()
+        setupNavigationContentView()
     }
     private func setupFullView() {
         fullView.translatesAutoresizingMaskIntoConstraints = false

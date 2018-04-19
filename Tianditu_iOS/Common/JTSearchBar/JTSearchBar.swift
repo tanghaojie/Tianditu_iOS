@@ -22,7 +22,7 @@ class JTSearchBar: UISearchBar {
         super.init(frame: frame)
         setupUI()
     }
-    
+
 }
 extension JTSearchBar {
     private func setupUI() {

@@ -45,13 +45,15 @@ class MainViewController: UIViewController {
         }
     }
     @IBAction func searchTouchUpInside(_ sender: Any) {
-        print("search")
         let n = UINavigationController(rootViewController: SearchViewController())
         n.isNavigationBarHidden = true
         present(n, animated: false, completion: nil)
     }
     @IBAction func messageTouchUpInside(_ sender: Any) {
         print("message")
+        let n = UINavigationController(rootViewController: temp())
+        n.isNavigationBarHidden = true
+        present(n, animated: false, completion: nil)
     }
     @IBAction func layerTouchUpInside(_ sender: Any) {
         print("layer")

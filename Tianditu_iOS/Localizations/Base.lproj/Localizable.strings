@@ -14,7 +14,10 @@
 "error" = "错误";
 "search" = "搜索";
 
-
+"noRequestContent" = "没有请求内容";
+"httpRequestFailed" = "Http请求失败";
+"noResponseContent" = "没有响应内容";
+"errorResponseContentDataFormat" = "响应内容数据格式错误";
 
 
 "photoLibrary" = "相册";
