@@ -11,11 +11,11 @@ import UIKit
 class SearchContentTableViewCell: UITableViewCell {
     
     private let fullView = UIView()
-    private let fullViewMinHeight: CGFloat = 50
-    private let fullViewTop: CGFloat = 10
-    private let fullViewBottom: CGFloat = 10
-    private let fullViewLeft: CGFloat = 10
-    private let fullViewRight: CGFloat = 10
+    private let fullViewMinHeight: CGFloat = 60
+    private let fullViewTop: CGFloat = 15
+    private let fullViewBottom: CGFloat = 15
+    private let fullViewLeft: CGFloat = 15
+    private let fullViewRight: CGFloat = 15
     private let leftView = UIView()
     private let topView = UIView()
     private let bottomView = UIView()
@@ -113,7 +113,7 @@ extension SearchContentTableViewCell {
             title.leadingAnchor.constraint(equalTo: topView.leadingAnchor),
             title.trailingAnchor.constraint(equalTo: topView.trailingAnchor),
             ])
-        title.font = UIFont.systemFont(ofSize: 16)
+        title.font = UIFont.systemFont(ofSize: 18)
     }
     private func setupDetail() {
         detail.translatesAutoresizingMaskIntoConstraints = false
@@ -124,7 +124,7 @@ extension SearchContentTableViewCell {
             detail.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor),
             detail.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor),
             ])
-        detail.font = UIFont.systemFont(ofSize: 12)
+        detail.font = UIFont.systemFont(ofSize: 14)
         detail.textColor = UIColor(r: 120, g: 120, b: 120)
     }
     

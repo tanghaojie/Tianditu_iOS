@@ -21,7 +21,9 @@ class Object_Attribute {
     var datafrom: Int?
     var imageAddress: String?
     
-    init(data: [Any]) {
+    var uuidStr: String?
+    
+    init(data: [Any], uuid: String? = nil) {
         guard data.count == 11 else { return }
         id = data[0] as? Int
         x = data[1] as? Double
@@ -41,6 +43,7 @@ class Object_Attribute {
                 type = Tianditu_NameSearchType.unknown
             }
         }
+        uuidStr = uuid
     }
     
     

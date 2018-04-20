@@ -64,6 +64,7 @@ extension SearchViewController {
             historyTableView.leadingAnchor.constraint(equalTo: content.leadingAnchor),
             historyTableView.trailingAnchor.constraint(equalTo: content.trailingAnchor),
             ])
+        historyTableView.jtDelegate = self
     }
     private func setupSearchContentTableView() {
         contentTableView.translatesAutoresizingMaskIntoConstraints = false
@@ -75,6 +76,7 @@ extension SearchViewController {
             contentTableView.trailingAnchor.constraint(equalTo: content.trailingAnchor),
             ])
         contentTableView.isHidden = true
+        contentTableView.jtDelegate = self
     }
 }
 extension SearchViewController: UISearchBarDelegate {
@@ -105,8 +107,53 @@ extension SearchViewController {
     }
     
     private func search() {
-        
+        guard let t = jtSearchBar.text else { return }
+        let text = t.trimmingCharacters(in: .whitespaces)
+        if text == "" { return }
+        Data_SearchHistoryOperate.shareInstance.deleteByName(name: text)
+        _ = Data_SearchHistoryOperate.shareInstance.insert(name: text)
+        historyTableView.reloadHistory()
+    }
+}
+extension SearchViewController: JTSearchHistoryTableViewDelegate {
+    
+    func didSelectedHistory(vm: SearchHistoryTableViewCellVM) {
+        guard let data = vm.data else { return }
+        guard let n = data.name else { return }
+        Data_SearchHistoryOperate.shareInstance.deleteByName(name: n)
+        if let id = data.uuidStr {
+            Data_SearchHistoryOperate.shareInstance.deleteByUUID(uuid: id)
+        }
+        if vm.nameOnly {
+            _ = Data_SearchHistoryOperate.shareInstance.insert(name: n)
+            historyTableView.reloadHistory()
+            //let searchText = n
+        } else {
+            var df: Int16 = 0
+            if let xx = data.datafrom { df = Int16(xx) }
+            var dd: Int64 = 0
+            if let aa = data.id { dd = Int64(aa) }
+            _ = Data_SearchHistoryOperate.shareInstance.insert(address: data.address, county: data.county, datafrom: df, id: dd, imageAddress: data.imageAddress, name: n, phone: data.phone, region: data.region, typeStr: data.typeStr, x: data.x, y: data.y)
+            historyTableView.reloadHistory()
+            //let position = data
+        }
     }
     
-   
+    
+}
+extension SearchViewController: JTSearchContentTableViewDelegate {
+    func didSelectedContent(vm: SearchContentTableViewCellVM) {
+        guard let data = vm.data else { return }
+        guard let n = data.name else { return }
+        Data_SearchHistoryOperate.shareInstance.deleteByName(name: n)
+        if let id = data.uuidStr {
+            Data_SearchHistoryOperate.shareInstance.deleteByUUID(uuid: id)
+        }
+        var df: Int16 = 0
+        if let xx = data.datafrom { df = Int16(xx) }
+        var dd: Int64 = 0
+        if let aa = data.id { dd = Int64(aa) }
+        _ = Data_SearchHistoryOperate.shareInstance.insert(address: data.address, county: data.county, datafrom: df, id: dd, imageAddress: data.imageAddress, name: n, phone: data.phone, region: data.region, typeStr: data.typeStr, x: data.x, y: data.y)
+        historyTableView.reloadHistory()
+    }
 }

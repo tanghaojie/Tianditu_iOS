@@ -16,6 +16,8 @@ class LocalizableStrings {
     static let error = NSLocalizedString("error", comment: "")
     static let search = NSLocalizedString("search", comment: "")
     
+    static let clearHistory = NSLocalizedString("clearHistory", comment: "")
+    
     static let noRequestContent = NSLocalizedString("noRequestContent", comment: "")
     static let httpRequestFailed = NSLocalizedString("httpRequestFailed", comment: "")
     static let noResponseContent = NSLocalizedString("noResponseContent", comment: "")

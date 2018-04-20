@@ -16,6 +16,7 @@ class SearchContentTableView: UITableView {
     private let pagesize = 10
     private var pagenum = 1
     private var searchText = ""
+    weak var jtDelegate: JTSearchContentTableViewDelegate?
     
     init(cellVMs: [SearchContentTableViewCellVM]? = nil) {
         if let vms = cellVMs {
@@ -30,8 +31,9 @@ class SearchContentTableView: UITableView {
         scrollsToTop = true
         keyboardDismissMode = .onDrag
         allowsSelection = true
+        delegate = self
         separatorStyle = .singleLine
-        estimatedRowHeight = 50
+        estimatedRowHeight = 90
         rowHeight = UITableViewAutomaticDimension
         
         let footer = MJRefreshAutoGifFooter()
@@ -44,6 +46,7 @@ class SearchContentTableView: UITableView {
         mj_footer = footer
 
         dataSource = self
+    
         
         renew()
     }
@@ -107,7 +110,7 @@ extension SearchContentTableView {
         cellVMs.append(vm)
     }
 }
-extension SearchContentTableView: UITableViewDataSource {
+extension SearchContentTableView: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -129,5 +132,12 @@ extension SearchContentTableView: UITableViewDataSource {
         }
         return cell!
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vm = cellVMs[indexPath.row]
+        jtDelegate?.didSelectedContent(vm: vm)
+    }
+}
+protocol JTSearchContentTableViewDelegate: NSObjectProtocol {
+    func didSelectedContent(vm: SearchContentTableViewCellVM)
 }
 

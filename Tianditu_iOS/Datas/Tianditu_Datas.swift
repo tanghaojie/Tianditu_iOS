@@ -15,7 +15,7 @@ class Tianditu_Datas {
     
     private let persistentContainerName = "Tianditu_iOS"
     private let coreDataSqliteName = "CoreData.sqlite"
-    
+
     func saveContext() {
         if #available(iOS 10.0, *) {
             saveContext10()
@@ -40,7 +40,7 @@ class Tianditu_Datas {
         return container
     }()
     
-    private lazy var managedObjectContext: NSManagedObjectContext = {
+    lazy var managedObjectContext: NSManagedObjectContext = {
         let managedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
         managedObjectContext.persistentStoreCoordinator = persistentStoreCoordinator
         return managedObjectContext
