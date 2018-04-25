@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import JTFramework
 
 class JTNavigationViewController: UIViewController {
 
@@ -17,6 +18,7 @@ class JTNavigationViewController: UIViewController {
     private let backButton = UIButton()
     private let backButtonPadding: CGFloat = 5
     private let navigationContentView = UIView()
+    weak var delegate: JTNavigationViewControllerDelegate?
     
     public var content: UIView {
         get { return contentView }
@@ -27,7 +29,6 @@ class JTNavigationViewController: UIViewController {
     public var navigationHeight: CGFloat {
         get { return navigationViewHeight }
     }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -117,6 +118,8 @@ extension JTNavigationViewController {
 }
 extension JTNavigationViewController {
     @objc private func backButtonTouchUpInside() {
+        let b = delegate?.backTouchUpInsideRecognizeJTNavigation()
+        if let bb = b, !bb { return }
         if let navi = navigationController {
             if navi.viewControllers.first == self {
                 navi.dismiss(animated: false, completion: nil)
@@ -127,4 +130,7 @@ extension JTNavigationViewController {
             dismiss(animated: false, completion: nil)
         }
     }
+}
+protocol JTNavigationViewControllerDelegate: NSObjectProtocol {
+    func backTouchUpInsideRecognizeJTNavigation() -> Bool
 }

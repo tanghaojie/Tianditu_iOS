@@ -25,4 +25,7 @@ var global_TodayStartDate: Date? = {
     return cal.date(from: dateComponents)
 }()
 
+let ScreenWidth = UIScreen.main.bounds.width
+let ScrennHeight = UIScreen.main.bounds.height
+
 

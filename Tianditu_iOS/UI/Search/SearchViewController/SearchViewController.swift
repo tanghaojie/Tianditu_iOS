@@ -15,6 +15,7 @@ class SearchViewController: JTNavigationViewController {
     private let jtSearchBar = JTSearchBar()
     private let historyTableView = SearchHistoryTableView()
     private let contentTableView = SearchContentTableView()
+    weak var searchDelegate: SearchViewControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +23,10 @@ class SearchViewController: JTNavigationViewController {
         searchButton.backgroundColor = .red
         historyTableView.backgroundColor = .blue
     }
-
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        historyTableView.reloadHistory()
+    }
 }
 extension SearchViewController {
     private func setupUI() {
@@ -78,6 +82,17 @@ extension SearchViewController {
         contentTableView.isHidden = true
         contentTableView.jtDelegate = self
     }
+    private func showContent(text: String) {
+        historyTableView.isHidden = true
+        contentTableView.isHidden = false
+        contentTableView.nameSearch(text: text)
+    }
+    private func showHistory() {
+        jtSearchBar.text = nil
+        contentTableView.isHidden = true
+        historyTableView.isHidden = false
+        contentTableView.renew()
+    }
 }
 extension SearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -93,19 +108,13 @@ extension SearchViewController {
     }
 }
 extension SearchViewController {
-    
     private func searchContent(text: String) {
         if text == "" || text.trimmingCharacters(in: .whitespaces) == "" {
-            contentTableView.isHidden = true
-            historyTableView.isHidden = false
-            contentTableView.renew()
+            showHistory()
             return
         }
-        historyTableView.isHidden = true
-        contentTableView.isHidden = false
-        contentTableView.nameSearch(text: text)
+        showContent(text: text)
     }
-    
     private func search() {
         guard let t = jtSearchBar.text else { return }
         let text = t.trimmingCharacters(in: .whitespaces)
@@ -113,6 +122,8 @@ extension SearchViewController {
         Data_SearchHistoryOperate.shareInstance.deleteByName(name: text)
         _ = Data_SearchHistoryOperate.shareInstance.insert(name: text)
         historyTableView.reloadHistory()
+        showHistory()
+        searchText(name: text)
     }
 }
 extension SearchViewController: JTSearchHistoryTableViewDelegate {
@@ -127,7 +138,7 @@ extension SearchViewController: JTSearchHistoryTableViewDelegate {
         if vm.nameOnly {
             _ = Data_SearchHistoryOperate.shareInstance.insert(name: n)
             historyTableView.reloadHistory()
-            //let searchText = n
+            searchText(name: n)
         } else {
             var df: Int16 = 0
             if let xx = data.datafrom { df = Int16(xx) }
@@ -135,11 +146,9 @@ extension SearchViewController: JTSearchHistoryTableViewDelegate {
             if let aa = data.id { dd = Int64(aa) }
             _ = Data_SearchHistoryOperate.shareInstance.insert(address: data.address, county: data.county, datafrom: df, id: dd, imageAddress: data.imageAddress, name: n, phone: data.phone, region: data.region, typeStr: data.typeStr, x: data.x, y: data.y)
             historyTableView.reloadHistory()
-            //let position = data
+            searchPosition(position: data)
         }
     }
-    
-    
 }
 extension SearchViewController: JTSearchContentTableViewDelegate {
     func didSelectedContent(vm: SearchContentTableViewCellVM) {
@@ -155,5 +164,31 @@ extension SearchViewController: JTSearchContentTableViewDelegate {
         if let aa = data.id { dd = Int64(aa) }
         _ = Data_SearchHistoryOperate.shareInstance.insert(address: data.address, county: data.county, datafrom: df, id: dd, imageAddress: data.imageAddress, name: n, phone: data.phone, region: data.region, typeStr: data.typeStr, x: data.x, y: data.y)
         historyTableView.reloadHistory()
+        showHistory()
+        searchPosition(position: data)
     }
+}
+extension SearchViewController {
+    private func searchPosition(position: Object_Attribute) {
+        let x = searchDelegate?.popAfterSearchPosition(position: position)
+        if let xx = x, xx {
+            navigationController?.popViewController(animated: false)
+            return
+        }
+        let v = SearchMapViewController(position: position)
+        navigationController?.pushViewController(v, animated: false)
+    }
+    private func searchText(name: String) {
+        let x = searchDelegate?.popAfterSearchText(name: name)
+        if let xx = x, xx {
+            navigationController?.popViewController(animated: false)
+            return
+        }
+        let v = SearchMapViewController(text: name)
+        navigationController?.pushViewController(v, animated: false)
+    }
+}
+protocol SearchViewControllerDelegate: NSObjectProtocol {
+    func popAfterSearchPosition(position: Object_Attribute) -> Bool
+    func popAfterSearchText(name: String) -> Bool
 }

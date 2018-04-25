@@ -27,7 +27,7 @@ class LocalizableStrings {
     static let photoLibrary = NSLocalizedString("photoLibrary", comment: "")
     static let takePhoto = NSLocalizedString("takePhoto", comment: "")
     
-    
+    static let clickToShowResultList = NSLocalizedString("clickToShowResultList", comment: "")
     
     static let cameraDisable = NSLocalizedString("cameraDisable", comment: "")
     static let photoLibraryDisable = NSLocalizedString("photoLibraryDisable", comment: "")

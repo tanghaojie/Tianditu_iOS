@@ -16,6 +16,7 @@ class SearchContentTableView: UITableView {
     private let pagesize = 10
     private var pagenum = 1
     private var searchText = ""
+    private var first = true
     weak var jtDelegate: JTSearchContentTableViewDelegate?
     
     init(cellVMs: [SearchContentTableViewCellVM]? = nil) {
@@ -46,8 +47,7 @@ class SearchContentTableView: UITableView {
         mj_footer = footer
 
         dataSource = self
-    
-        
+
         renew()
     }
     
@@ -55,18 +55,22 @@ class SearchContentTableView: UITableView {
         super.init(coder: aDecoder)
     }
     
+    var dataNumber: Int {
+        get { return cellVMs.count }
+    }
 }
 extension SearchContentTableView {
     
-    func nameSearch(text: String) {
+    func nameSearch(text: String, handler: ((Bool) -> Void)? = nil) {
         renew()
         searchText = text
-        searchData()
+        searchData(handler)
     }
 
     func renew() {
         searchText = ""
         pagenum = 1
+        first = true
         mj_footer.endRefreshing()
         cellVMs.removeAll()
         reloadData()
@@ -81,17 +85,33 @@ extension SearchContentTableView {
 }
 extension SearchContentTableView {
     
-    private func searchData() {
+    private func searchData(_ handler: ((Bool) -> Void)? = nil) {
         if searchText == "" || searchText.trimmingCharacters(in: .whitespaces) == "" { return }
         let end = pagenum * pagesize
         let start = end - pagesize
         Search_NameSearchC.shareInstance.NameSearch(text: searchText, start: start, end: end) {
             [weak self]
             result, r, _ in
-            guard result else { return }
-            guard let rr = r, let s = rr.success, s, let ns = rr.message, let fs = ns.features else { return }
+            guard result else {
+                if let s = self, s.first, let h = handler {
+                    s.first = false
+                    h(false)
+                }
+                return
+            }
+            guard let rr = r, let s = rr.success, s, let ns = rr.message, let fs = ns.features else {
+                if let s = self, s.first, let h = handler {
+                    s.first = false
+                    h(false)
+                }
+                return
+            }
             guard fs.count > 0 else {
                 self?.mj_footer.state = .noMoreData
+                if let s = self, s.first, let h = handler {
+                    s.first = false
+                    h(true)
+                }
                 return
             }
             for f in fs {
@@ -103,6 +123,10 @@ extension SearchContentTableView {
             self?.pagenum += 1
             self?.mj_footer.endRefreshing()
             self?.reloadData()
+            if let s = self, s.first, let h = handler {
+                s.first = false
+                h(true)
+            }
         }
     }
     
@@ -136,8 +160,14 @@ extension SearchContentTableView: UITableViewDataSource, UITableViewDelegate {
         let vm = cellVMs[indexPath.row]
         jtDelegate?.didSelectedContent(vm: vm)
     }
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        jtDelegate?.scrollViewDidScroll(scrollView)
+    }
 }
 protocol JTSearchContentTableViewDelegate: NSObjectProtocol {
     func didSelectedContent(vm: SearchContentTableViewCellVM)
+}
+extension JTSearchContentTableViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) { }
 }
 
