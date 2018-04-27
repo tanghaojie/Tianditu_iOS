@@ -29,11 +29,6 @@ class SearchContentTableViewCell: UITableViewCell {
     init(reuseIdentifier: String?) {
         super.init(style: .default, reuseIdentifier: reuseIdentifier)
         setupUI()
-        
-        //leftView.backgroundColor = .red
-        //topView.backgroundColor = .green
-        //bottomView.backgroundColor = .yellow
-        //rightView.backgroundColor = .blue
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -44,6 +39,7 @@ class SearchContentTableViewCell: UITableViewCell {
 }
 extension SearchContentTableViewCell {
     private func setupUI() {
+        setupViewLayer()
         setupFullView()
         setupLeftView()
         setupRightView()
@@ -62,6 +58,12 @@ extension SearchContentTableViewCell {
             fullView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -fullViewRight),
             fullView.heightAnchor.constraint(greaterThanOrEqualToConstant: fullViewMinHeight),
             ])
+    }
+    private func setupViewLayer() {
+        let layer = CALayer()
+        layer.frame = CGRect(x: 0, y: 0, width: ScreenWidth, height: 1)
+        layer.backgroundColor = UIColor(r: 233, g: 233, b: 233).cgColor
+        contentView.layer.addSublayer(layer)
     }
     private func setupLeftView() {
         leftView.translatesAutoresizingMaskIntoConstraints = false

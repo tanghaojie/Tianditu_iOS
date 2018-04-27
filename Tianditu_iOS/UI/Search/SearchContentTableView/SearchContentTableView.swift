@@ -33,9 +33,10 @@ class SearchContentTableView: UITableView {
         keyboardDismissMode = .onDrag
         allowsSelection = true
         delegate = self
-        separatorStyle = .singleLine
+        separatorStyle = .none
         estimatedRowHeight = 90
         rowHeight = UITableViewAutomaticDimension
+        backgroundColor = UIColor(r: 233, g: 233, b: 233)
         
         let footer = MJRefreshAutoGifFooter()
         footer.backgroundColor = .white
@@ -57,6 +58,18 @@ class SearchContentTableView: UITableView {
     
     var dataNumber: Int {
         get { return cellVMs.count }
+    }
+    var positions: [Object_Attribute] {
+        get {
+            var x = [Object_Attribute]()
+            if cellVMs.count > 0 {
+                for vm in cellVMs {
+                    guard let y = vm.data else { continue }
+                    x.append(y)
+                }
+            }
+            return x
+        }
     }
 }
 extension SearchContentTableView {

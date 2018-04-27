@@ -18,6 +18,7 @@ class JTNavigationViewController: UIViewController {
     private let backButton = UIButton()
     private let backButtonPadding: CGFloat = 5
     private let navigationContentView = UIView()
+    weak var optionalDelegate: JTNavigationViewControllerOptionalDelegate?
     weak var delegate: JTNavigationViewControllerDelegate?
     
     public var content: UIView {
@@ -29,16 +30,19 @@ class JTNavigationViewController: UIViewController {
     public var navigationHeight: CGFloat {
         get { return navigationViewHeight }
     }
+    public var full: UIView {
+        get { return fullView }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupUI()
         
-        view.backgroundColor = .blue
-        fullView.backgroundColor = .gray
-        navigationView.backgroundColor = .yellow
+        view.backgroundColor = .white
+        fullView.backgroundColor = .white
+        navigationView.backgroundColor = .white
         contentView.backgroundColor = .white
-        backButton.backgroundColor = .green
+        backButton.backgroundColor = .white
     }
 
 }
@@ -46,6 +50,7 @@ extension JTNavigationViewController {
     private func setupUI() {
         setupFullView()
         setupNavigationView()
+        setupViewLayer()
         setupContentView()
         setupBackButton()
         setupNavigationContentView()
@@ -64,8 +69,8 @@ extension JTNavigationViewController {
         } else {
             NSLayoutConstraint.activate([
                 fullView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                fullView.topAnchor.constraint(equalTo: view.topAnchor),
-                fullView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+                fullView.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor),
+                fullView.bottomAnchor.constraint(equalTo: bottomLayoutGuide.topAnchor),
                 fullView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
                 ])
         }
@@ -79,6 +84,12 @@ extension JTNavigationViewController {
             navigationView.trailingAnchor.constraint(equalTo: fullView.trailingAnchor),
             navigationView.heightAnchor.constraint(equalToConstant: navigationViewHeight),
         ])
+    }
+    private func setupViewLayer() {
+        let layer = CALayer()
+        layer.frame = CGRect(x: 0, y: navigationViewHeight, width: ScreenWidth, height: 1)
+        layer.backgroundColor = UIColor(r: 233, g: 233, b: 233).cgColor
+        navigationView.layer.addSublayer(layer)
     }
     private func setupContentView() {
         contentView.translatesAutoresizingMaskIntoConstraints = false
@@ -118,7 +129,8 @@ extension JTNavigationViewController {
 }
 extension JTNavigationViewController {
     @objc private func backButtonTouchUpInside() {
-        let b = delegate?.backTouchUpInsideRecognizeJTNavigation()
+        delegate?.backTouchUpInsideBegin()
+        let b = optionalDelegate?.backTouchUpInsideRecognizeJTNavigation()
         if let bb = b, !bb { return }
         if let navi = navigationController {
             if navi.viewControllers.first == self {
@@ -131,6 +143,9 @@ extension JTNavigationViewController {
         }
     }
 }
-protocol JTNavigationViewControllerDelegate: NSObjectProtocol {
+protocol JTNavigationViewControllerOptionalDelegate: NSObjectProtocol {
     func backTouchUpInsideRecognizeJTNavigation() -> Bool
+}
+protocol JTNavigationViewControllerDelegate: NSObjectProtocol {
+    func backTouchUpInsideBegin()
 }

@@ -68,7 +68,7 @@ extension HeadPortraitImageView: UIImagePickerControllerDelegate, UINavigationCo
             return
         }
         
-        let hud = JTHUD(view: responder.view).jtMBProgressHUD_Indeterminate()
+        let hud = JTHUD(view: responder.view).indeterminate()
         let dataAndExt = image.jtData()
         guard let data = dataAndExt.0, let fileUrl = headPortraitFile else {
             hud.hide(animated: true)

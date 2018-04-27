@@ -20,8 +20,6 @@ class SearchViewController: JTNavigationViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        searchButton.backgroundColor = .red
-        historyTableView.backgroundColor = .blue
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -35,10 +33,14 @@ extension SearchViewController {
         setupSearchHistoryTableView()
         setupSearchContentTableView()
     }
+    private func setupJTNavigation() {
+        view.backgroundColor = .white
+    }
     private func setupSearchButton() {
         let btnAspectRatio: CGFloat = 1.5
         let width = navigationHeight * btnAspectRatio
         searchButton.translatesAutoresizingMaskIntoConstraints = false
+        searchButton.setImage(Assets.search_zh_cn, for: .normal)
         navigationContent.addSubview(searchButton)
         NSLayoutConstraint.activate([
             searchButton.topAnchor.constraint(equalTo: navigationContent.topAnchor),

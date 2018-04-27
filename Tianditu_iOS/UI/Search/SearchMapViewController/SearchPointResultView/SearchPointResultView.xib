@@ -20,11 +20,47 @@
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RAT-9c-acz">
                             <rect key="frame" x="0.0" y="0.0" width="187.5" height="40"/>
-                            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fSg-cn-bAg">
+                                    <rect key="frame" x="0.0" y="0.0" width="187.5" height="40"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                    <state key="normal" title="收藏">
+                                        <color key="titleColor" red="0.078431372549019607" green="0.078431372549019607" blue="0.078431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="favoriteTouchUpInside:" destination="Dn0-zW-ikn" eventType="touchUpInside" id="xqi-s7-V3Y"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="fSg-cn-bAg" firstAttribute="top" secondItem="RAT-9c-acz" secondAttribute="top" id="VTB-dJ-3eK"/>
+                                <constraint firstAttribute="trailing" secondItem="fSg-cn-bAg" secondAttribute="trailing" id="eza-77-2gd"/>
+                                <constraint firstAttribute="bottom" secondItem="fSg-cn-bAg" secondAttribute="bottom" id="hoS-w7-g73"/>
+                                <constraint firstItem="fSg-cn-bAg" firstAttribute="leading" secondItem="RAT-9c-acz" secondAttribute="leading" id="mfB-oo-hwK"/>
+                            </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iOo-RX-a6P">
                             <rect key="frame" x="187.5" y="0.0" width="187.5" height="40"/>
-                            <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nxq-T1-iI5">
+                                    <rect key="frame" x="0.0" y="0.0" width="187.5" height="40"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                    <state key="normal" title="分享">
+                                        <color key="titleColor" red="0.078431372549019607" green="0.078431372549019607" blue="0.078431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="shareTouchUpInside:" destination="Dn0-zW-ikn" eventType="touchUpInside" id="0W7-E1-9VC"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="nxq-T1-iI5" firstAttribute="leading" secondItem="iOo-RX-a6P" secondAttribute="leading" id="9Ff-Rp-wEJ"/>
+                                <constraint firstAttribute="trailing" secondItem="nxq-T1-iI5" secondAttribute="trailing" id="kmR-0l-ohw"/>
+                                <constraint firstItem="nxq-T1-iI5" firstAttribute="top" secondItem="iOo-RX-a6P" secondAttribute="top" id="mD9-c2-Uah"/>
+                                <constraint firstAttribute="bottom" secondItem="nxq-T1-iI5" secondAttribute="bottom" id="zsc-76-okr"/>
+                            </constraints>
                         </view>
                     </subviews>
                     <color key="backgroundColor" red="0.4919162326" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -113,7 +149,9 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="bottom" destination="Dh1-uY-ksL" id="l6X-FB-x4h"/>
                 <outlet property="detail" destination="UGl-zV-s3d" id="EaN-X9-4ah"/>
+                <outlet property="share" destination="nxq-T1-iI5" id="hw4-qR-zFG"/>
                 <outlet property="title" destination="rIq-xa-jbi" id="SNf-Ky-yyc"/>
             </connections>
             <point key="canvasLocation" x="-39.5" y="336"/>

@@ -23,6 +23,8 @@ class SearchMapViewController: JTNavigationViewController {
     private let closeButton = UIButton()
     private let jtSearchBar = JTSearchBar()
     private let progressView = UIView()
+    
+    private var searchContentTableViewPan: UIPanGestureRecognizer?
     private var halfTransformY: CGFloat = 0
     private var mode: Mode
     private var text: String?
@@ -32,12 +34,14 @@ class SearchMapViewController: JTNavigationViewController {
         mode = Mode.point
         self.position = position
         super.init(nibName: nil, bundle: nil)
+        delegate = self
         setupUI()
     }
     init(text: String) {
         mode = Mode.text
         self.text = text
         super.init(nibName: nil, bundle: nil)
+        delegate = self
         setupUI()
     }
     required init?(coder aDecoder: NSCoder) {
@@ -53,6 +57,7 @@ class SearchMapViewController: JTNavigationViewController {
         guard mapView.subviews.count <= 0 else { return }
         setupJTMapView()
     }
+    
 }
 extension SearchMapViewController {
     private func setupJTMapView() {
@@ -70,11 +75,15 @@ extension SearchMapViewController {
 extension SearchMapViewController {
     
     private func initPoint(position: Object_Attribute) {
+        optionalDelegate = nil
         mode = Mode.point
+        JTMapView.shareInstance.removeSymbolLayer()
         self.position = position
     }
     private func initText(text: String) {
+        optionalDelegate = nil
         mode = Mode.text
+        JTMapView.shareInstance.removeSymbolLayer()
         self.text = text
     }
     private func setupModeView() {
@@ -105,6 +114,10 @@ extension SearchMapViewController {
         let detail = region + " " + county + " " + address
         searchPointResultView.set(t: n, d: detail)
         jtSearchBar.text = n
+        guard let x = p.x, let y = p.y else { return }
+        JTMapView.shareInstance.removeSymbolLayer()
+        JTMapView.shareInstance.addSymbolLayerLocationPoints(points: [(x, y)])
+        JTMapView.shareInstance.zoom(toScale: 20000, withCenter: AGSPoint(location: CLLocation(latitude: y, longitude: x)), animated: true)
     }
     private func showName() -> Bool {
         if text == nil, let t = text, (t == "" || t.trimmingCharacters(in: .whitespaces) == "") { return false }
@@ -117,16 +130,49 @@ extension SearchMapViewController {
         guard let t = text else { return }
         jtSearchBar.text = t
         let a = setupActivityIndicatorView()
-//      searchContentTableView.renew()
+        hideAll()
         searchContentTableView.nameSearch(text: t) {
             [weak self]
             result in
             a.removeFromSuperview()
-            guard result, let s = self else { return }
+            if !result {
+                if let s = self {
+                    _ = JTHUD(view: s.full).textOnly(LocalizableStrings.searchFailed, delayTimeIfAutoHide: 1.5)
+                }
+                return
+            }
+            guard let s = self else { return }
             s.searchNameResultViewOpenView.isHidden = true
             s.searchNameResultView.isHidden = false
             s.SearchNameResultViewOffsetToHideHalf()
+            s.showNameSymbol()
         }
+    }
+    private func showNameSymbol() {
+        JTMapView.shareInstance.removeSymbolLayer()
+        let positions = searchContentTableView.positions
+        var points = [(x: Double, y: Double)]()
+        var maxX: Double? = nil
+        var maxY: Double? = nil
+        var minX: Double? = nil
+        var minY: Double? = nil
+        for p in positions {
+            guard let x = p.x, let y = p.y else { continue }
+            points.append((x: x, y: y))
+            if maxX == nil { maxX = x }
+            if minX == nil { minX = x }
+            if maxY == nil { maxY = y }
+            if minY == nil { minY = y }
+            if x > maxX! { maxX = x }
+            if x < minX! { minX = x }
+            if y > maxY! { maxY = y }
+            if y < minY! { minY = y }
+            if points.count > 10 { break }
+        }
+        JTMapView.shareInstance.addSymbolLayerLocationPoints(points: points)
+        guard let ax = maxX, let ix = minX, let ay = maxY, let iy = minY else { return }
+        let env = AGSEnvelope(xmin: ix, ymin: iy, xmax: ax, ymax: ay, spatialReference: JTMapView.shareInstance.spatialReference)
+        JTMapView.shareInstance.zoom(to: env, animated: true)
     }
 }
 extension SearchMapViewController {
@@ -222,6 +268,7 @@ extension SearchMapViewController {
     }
     private func setupSearchNameResultViewPanView() {
         let view = UIView()
+        view.accessibilityIdentifier = "qwewqewq"
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .clear
         searchNameResultView.addSubview(view)
@@ -232,6 +279,7 @@ extension SearchMapViewController {
             view.trailingAnchor.constraint(equalTo: searchNameResultView.trailingAnchor),
             ])
         searchNameResultView.bringSubview(toFront: view)
+        view.gestureRecognizers?.removeAll()
         view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(searchNameResultViewPaned)))
         let t = UITapGestureRecognizer(target: self, action: #selector(searchNameResultViewTaped))
         t.numberOfTapsRequired = 1
@@ -239,15 +287,17 @@ extension SearchMapViewController {
         view.addGestureRecognizer(t)
     }
     private func setupSearchContentTableViewPan() {
-        let p = UIPanGestureRecognizer(target: self, action: #selector(searchContentTableViewPaned))
-        p.delegate = self
-        searchContentTableView.addGestureRecognizer(p)
+        searchContentTableViewPan = UIPanGestureRecognizer(target: self, action: #selector(searchContentTableViewPaned))
+        searchContentTableViewPan?.delegate = self
+        guard let x = searchContentTableViewPan else { return }
+        searchContentTableView.addGestureRecognizer(x)
     }
     private func setupCloseButton() {
         let btnAspectRatio: CGFloat = 1.2
         let width = navigationHeight * btnAspectRatio
         closeButton.translatesAutoresizingMaskIntoConstraints = false
-        closeButton.backgroundColor = .blue
+        closeButton.backgroundColor = .white
+        closeButton.setImage(Assets.close, for: .normal)
         navigationContent.addSubview(closeButton)
         NSLayoutConstraint.activate([
             closeButton.topAnchor.constraint(equalTo: navigationContent.topAnchor),
@@ -283,7 +333,7 @@ extension SearchMapViewController {
             ])
     }
     private func setupActivityIndicatorView() -> UIActivityIndicatorView {
-        let a = UIActivityIndicatorView(activityIndicatorStyle: .white)
+        let a = UIActivityIndicatorView(activityIndicatorStyle: .gray)
         a.translatesAutoresizingMaskIntoConstraints = false
         progressView.addSubview(a)
         NSLayoutConstraint.activate([
@@ -302,7 +352,8 @@ extension SearchMapViewController: JTSearchContentTableViewDelegate {
         if !showPoint() { return }
         mode = Mode.point
         setupPoint()
-        delegate = self
+        if let x = searchContentTableViewPan { searchContentTableView.removeGestureRecognizer(x) }
+        optionalDelegate = self
     }
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         var offset = scrollView.contentOffset
@@ -315,13 +366,20 @@ extension SearchMapViewController {
         case text
     }
 }
-extension SearchMapViewController: JTNavigationViewControllerDelegate {
+extension SearchMapViewController: JTNavigationViewControllerOptionalDelegate {
     func backTouchUpInsideRecognizeJTNavigation() -> Bool {
         if !showName() { return true }
         jtSearchBar.text = text
-        delegate = nil
+        optionalDelegate = nil
         mode = Mode.text
+        SearchNameResultViewOffsetToHideHalf()
+        showNameSymbol()
         return false
+    }
+}
+extension SearchMapViewController: JTNavigationViewControllerDelegate {
+    func backTouchUpInsideBegin() {
+        JTMapView.shareInstance.removeSymbolLayer()
     }
 }
 extension SearchMapViewController: UIGestureRecognizerDelegate {
@@ -368,18 +426,27 @@ extension SearchMapViewController: SearchViewControllerDelegate {
 }
 extension SearchMapViewController {
     @objc private func closeTouchUpInside() {
+        JTMapView.shareInstance.removeSymbolLayer()
         navigationController?.dismiss(animated: false, completion: nil)
     }
     @objc private func searchContentTableViewPaned(pan: UIPanGestureRecognizer) {
         let y = pan.translation(in: pan.view).y
+        print(y)
         if y >= 0 && searchContentTableView.contentOffset.y <= 0 {
             searchContentTableView.isScrollEnabled = false
             searchNameResultView.transform = CGAffineTransform(translationX: 0, y: y)
         }
         if pan.state == .ended {
             searchContentTableView.isScrollEnabled = true
-            pan.view?.removeGestureRecognizer(pan)
             let ty = searchNameResultView.transform.ty
+            pan.view?.removeGestureRecognizer(pan)
+            if let gcs = pan.view?.gestureRecognizers {
+                for gc in gcs {
+                    if gc == pan {
+                        pan.view?.removeGestureRecognizer(gc)
+                    }
+                }
+            }
             if ty > halfTransformY {
                 SearchNameResultViewOffsetToHide(true, showOpenView: true)
             } else if ty > autoFinishTransformYHeight {
@@ -397,9 +464,13 @@ extension SearchMapViewController {
     @objc private func searchNameResultViewPaned(pan: UIPanGestureRecognizer) {
         let ty = pan.translation(in: pan.view).y
         let y = halfTransformY + ty
+        print("-----\(y)")
         if y >= 0 { searchNameResultView.transform = CGAffineTransform(translationX: 0, y: y) }
         if pan.state == .ended {
-            pan.view?.removeFromSuperview()
+            let v = pan.view
+            v?.gestureRecognizers?.removeAll()
+            v?.removeGestureRecognizer(pan)
+            v?.removeFromSuperview()
             if ty > autoFinishTransformYHeight {
                 SearchNameResultViewOffsetToHide()
             } else if ty < -autoFinishTransformYHeight {
@@ -414,14 +485,17 @@ extension SearchMapViewController {
         let indexPath = searchContentTableView.indexPathForRow(at: loca)
         guard let ip = indexPath else { return }
         searchContentTableView.tableView(searchContentTableView, didSelectRowAt: ip)
+        let v = tap.view
+        v?.gestureRecognizers?.removeAll()
+        v?.removeFromSuperview()
     }
 
     private func SearchNameResultViewOffsetToHide(_ withAnimate: Bool = true, showOpenView: Bool = true) {
         if withAnimate {
-            UIView.animate(withDuration: 0.3, animations: {
+            UIView.animate(withDuration: 0.2, animations: {
                 [weak self] in
                 guard let s = self else { return }
-                s.searchNameResultView.transform = CGAffineTransform(translationX: 0, y: ScrennHeight - s.navigationHeight)
+                s.searchNameResultView.transform = CGAffineTransform(translationX: 0, y: s.searchNameResultView.frame.height - s.navigationHeight)
             }) {
                 [weak self]
                 finish in
@@ -430,18 +504,18 @@ extension SearchMapViewController {
                 if showOpenView { self?.searchNameResultViewOpenView.isHidden = false }
             }
         } else {
-            searchNameResultView.transform = CGAffineTransform(translationX: 0, y: ScrennHeight - navigationHeight)
+            searchNameResultView.transform = CGAffineTransform(translationX: 0, y: searchNameResultView.frame.height - navigationHeight)
             searchNameResultView.isHidden = true
             if showOpenView { searchNameResultViewOpenView.isHidden = false }
         }
     }
-    private func SearchNameResultViewOffsetToHideHalf(_ withAnimate: Bool = true, timeInterval: TimeInterval = 0.3) {
+    private func SearchNameResultViewOffsetToHideHalf(_ withAnimate: Bool = true, timeInterval: TimeInterval = 0.2) {
         searchNameResultView.isHidden = false
         if withAnimate {
             UIView.animate(withDuration: timeInterval, animations: {
                 [weak self] in
                 guard let s = self else { return }
-                s.searchNameResultView.transform = CGAffineTransform(translationX: 0, y: (ScrennHeight - s.navigationHeight) / 2)
+                s.searchNameResultView.transform = CGAffineTransform(translationX: 0, y: (s.searchNameResultView.frame.height - s.navigationHeight) / 2)
             }) {
                 [weak self]
                 finish in
@@ -450,7 +524,7 @@ extension SearchMapViewController {
                 self?.setupSearchNameResultViewPanView()
             }
         } else {
-            searchNameResultView.transform = CGAffineTransform(translationX: 0, y: (ScrennHeight - navigationHeight) / 2)
+            searchNameResultView.transform = CGAffineTransform(translationX: 0, y: (searchNameResultView.frame.height - navigationHeight) / 2)
             halfTransformY = searchNameResultView.transform.ty
             setupSearchNameResultViewPanView()
         }
@@ -458,7 +532,7 @@ extension SearchMapViewController {
     private func SearchNameResultViewNotOffset(_ withAnimate: Bool = true) {
         searchNameResultView.isHidden = false
         if withAnimate {
-            UIView.animate(withDuration: 0.3, animations: {
+            UIView.animate(withDuration: 0.2, animations: {
                 [weak self] in
                 guard let s = self else { return }
                 s.searchNameResultView.transform = CGAffineTransform(translationX: 0, y: 0)

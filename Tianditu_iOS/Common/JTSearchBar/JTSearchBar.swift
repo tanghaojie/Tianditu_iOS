@@ -28,6 +28,6 @@ extension JTSearchBar {
     private func setupUI() {
         searchBarStyle = .minimal
         placeholder = LocalizableStrings.search
-        setImage(Assets.transparent, for: .search, state: .normal)
+        //setImage(Assets.transparent, for: .search, state: .normal)
     }
 }

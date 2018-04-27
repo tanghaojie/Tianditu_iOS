@@ -13,6 +13,7 @@ class SearchHistoryTableView: UITableView {
     private let cellReuseIdentifier = "searchHistoryTableViewCellReuseIdentifier"
     private var cellVMs: [SearchHistoryTableViewCellVM] = [SearchHistoryTableViewCellVM]()
     private let footerHeight: CGFloat = 60
+    private let headerHeight: CGFloat = 10
     weak var jtDelegate: JTSearchHistoryTableViewDelegate?
     
     init(cellVMs: [SearchHistoryTableViewCellVM]? = nil) {
@@ -47,7 +48,13 @@ extension SearchHistoryTableView {
         scrollsToTop = true
         keyboardDismissMode = .onDrag
         allowsSelection = true
-        separatorStyle = .singleLine
+        separatorStyle = .none
+        backgroundColor = UIColor(r: 233, g: 233, b: 233)
+        estimatedRowHeight = 90
+        rowHeight = UITableViewAutomaticDimension
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: headerHeight))
+        view.isUserInteractionEnabled = false
+        tableHeaderView = view
         dataSource = self
         delegate = self
     }
@@ -68,6 +75,10 @@ extension SearchHistoryTableView {
         b.backgroundColor = .white
         b.translatesAutoresizingMaskIntoConstraints = false
         b.setTitleColor(UIColor(r: 160, g: 160, b: 160), for: .normal)
+        let layer = CALayer()
+        layer.frame = CGRect(x: 0, y: 0, width: ScreenWidth, height: 1)
+        layer.backgroundColor = UIColor(r: 233, g: 233, b: 233).cgColor
+        b.layer.addSublayer(layer)
         view.addSubview(b)
         b.setTitle(LocalizableStrings.clearHistory, for: .normal)
         NSLayoutConstraint.activate([

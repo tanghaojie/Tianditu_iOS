@@ -73,7 +73,7 @@
                                                 <size key="value" width="0.0" height="3"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="layer.jtShadowUIColor">
-                                                <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="value" red="0.38948567708333331" green="0.40589735243055558" blue="0.42366536458333331" alpha="1" colorSpace="calibratedRGB"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowOpacity">
                                                 <real key="value" value="0.80000000000000004"/>
@@ -182,10 +182,10 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zed-It-HYZ">
-                                        <rect key="frame" x="128" y="549" width="120" height="70"/>
+                                        <rect key="frame" x="128" y="559" width="120" height="60"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NAQ-lf-SjC">
-                                                <rect key="frame" x="0.0" y="0.0" width="120" height="70"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="120" height="60"/>
                                                 <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -197,7 +197,7 @@
                                         </subviews>
                                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="70" id="OCQ-Wy-Uhg"/>
+                                            <constraint firstAttribute="height" constant="60" id="OCQ-Wy-Uhg"/>
                                             <constraint firstAttribute="trailing" secondItem="NAQ-lf-SjC" secondAttribute="trailing" id="PZm-Zr-IoU"/>
                                             <constraint firstItem="NAQ-lf-SjC" firstAttribute="top" secondItem="Zed-It-HYZ" secondAttribute="top" id="UaY-Jk-DM8"/>
                                             <constraint firstAttribute="width" constant="120" id="asK-P4-3fH"/>
@@ -206,7 +206,7 @@
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="35"/>
+                                                <integer key="value" value="30"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>

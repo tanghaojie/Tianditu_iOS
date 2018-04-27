@@ -22,6 +22,7 @@ class MainViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        JTMapView.shareInstance.removeSymbolLayer()
         guard mapView.subviews.count <= 0 else { return }
         setupJTMapView()
     }
@@ -47,15 +48,11 @@ class MainViewController: UIViewController {
     }
     @IBAction func searchTouchUpInside(_ sender: Any) {
         let n = UINavigationController(rootViewController: SearchViewController())
-        //let n = UINavigationController(rootViewController: SearchMapViewController())
         n.isNavigationBarHidden = true
         present(n, animated: false, completion: nil)
     }
     @IBAction func messageTouchUpInside(_ sender: Any) {
         print("message")
-        let n = UINavigationController(rootViewController: temp())
-        n.isNavigationBarHidden = true
-        present(n, animated: false, completion: nil)
     }
     @IBAction func layerTouchUpInside(_ sender: Any) {
         print("layer")

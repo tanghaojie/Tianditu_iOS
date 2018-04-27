@@ -22,6 +22,7 @@
 "errorResponseContentDataFormat" = "响应内容数据格式错误";
 
 "clickToShowResultList" = "点击查看结果列表";
+"searchFailed" = "搜索失败";
 
 
 "photoLibrary" = "相册";

@@ -33,8 +33,6 @@ class SearchHistoryTableViewCell: UITableViewCell {
     init(reuseIdentifier: String?) {
         super.init(style: .default, reuseIdentifier: reuseIdentifier)
         setupUI()
-        
-       
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -46,6 +44,7 @@ class SearchHistoryTableViewCell: UITableViewCell {
 extension SearchHistoryTableViewCell {
     private func setupUI() {
         setupFullView()
+        setupViewLayer()
         setupLeftView()
         setupRightView()
         setupCenterView()
@@ -65,6 +64,12 @@ extension SearchHistoryTableViewCell {
             fullView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -fullViewRight),
             fullView.heightAnchor.constraint(greaterThanOrEqualToConstant: fullViewMinHeight),
             ])
+    }
+    private func setupViewLayer() {
+        let layer = CALayer()
+        layer.frame = CGRect(x: 0, y: 0, width: ScreenWidth, height: 1)
+        layer.backgroundColor = UIColor(r: 233, g: 233, b: 233).cgColor
+        contentView.layer.addSublayer(layer)
     }
     private func setupLeftView() {
         leftView.translatesAutoresizingMaskIntoConstraints = false
