@@ -9,7 +9,7 @@
 class JTLocationDisplayDataSource: NSObject, AGSLocationDisplayDataSource, CLLocationManagerDelegate {
     
     static let shareInstance = JTLocationDisplayDataSource()
-    
+    weak var jtDelegate: JTLocationDisplayDataSourceDelegate?
     var delegate: AGSLocationDisplayDataSourceDelegate!
     var isStarted: Bool
     var error: Error!
@@ -18,9 +18,6 @@ class JTLocationDisplayDataSource: NSObject, AGSLocationDisplayDataSource, CLLoc
         isStarted = false
         super.init()
         JTLocationManager.shareInstance.delegate = self
-    }
-    deinit {
-        print("----release JTLocationDisplayDataSource")
     }
     func start() {
         JTLocationManager.shareInstance.startUpdatingLocation()
@@ -39,5 +36,9 @@ class JTLocationDisplayDataSource: NSObject, AGSLocationDisplayDataSource, CLLoc
     }
     func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
         delegate.locationDisplayDataSource(self, didUpdateWithHeading: newHeading.trueHeading)
+        jtDelegate?.updateHeading()
     }
+}
+protocol JTLocationDisplayDataSourceDelegate: NSObjectProtocol {
+    func updateHeading()
 }

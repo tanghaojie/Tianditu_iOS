@@ -9,8 +9,8 @@
 import Foundation
 
 class JTMapView: AGSMapView {
-    
     public static let shareInstance = JTMapView()
+    weak var jtDelegate: JTMapViewDelegate?
     private let symbolLayerName = "jtTemporaryMapSymbolLayer"
     private init() {
         super.init(frame: CGRect.zero)
@@ -23,21 +23,21 @@ class JTMapView: AGSMapView {
         addLayer()
     }
 }
-extension JTMapView: AGSMapViewLayerDelegate {
+extension JTMapView {
     private func setup() {
-        accessibilityIdentifier = "xxx"
         SCGISUtility.registerESRI()
+        JTLocationDisplayDataSource.shareInstance.jtDelegate = self
         locationDisplay.dataSource = JTLocationDisplayDataSource.shareInstance
         layerDelegate = self
         gridLineWidth = 10
     }
-    func mapViewDidLoad(_ mapView: AGSMapView!) {
-        let map = mapLayers[0] as! AGSTiledLayer
-        let envelop = map.initialEnvelope
-        zoom(to: envelop, animated: true)
-        locationDisplay.startDataSource()
-        locationDisplay.autoPanMode = .default
+}
+extension JTMapView: JTLocationDisplayDataSourceDelegate {
+    func updateHeading() {
+        jtDelegate?.didMapViewUpdateHeading(rotationAngle: rotationAngle)
     }
+}
+extension JTMapView {
     private func addLayer() {
         addTilemapServerLayer(url: "http://www.scgis.net.cn/imap/imapserver/defaultrest/services/scmobile_dlg/")
     }
@@ -45,6 +45,15 @@ extension JTMapView: AGSMapViewLayerDelegate {
         let tilemap = SCGISTilemapServerLayer(serviceUrlStr: url, token: nil, cacheType: SCGISTilemapCacheTypeArcGISFile)
         guard let t = tilemap else { return }
         addMapLayer(t)
+    }
+}
+extension JTMapView: AGSMapViewLayerDelegate {
+    func mapViewDidLoad(_ mapView: AGSMapView!) {
+        let map = mapLayers[0] as! AGSTiledLayer
+        let envelop = map.initialEnvelope
+        zoom(to: envelop, animated: true)
+        locationDisplay.startDataSource()
+        locationDisplay.autoPanMode = .default
     }
 }
 extension JTMapView {
@@ -71,6 +80,8 @@ extension JTMapView {
             graphic.symbol = markerSymbol
             gl.addGraphic(graphic)
         }
-        
     }
+}
+protocol JTMapViewDelegate: NSObjectProtocol {
+    func didMapViewUpdateHeading(rotationAngle: Double)
 }

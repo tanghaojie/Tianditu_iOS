@@ -8,6 +8,11 @@
 
 class Object_Attribute {
     
+    enum XX {
+        case x
+        case y
+    }
+    
     var id: Int?
     var x: Double?
     var y: Double?
@@ -40,7 +45,10 @@ class Object_Attribute {
         if let t = typeStr {
             type = Tianditu_NameSearchType(rawValue: t)
             if type == nil {
-                type = Tianditu_NameSearchType.unknown
+                
+//                for x in Tianditu_NameSearchType {
+//
+//                }
             }
         }
         uuidStr = uuid

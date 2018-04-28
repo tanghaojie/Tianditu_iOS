@@ -10,7 +10,6 @@ import Foundation
 
 class JTLocationManager: CLLocationManager {
     static let shareInstance = JTLocationManager()
-    
     private override init(){
         super.init()
         requestAlwaysAuthorization()

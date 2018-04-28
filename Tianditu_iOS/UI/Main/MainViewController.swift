@@ -13,6 +13,8 @@ class MainViewController: UIViewController {
 
     @IBOutlet weak var mapView: UIView!
     @IBOutlet weak var transparentView: JTTransparentUIView!
+    @IBOutlet weak var compassView: UIView!
+    
     
     private let centerDistance = 0.0002
     
@@ -23,6 +25,7 @@ class MainViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         JTMapView.shareInstance.removeSymbolLayer()
+        JTMapView.shareInstance.jtDelegate = self
         guard mapView.subviews.count <= 0 else { return }
         setupJTMapView()
     }
@@ -66,7 +69,7 @@ class MainViewController: UIViewController {
         let px = AGSPoint(location: l)
         guard let p = px else { return }
         let d = p.distance(to: JTMapView.shareInstance.visibleAreaEnvelope.center)
-        JTMapView.shareInstance.center(at: p, animated: true)
+        JTMapView.shareInstance.zoom(toScale: 30000, withCenter: p, animated: true)
         if d > centerDistance {
             JTMapView.shareInstance.locationDisplay.autoPanMode = .default
         } else {
@@ -74,13 +77,16 @@ class MainViewController: UIViewController {
         }
     }
     @IBAction func routeTouchUpInside(_ sender: Any) {
-        print("route")
+        
     }
-    
-    
+    @IBAction func compassTouchUpInside(_ sender: Any) {
+        JTMapView.shareInstance.locationDisplay.autoPanMode = .off
+        JTMapView.shareInstance.rotationAngle = 0
+        compassView.transform = CGAffineTransform.identity
+        compassView.isHidden = true
+    }
 }
 extension MainViewController {
-    
     private func setupJTMapView() {
         let jtMapView = JTMapView.shareInstance
         jtMapView.translatesAutoresizingMaskIntoConstraints = false
@@ -92,6 +98,14 @@ extension MainViewController {
             jtMapView.trailingAnchor.constraint(equalTo: mapView.trailingAnchor),
             ])
     }
-    
 }
-
+extension MainViewController: JTMapViewDelegate {
+    func didMapViewUpdateHeading(rotationAngle: Double) {
+        if rotationAngle == 0 {
+            compassView.isHidden = true
+        } else {
+            compassView.isHidden = false
+            compassView.transform = CGAffineTransform(rotationAngle: CGFloat.pi * CGFloat(360 - rotationAngle) / 180)
+        }
+    }
+}

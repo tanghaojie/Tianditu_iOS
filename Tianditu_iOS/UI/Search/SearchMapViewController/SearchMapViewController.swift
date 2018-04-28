@@ -62,6 +62,8 @@ class SearchMapViewController: JTNavigationViewController {
 extension SearchMapViewController {
     private func setupJTMapView() {
         let jtMapView = JTMapView.shareInstance
+        jtMapView.locationDisplay.autoPanMode = .off
+        jtMapView.setRotationAngle(0, animated: true)
         jtMapView.translatesAutoresizingMaskIntoConstraints = false
         mapView.addSubview(jtMapView)
         NSLayoutConstraint.activate([
@@ -117,7 +119,7 @@ extension SearchMapViewController {
         guard let x = p.x, let y = p.y else { return }
         JTMapView.shareInstance.removeSymbolLayer()
         JTMapView.shareInstance.addSymbolLayerLocationPoints(points: [(x, y)])
-        JTMapView.shareInstance.zoom(toScale: 20000, withCenter: AGSPoint(location: CLLocation(latitude: y, longitude: x)), animated: true)
+        JTMapView.shareInstance.zoom(toScale: 30000, withCenter: AGSPoint(location: CLLocation(latitude: y, longitude: x)), animated: true)
     }
     private func showName() -> Bool {
         if text == nil, let t = text, (t == "" || t.trimmingCharacters(in: .whitespaces) == "") { return false }
@@ -431,7 +433,6 @@ extension SearchMapViewController {
     }
     @objc private func searchContentTableViewPaned(pan: UIPanGestureRecognizer) {
         let y = pan.translation(in: pan.view).y
-        print(y)
         if y >= 0 && searchContentTableView.contentOffset.y <= 0 {
             searchContentTableView.isScrollEnabled = false
             searchNameResultView.transform = CGAffineTransform(translationX: 0, y: y)
@@ -464,7 +465,6 @@ extension SearchMapViewController {
     @objc private func searchNameResultViewPaned(pan: UIPanGestureRecognizer) {
         let ty = pan.translation(in: pan.view).y
         let y = halfTransformY + ty
-        print("-----\(y)")
         if y >= 0 { searchNameResultView.transform = CGAffineTransform(translationX: 0, y: y) }
         if pan.state == .ended {
             let v = pan.view

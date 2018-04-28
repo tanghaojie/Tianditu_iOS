@@ -36,7 +36,7 @@ extension HeadPortraitImageView: UIImagePickerControllerDelegate, UINavigationCo
             }
             let picker = UIImagePickerController()
             picker.delegate = self
-            picker.sourceType = .savedPhotosAlbum
+            picker.sourceType = .photoLibrary
             responder.jtTopViewController().present(picker, animated: true, completion: nil)
         }
         let actionCamera = UIAlertAction(title: LocalizableStrings.takePhoto, style: .default) {

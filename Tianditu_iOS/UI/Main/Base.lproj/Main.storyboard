@@ -210,6 +210,29 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fVX-WA-jKn">
+                                        <rect key="frame" x="16" y="162" width="50" height="50"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6HK-dl-Lua">
+                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="compass"/>
+                                                <connections>
+                                                    <action selector="compassTouchUpInside:" destination="8uD-ta-P8P" eventType="touchUpInside" id="UWs-ol-U0g"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="Cyb-ui-A5o"/>
+                                            <constraint firstAttribute="height" constant="50" id="VyG-1p-7S9"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="25"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="DMB-KG-9p1" firstAttribute="leading" secondItem="RkD-ep-5ur" secondAttribute="leading" constant="16" id="AM3-2W-g0n"/>
@@ -217,6 +240,7 @@
                                     <constraint firstAttribute="trailing" secondItem="hZd-mb-Cu5" secondAttribute="trailing" constant="16" id="IPf-ss-8Ti"/>
                                     <constraint firstItem="8cq-82-NDs" firstAttribute="top" secondItem="fvz-7D-AzG" secondAttribute="bottom" constant="43" id="J0h-3y-dJg"/>
                                     <constraint firstAttribute="trailing" secondItem="8cq-82-NDs" secondAttribute="trailing" constant="16" id="NQZ-Ko-eGk"/>
+                                    <constraint firstItem="fVX-WA-jKn" firstAttribute="leading" secondItem="kDq-Cj-rOg" secondAttribute="leading" id="Zwh-Nn-Gou"/>
                                     <constraint firstItem="Zed-It-HYZ" firstAttribute="centerX" secondItem="RkD-ep-5ur" secondAttribute="centerX" id="gfp-yg-3fL"/>
                                     <constraint firstAttribute="trailing" secondItem="fvz-7D-AzG" secondAttribute="trailing" constant="16" id="gy9-Ic-b4w"/>
                                     <constraint firstAttribute="bottom" secondItem="DMB-KG-9p1" secondAttribute="bottom" constant="88" id="nwH-NG-a4E"/>
@@ -225,6 +249,7 @@
                                     <constraint firstItem="kDq-Cj-rOg" firstAttribute="top" secondItem="fvz-7D-AzG" secondAttribute="bottom" constant="43" id="ppi-X1-95h"/>
                                     <constraint firstItem="kDq-Cj-rOg" firstAttribute="leading" secondItem="RkD-ep-5ur" secondAttribute="leading" constant="16" id="rEy-u4-8Vr"/>
                                     <constraint firstAttribute="bottom" secondItem="Zed-It-HYZ" secondAttribute="bottom" constant="28" id="taa-Ew-DyQ"/>
+                                    <constraint firstItem="fVX-WA-jKn" firstAttribute="top" secondItem="kDq-Cj-rOg" secondAttribute="bottom" constant="20" id="yIs-KM-qZi"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -243,6 +268,7 @@
                         <viewLayoutGuide key="safeArea" id="1cR-eV-gdN"/>
                     </view>
                     <connections>
+                        <outlet property="compassView" destination="fVX-WA-jKn" id="HMO-YK-w3F"/>
                         <outlet property="mapView" destination="OiQ-zL-YkD" id="tcI-hP-0XP"/>
                         <outlet property="transparentView" destination="RkD-ep-5ur" id="G8H-zL-TyF"/>
                     </connections>
@@ -252,4 +278,7 @@
             <point key="canvasLocation" x="72" y="-327"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="compass" width="50" height="50"/>
+    </resources>
 </document>
