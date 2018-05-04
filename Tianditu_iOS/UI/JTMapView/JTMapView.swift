@@ -73,7 +73,7 @@ extension JTMapView {
         guard let gl = graphicLayer else { abort() }
         guard let img = Assets.location else { abort() }
         let markerSymbol = AGSPictureMarkerSymbol(image: img)
-        markerSymbol?.offset = CGPoint(x: 0, y: 30)
+        markerSymbol?.offset = CGPoint(x: 0, y: 15)
         for p in points {
             let graphic = AGSGraphic()
             graphic.geometry = AGSPoint(x: p.x, y: p.y, spatialReference: sr)

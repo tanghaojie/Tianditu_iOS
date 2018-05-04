@@ -7,12 +7,6 @@
 //
 
 class Object_Attribute {
-    
-    enum XX {
-        case x
-        case y
-    }
-    
     var id: Int?
     var x: Double?
     var y: Double?

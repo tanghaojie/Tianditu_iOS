@@ -71,19 +71,20 @@ enum Tianditu_NameSearchType: String {
     case _ATM = "ATM"
     case _securities = "证劵"
     case _hospital = "医院"
-    case _drugstore = "药店"
+    case _drugStore = "药店"
     case _clinic = "诊所"
     case _healthCare = "保健"
     case _medicalExamination = "体检"
     case _animalHospital = "动物医院"
     case _ticketSales = "售票处"
-    case _waterAndelectricityAndGas = "水电气"
+    case _waterAndElectricityAndGas = "水电气"
     case _beautySalons = "美容美发"
     case _toilet = "公共卫生间"
     case _housingAgency = "房屋中介"
     case _education = "教育"
     case _entertainment = "娱乐"
     case _safetyAndFireAndEmergency = "公安消防应急"
+    case _station = "车站"
 }
 extension Tianditu_NameSearchType: JTEnum {
     var strNum: String {
@@ -92,6 +93,7 @@ extension Tianditu_NameSearchType: JTEnum {
         case .naturalGeographicalName: return "01"
             
         case .humanGeographicalName: return "02"
+        case ._station: return "02305"
         case ._trainStation: return "0230501"
         case ._subwayStation: return "0230503"
         case ._carStation: return "0230505"
@@ -108,7 +110,7 @@ extension Tianditu_NameSearchType: JTEnum {
         case ._medicalExamination: return "0520002"
         case ._healthCare: return "053"
         case ._animalHospital: return "054"
-        case ._drugstore: return "055"
+        case ._drugStore: return "055"
             
         case ._delicious: return "06"
         case .exoticismFood: return "061"
@@ -164,7 +166,7 @@ extension Tianditu_NameSearchType: JTEnum {
         case ._carServiceArea: return "1200003"
             
         case .dailyService: return "13"
-        case ._waterAndelectricityAndGas: return "131"
+        case ._waterAndElectricityAndGas: return "131"
         case ._housingAgency: return "1320004"
         case ._beautySalons: return "1320005"
         case ._toilet: return "1320016"

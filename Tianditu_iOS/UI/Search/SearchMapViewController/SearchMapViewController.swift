@@ -13,12 +13,12 @@ class SearchMapViewController: JTNavigationViewController {
     
     private let mapView = UIView()
     private let transparentView = JTTransparentUIView()
-    private let searchPointResultView = SearchPointResultView.loadFromNib()
-    private let searchPointResultViewHeight: CGFloat = 120
-    private let searchNameResultView = UIView()
+    private let pointResultView = PointResultView.loadFromNib()
+    private let pointResultViewHeight: CGFloat = 120
+    private let contentResultView = UIView()
     private let searchContentTableView = SearchContentTableView()
-    private let searchNameResultViewOpenView = UIView()
-    private let searchNameResultViewOpenViewHeight: CGFloat = 40
+    private let searchContentResultViewOpenView = UIView()
+    private let searchContentResultViewOpenViewHeight: CGFloat = 40
     private let autoFinishTransformYHeight: CGFloat = 80
     private let closeButton = UIButton()
     private let jtSearchBar = JTSearchBar()
@@ -27,25 +27,36 @@ class SearchMapViewController: JTNavigationViewController {
     private var searchContentTableViewPan: UIPanGestureRecognizer?
     private var halfTransformY: CGFloat = 0
     private var mode: Mode
+    private var previousMode: Mode? = nil
     private var text: String?
     private var position: Object_Attribute?
+    private var type: Tianditu_NameSearchType?
+    private var withEnvelope: Bool = false
     
     init(position: Object_Attribute) {
-        mode = Mode.point
+        mode = .point
         self.position = position
         super.init(nibName: nil, bundle: nil)
         delegate = self
         setupUI()
     }
     init(text: String) {
-        mode = Mode.text
+        mode = .text
         self.text = text
         super.init(nibName: nil, bundle: nil)
         delegate = self
         setupUI()
     }
+    init(type: Tianditu_NameSearchType, withEnvelope: Bool = false) {
+        mode = .type
+        self.type = type
+        self.withEnvelope = withEnvelope
+        super.init(nibName: nil, bundle: nil)
+        delegate = self
+        setupUI()
+    }
     required init?(coder aDecoder: NSCoder) {
-        mode = Mode.text
+        mode = .text
         super.init(coder: aDecoder)
     }
     override func viewDidLoad() {
@@ -78,34 +89,58 @@ extension SearchMapViewController {
     
     private func initPoint(position: Object_Attribute) {
         optionalDelegate = nil
-        mode = Mode.point
+        mode = .point
         JTMapView.shareInstance.removeSymbolLayer()
         self.position = position
     }
     private func initText(text: String) {
         optionalDelegate = nil
-        mode = Mode.text
+        mode = .text
         JTMapView.shareInstance.removeSymbolLayer()
         self.text = text
+    }
+    private func initType(type: Tianditu_NameSearchType, withEnvelope: Bool = false) {
+        optionalDelegate = nil
+        mode = .type
+        JTMapView.shareInstance.removeSymbolLayer()
+        self.type = type
+        self.withEnvelope = withEnvelope
     }
     private func setupModeView() {
         if mode == .point {
             if !showPoint() { return }
             setupPoint()
-        } else {
+        } else if mode == .text {
             if !showName() { return }
             setupName()
+        } else if mode == .type {
+            if !showType() { return }
+            setupType()
         }
     }
     private func hideAll() {
-        searchPointResultView.isHidden = true
+        pointResultView.isHidden = true
         SearchNameResultViewOffsetToHide(false, showOpenView: false)
-        searchNameResultViewOpenView.isHidden = true
+        searchContentResultViewOpenView.isHidden = true
     }
     private func showPoint() -> Bool {
         guard let p = position, let _ = p.name else { return false }
-        searchPointResultView.isHidden = false
+        pointResultView.isHidden = false
         SearchNameResultViewOffsetToHide(false, showOpenView: false)
+        return true
+    }
+    private func showName() -> Bool {
+        if text == nil, let t = text, (t == "" || t.trimmingCharacters(in: .whitespaces) == "") { return false }
+        pointResultView.isHidden = true
+        contentResultView.isHidden = false
+        searchContentResultViewOpenView.isHidden = true
+        return true
+    }
+    private func showType() -> Bool {
+        if type == nil || type == .unknown { return false }
+        pointResultView.isHidden = true
+        contentResultView.isHidden = false
+        searchContentResultViewOpenView.isHidden = true
         return true
     }
     private func setupPoint() {
@@ -114,19 +149,12 @@ extension SearchMapViewController {
         let county = p.county ?? ""
         let address = p.address ?? ""
         let detail = region + " " + county + " " + address
-        searchPointResultView.set(t: n, d: detail)
+        pointResultView.set(t: n, d: detail)
         jtSearchBar.text = n
         guard let x = p.x, let y = p.y else { return }
         JTMapView.shareInstance.removeSymbolLayer()
         JTMapView.shareInstance.addSymbolLayerLocationPoints(points: [(x, y)])
         JTMapView.shareInstance.zoom(toScale: 30000, withCenter: AGSPoint(location: CLLocation(latitude: y, longitude: x)), animated: true)
-    }
-    private func showName() -> Bool {
-        if text == nil, let t = text, (t == "" || t.trimmingCharacters(in: .whitespaces) == "") { return false }
-        searchPointResultView.isHidden = true
-        searchNameResultView.isHidden = false
-        searchNameResultViewOpenView.isHidden = true
-        return true
     }
     private func setupName() {
         guard let t = text else { return }
@@ -144,8 +172,44 @@ extension SearchMapViewController {
                 return
             }
             guard let s = self else { return }
-            s.searchNameResultViewOpenView.isHidden = true
-            s.searchNameResultView.isHidden = false
+            guard s.searchContentTableView.dataNumber > 0 else {
+                s.hideAll()
+                return
+            }
+            s.searchContentResultViewOpenView.isHidden = true
+            s.contentResultView.isHidden = false
+            s.SearchNameResultViewOffsetToHideHalf()
+            s.showNameSymbol()
+        }
+    }
+    private func setupType() {
+        guard let t = type else { return }
+        jtSearchBar.text = "\"" + t.rawValue + "\""
+        let a = setupActivityIndicatorView()
+        hideAll()
+        var e: Object_SearchEnvelope? = nil
+        if withEnvelope {
+            if let je = JTMapView.shareInstance.visibleAreaEnvelope {
+                e = Object_SearchEnvelope(xmin: je.xmin, ymin: je.ymin, xmax: je.xmax, ymax: je.ymax)
+            }
+        }
+        searchContentTableView.typeSearch(type: t, envelope: e) {
+            [weak self]
+            result in
+            a.removeFromSuperview()
+            if !result {
+                if let s = self {
+                    _ = JTHUD(view: s.full).textOnly(LocalizableStrings.searchFailed, delayTimeIfAutoHide: 1.5)
+                }
+                return
+            }
+            guard let s = self else { return }
+            guard s.searchContentTableView.dataNumber > 0 else {
+                s.hideAll()
+                return
+            }
+            s.searchContentResultViewOpenView.isHidden = true
+            s.contentResultView.isHidden = false
             s.SearchNameResultViewOffsetToHideHalf()
             s.showNameSymbol()
         }
@@ -211,61 +275,61 @@ extension SearchMapViewController {
             ])
     }
     private func setupSearchPointResultView() {
-        searchPointResultView.translatesAutoresizingMaskIntoConstraints = false
-        transparentView.addSubview(searchPointResultView)
+        pointResultView.translatesAutoresizingMaskIntoConstraints = false
+        transparentView.addSubview(pointResultView)
         NSLayoutConstraint.activate([
-            searchPointResultView.heightAnchor.constraint(equalToConstant: searchPointResultViewHeight),
-            searchPointResultView.bottomAnchor.constraint(equalTo: transparentView.bottomAnchor),
-            searchPointResultView.leadingAnchor.constraint(equalTo: transparentView.leadingAnchor),
-            searchPointResultView.trailingAnchor.constraint(equalTo: transparentView.trailingAnchor),
+            pointResultView.heightAnchor.constraint(equalToConstant: pointResultViewHeight),
+            pointResultView.bottomAnchor.constraint(equalTo: transparentView.bottomAnchor),
+            pointResultView.leadingAnchor.constraint(equalTo: transparentView.leadingAnchor),
+            pointResultView.trailingAnchor.constraint(equalTo: transparentView.trailingAnchor),
             ])
-        searchPointResultView.isHidden = true
+        pointResultView.isHidden = true
     }
     private func setupSearchNameResultView() {
-        searchNameResultView.translatesAutoresizingMaskIntoConstraints = false
-        transparentView.addSubview(searchNameResultView)
+        contentResultView.translatesAutoresizingMaskIntoConstraints = false
+        transparentView.addSubview(contentResultView)
         NSLayoutConstraint.activate([
-            searchNameResultView.topAnchor.constraint(equalTo: transparentView.topAnchor),
-            searchNameResultView.bottomAnchor.constraint(equalTo: transparentView.bottomAnchor),
-            searchNameResultView.leadingAnchor.constraint(equalTo: transparentView.leadingAnchor),
-            searchNameResultView.trailingAnchor.constraint(equalTo: transparentView.trailingAnchor),
+            contentResultView.topAnchor.constraint(equalTo: transparentView.topAnchor),
+            contentResultView.bottomAnchor.constraint(equalTo: transparentView.bottomAnchor),
+            contentResultView.leadingAnchor.constraint(equalTo: transparentView.leadingAnchor),
+            contentResultView.trailingAnchor.constraint(equalTo: transparentView.trailingAnchor),
             ])
         SearchNameResultViewOffsetToHide(false, showOpenView: false)
     }
     private func setupSearchContentTableView() {
         searchContentTableView.translatesAutoresizingMaskIntoConstraints = false
         searchContentTableView.jtDelegate = self
-        searchNameResultView.addSubview(searchContentTableView)
+        contentResultView.addSubview(searchContentTableView)
         NSLayoutConstraint.activate([
-            searchContentTableView.topAnchor.constraint(equalTo: searchNameResultView.topAnchor),
-            searchContentTableView.bottomAnchor.constraint(equalTo: searchNameResultView.bottomAnchor),
-            searchContentTableView.leadingAnchor.constraint(equalTo: searchNameResultView.leadingAnchor),
-            searchContentTableView.trailingAnchor.constraint(equalTo: searchNameResultView.trailingAnchor),
+            searchContentTableView.topAnchor.constraint(equalTo: contentResultView.topAnchor),
+            searchContentTableView.bottomAnchor.constraint(equalTo: contentResultView.bottomAnchor),
+            searchContentTableView.leadingAnchor.constraint(equalTo: contentResultView.leadingAnchor),
+            searchContentTableView.trailingAnchor.constraint(equalTo: contentResultView.trailingAnchor),
             ])
     }
     private func setupSearchNameResultViewOpenView() {
-        searchNameResultViewOpenView.translatesAutoresizingMaskIntoConstraints = false
-        searchNameResultViewOpenView.backgroundColor = .white
-        transparentView.addSubview(searchNameResultViewOpenView)
+        searchContentResultViewOpenView.translatesAutoresizingMaskIntoConstraints = false
+        searchContentResultViewOpenView.backgroundColor = .white
+        transparentView.addSubview(searchContentResultViewOpenView)
         NSLayoutConstraint.activate([
-            searchNameResultViewOpenView.heightAnchor.constraint(equalToConstant: searchNameResultViewOpenViewHeight),
-            searchNameResultViewOpenView.bottomAnchor.constraint(equalTo: transparentView.bottomAnchor),
-            searchNameResultViewOpenView.leadingAnchor.constraint(equalTo: transparentView.leadingAnchor),
-            searchNameResultViewOpenView.trailingAnchor.constraint(equalTo: transparentView.trailingAnchor),
+            searchContentResultViewOpenView.heightAnchor.constraint(equalToConstant: searchContentResultViewOpenViewHeight),
+            searchContentResultViewOpenView.bottomAnchor.constraint(equalTo: transparentView.bottomAnchor),
+            searchContentResultViewOpenView.leadingAnchor.constraint(equalTo: transparentView.leadingAnchor),
+            searchContentResultViewOpenView.trailingAnchor.constraint(equalTo: transparentView.trailingAnchor),
             ])
-        searchNameResultViewOpenView.isHidden = true
-        searchNameResultViewOpenView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(searchNameResultViewOpenViewTaped)))
+        searchContentResultViewOpenView.isHidden = true
+        searchContentResultViewOpenView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(searchNameResultViewOpenViewTaped)))
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = UIColor(r: 80, g: 80, b: 80)
         label.text = LocalizableStrings.clickToShowResultList
         label.translatesAutoresizingMaskIntoConstraints = false
-        searchNameResultViewOpenView.addSubview(label)
+        searchContentResultViewOpenView.addSubview(label)
         NSLayoutConstraint.activate([
-            label.topAnchor.constraint(equalTo: searchNameResultViewOpenView.topAnchor),
-            label.bottomAnchor.constraint(equalTo: searchNameResultViewOpenView.bottomAnchor),
-            label.leadingAnchor.constraint(equalTo: searchNameResultViewOpenView.leadingAnchor),
-            label.trailingAnchor.constraint(equalTo: searchNameResultViewOpenView.trailingAnchor),
+            label.topAnchor.constraint(equalTo: searchContentResultViewOpenView.topAnchor),
+            label.bottomAnchor.constraint(equalTo: searchContentResultViewOpenView.bottomAnchor),
+            label.leadingAnchor.constraint(equalTo: searchContentResultViewOpenView.leadingAnchor),
+            label.trailingAnchor.constraint(equalTo: searchContentResultViewOpenView.trailingAnchor),
             ])
     }
     private func setupSearchNameResultViewPanView() {
@@ -273,14 +337,14 @@ extension SearchMapViewController {
         view.accessibilityIdentifier = "qwewqewq"
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .clear
-        searchNameResultView.addSubview(view)
+        contentResultView.addSubview(view)
         NSLayoutConstraint.activate([
-            view.topAnchor.constraint(equalTo: searchNameResultView.topAnchor),
-            view.bottomAnchor.constraint(equalTo: searchNameResultView.bottomAnchor),
-            view.leadingAnchor.constraint(equalTo: searchNameResultView.leadingAnchor),
-            view.trailingAnchor.constraint(equalTo: searchNameResultView.trailingAnchor),
+            view.topAnchor.constraint(equalTo: contentResultView.topAnchor),
+            view.bottomAnchor.constraint(equalTo: contentResultView.bottomAnchor),
+            view.leadingAnchor.constraint(equalTo: contentResultView.leadingAnchor),
+            view.trailingAnchor.constraint(equalTo: contentResultView.trailingAnchor),
             ])
-        searchNameResultView.bringSubview(toFront: view)
+        contentResultView.bringSubview(toFront: view)
         view.gestureRecognizers?.removeAll()
         view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(searchNameResultViewPaned)))
         let t = UITapGestureRecognizer(target: self, action: #selector(searchNameResultViewTaped))
@@ -352,6 +416,7 @@ extension SearchMapViewController: JTSearchContentTableViewDelegate {
     func didSelectedContent(vm: SearchContentTableViewCellVM) {
         position = vm.data
         if !showPoint() { return }
+        previousMode = mode
         mode = Mode.point
         setupPoint()
         if let x = searchContentTableViewPan { searchContentTableView.removeGestureRecognizer(x) }
@@ -363,19 +428,29 @@ extension SearchMapViewController: JTSearchContentTableViewDelegate {
     }
 }
 extension SearchMapViewController {
-    enum Mode {
+    private enum Mode {
         case point
         case text
+        case type
     }
 }
 extension SearchMapViewController: JTNavigationViewControllerOptionalDelegate {
     func backTouchUpInsideRecognizeJTNavigation() -> Bool {
-        if !showName() { return true }
-        jtSearchBar.text = text
-        optionalDelegate = nil
-        mode = Mode.text
-        SearchNameResultViewOffsetToHideHalf()
-        showNameSymbol()
+        if previousMode == .text {
+            if !showName() { return true }
+            jtSearchBar.text = text
+            optionalDelegate = nil
+            mode = .text
+            SearchNameResultViewOffsetToHideHalf()
+            showNameSymbol()
+        } else if previousMode == .type {
+            if !showType() { return true }
+            jtSearchBar.text = "\"" + ((type != nil) ? (type?.rawValue)! : "") + "\""
+            optionalDelegate = nil
+            mode = .type
+            SearchNameResultViewOffsetToHideHalf()
+            showNameSymbol()
+        } else { return true }
         return false
     }
 }
@@ -435,11 +510,11 @@ extension SearchMapViewController {
         let y = pan.translation(in: pan.view).y
         if y >= 0 && searchContentTableView.contentOffset.y <= 0 {
             searchContentTableView.isScrollEnabled = false
-            searchNameResultView.transform = CGAffineTransform(translationX: 0, y: y)
+            contentResultView.transform = CGAffineTransform(translationX: 0, y: y)
         }
         if pan.state == .ended {
             searchContentTableView.isScrollEnabled = true
-            let ty = searchNameResultView.transform.ty
+            let ty = contentResultView.transform.ty
             pan.view?.removeGestureRecognizer(pan)
             if let gcs = pan.view?.gestureRecognizers {
                 for gc in gcs {
@@ -458,14 +533,14 @@ extension SearchMapViewController {
         }
     }
     @objc private func searchNameResultViewOpenViewTaped() {
-        searchNameResultViewOpenView.isHidden = true
-        searchNameResultView.isHidden = false
+        searchContentResultViewOpenView.isHidden = true
+        contentResultView.isHidden = false
         SearchNameResultViewOffsetToHideHalf()
     }
     @objc private func searchNameResultViewPaned(pan: UIPanGestureRecognizer) {
         let ty = pan.translation(in: pan.view).y
         let y = halfTransformY + ty
-        if y >= 0 { searchNameResultView.transform = CGAffineTransform(translationX: 0, y: y) }
+        if y >= 0 { contentResultView.transform = CGAffineTransform(translationX: 0, y: y) }
         if pan.state == .ended {
             let v = pan.view
             v?.gestureRecognizers?.removeAll()
@@ -495,47 +570,47 @@ extension SearchMapViewController {
             UIView.animate(withDuration: 0.2, animations: {
                 [weak self] in
                 guard let s = self else { return }
-                s.searchNameResultView.transform = CGAffineTransform(translationX: 0, y: s.searchNameResultView.frame.height - s.navigationHeight)
+                s.contentResultView.transform = CGAffineTransform(translationX: 0, y: s.contentResultView.frame.height - s.navigationHeight)
             }) {
                 [weak self]
                 finish in
                 guard finish else { return }
-                self?.searchNameResultView.isHidden = true
-                if showOpenView { self?.searchNameResultViewOpenView.isHidden = false }
+                self?.contentResultView.isHidden = true
+                if showOpenView { self?.searchContentResultViewOpenView.isHidden = false }
             }
         } else {
-            searchNameResultView.transform = CGAffineTransform(translationX: 0, y: searchNameResultView.frame.height - navigationHeight)
-            searchNameResultView.isHidden = true
-            if showOpenView { searchNameResultViewOpenView.isHidden = false }
+            contentResultView.transform = CGAffineTransform(translationX: 0, y: contentResultView.frame.height - navigationHeight)
+            contentResultView.isHidden = true
+            if showOpenView { searchContentResultViewOpenView.isHidden = false }
         }
     }
     private func SearchNameResultViewOffsetToHideHalf(_ withAnimate: Bool = true, timeInterval: TimeInterval = 0.2) {
-        searchNameResultView.isHidden = false
+        contentResultView.isHidden = false
         if withAnimate {
             UIView.animate(withDuration: timeInterval, animations: {
                 [weak self] in
                 guard let s = self else { return }
-                s.searchNameResultView.transform = CGAffineTransform(translationX: 0, y: (s.searchNameResultView.frame.height - s.navigationHeight) / 2)
+                s.contentResultView.transform = CGAffineTransform(translationX: 0, y: (s.contentResultView.frame.height - s.navigationHeight) / 2)
             }) {
                 [weak self]
                 finish in
                 guard finish else { return }
-                self?.halfTransformY = (self?.searchNameResultView.transform.ty)!
+                self?.halfTransformY = (self?.contentResultView.transform.ty)!
                 self?.setupSearchNameResultViewPanView()
             }
         } else {
-            searchNameResultView.transform = CGAffineTransform(translationX: 0, y: (searchNameResultView.frame.height - navigationHeight) / 2)
-            halfTransformY = searchNameResultView.transform.ty
+            contentResultView.transform = CGAffineTransform(translationX: 0, y: (contentResultView.frame.height - navigationHeight) / 2)
+            halfTransformY = contentResultView.transform.ty
             setupSearchNameResultViewPanView()
         }
     }
     private func SearchNameResultViewNotOffset(_ withAnimate: Bool = true) {
-        searchNameResultView.isHidden = false
+        contentResultView.isHidden = false
         if withAnimate {
             UIView.animate(withDuration: 0.2, animations: {
                 [weak self] in
                 guard let s = self else { return }
-                s.searchNameResultView.transform = CGAffineTransform(translationX: 0, y: 0)
+                s.contentResultView.transform = CGAffineTransform(translationX: 0, y: 0)
             }) {
                 [weak self]
                 finish in
@@ -543,7 +618,7 @@ extension SearchMapViewController {
                 s.setupSearchContentTableViewPan()
             }
         } else {
-            searchNameResultView.transform = CGAffineTransform(translationX: 0, y: 0)
+            contentResultView.transform = CGAffineTransform(translationX: 0, y: 0)
             setupSearchContentTableViewPan()
         }
     }

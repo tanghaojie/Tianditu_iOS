@@ -9,7 +9,7 @@
 import UIKit
 import JTFramework
 
-class SearchPointResultView: UIView, JTNibLoader {
+class PointResultView: UIView, JTNibLoader {
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var detail: UILabel!
     @IBOutlet weak var bottom: UIView!
@@ -38,7 +38,7 @@ class SearchPointResultView: UIView, JTNibLoader {
     }
     
 }
-extension SearchPointResultView {
+extension PointResultView {
     
     func set(t: String, d: String? = nil) {
         title.text = t

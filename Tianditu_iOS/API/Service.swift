@@ -32,7 +32,7 @@ extension Service: TargetType {
                 "DiQuKey": (data.DiQuKey ?? "") as Any,
                 "QuXianKey": (data.QuXianKey ?? "") as Any,
                 "isOnlyName": data.isOnlyName,
-                "SearchEnvelope": (data.SearchEnvelope ?? "") as Any,
+                "SearchEnvelope": (data.SearchEnvelope?.toJSONString() ?? "") as Any,
                 "typeCode": (data.typeCode ?? "") as Any,
                 "StartIndex": data.StartIndex,
                 "StopIndex": data.StopIndex,

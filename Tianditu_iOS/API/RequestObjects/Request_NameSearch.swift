@@ -12,8 +12,8 @@ class Request_NameSearch {
     var DiQuKey: String?
     var QuXianKey: String?
     let isOnlyName: Bool
-    var SearchEnvelope: String?
-    let typeCode: Int?
+    var SearchEnvelope: Object_SearchEnvelope?
+    let typeCode: String?
     let StartIndex: Int
     let StopIndex: Int
     var token: String?
@@ -28,12 +28,13 @@ class Request_NameSearch {
         isOnlyName = nameOnly
         pretty = p
     }
-    init(type: Int, start: Int, end: Int, nameOnly: Bool = false, p: Bool = false) {
+    init(type: String, start: Int, end: Int, searchEnvelope: Object_SearchEnvelope? = nil, nameOnly: Bool = false, p: Bool = false) {
         keyname = nil
         typeCode = type
         StartIndex = start
         StopIndex = end
         isOnlyName = nameOnly
+        SearchEnvelope = searchEnvelope
         pretty = p
     }
 }

@@ -14,9 +14,8 @@ class MainViewController: UIViewController {
     @IBOutlet weak var mapView: UIView!
     @IBOutlet weak var transparentView: JTTransparentUIView!
     @IBOutlet weak var compassView: UIView!
-    
-    
     private let centerDistance = 0.0002
+    private var isFirstAppear = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +27,10 @@ class MainViewController: UIViewController {
         JTMapView.shareInstance.jtDelegate = self
         guard mapView.subviews.count <= 0 else { return }
         setupJTMapView()
+        if isFirstAppear {
+            JTMapView.shareInstance.zoom(in: true)
+            isFirstAppear = false
+        }
     }
     
     @IBAction func functionTouchUpInside(_ sender: Any) {
@@ -61,7 +64,9 @@ class MainViewController: UIViewController {
         print("layer")
     }
     @IBAction func nearTouchUpInside(_ sender: Any) {
-        print("near")
+        let n = UINavigationController(rootViewController: NearViewController())
+        n.isNavigationBarHidden = true
+        present(n, animated: false, completion: nil)
     }
     @IBAction func locationTouchUpInside(_ sender: Any) {
         let x = JTLocationManager.shareInstance.location

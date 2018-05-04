@@ -28,6 +28,8 @@
 "photoLibrary" = "相册";
 "takePhoto" = "拍照";
 
+"unknownType" = "未知类型";
+
 
 
 "cameraDisable" = "摄像头不可用";

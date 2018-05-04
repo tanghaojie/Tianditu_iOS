@@ -34,7 +34,7 @@ class LocalizableStrings {
     static let photoLibraryDisable = NSLocalizedString("photoLibraryDisable", comment: "")
     static let takePhotoOrFromPhotoLibrary = NSLocalizedString("takePhotoOrFromPhotoLibrary", comment: "")
     
-    
+    static let unknownType = NSLocalizedString("unknownType", comment: "")
     
     static let selectHeadPortrait = NSLocalizedString("selectHeadPortrait", comment: "")
     static let doNotGetPortrait = NSLocalizedString("doNotGetPortrait", comment: "")
