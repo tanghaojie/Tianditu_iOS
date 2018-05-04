@@ -33,6 +33,9 @@ class JTNavigationViewController: UIViewController {
     public var full: UIView {
         get { return fullView }
     }
+    public var backButtonWidth: CGFloat {
+        get { return navigationViewHeight }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -113,7 +116,7 @@ extension JTNavigationViewController {
             backButton.topAnchor.constraint(equalTo: navigationView.topAnchor, constant: backButtonPadding),
             backButton.bottomAnchor.constraint(equalTo: navigationView.bottomAnchor, constant: -backButtonPadding),
             backButton.leadingAnchor.constraint(equalTo: navigationView.leadingAnchor, constant: backButtonPadding),
-            backButton.widthAnchor.constraint(equalToConstant: navigationViewHeight - backButtonPadding - backButtonPadding),
+            backButton.widthAnchor.constraint(equalToConstant: backButtonWidth - backButtonPadding - backButtonPadding),
             ])
     }
     private func setupNavigationContentView() {
@@ -122,7 +125,7 @@ extension JTNavigationViewController {
         NSLayoutConstraint.activate([
             navigationContentView.topAnchor.constraint(equalTo: navigationView.topAnchor),
             navigationContentView.bottomAnchor.constraint(equalTo: navigationView.bottomAnchor),
-            navigationContentView.leadingAnchor.constraint(equalTo: backButton.trailingAnchor),
+            navigationContentView.leadingAnchor.constraint(equalTo: backButton.trailingAnchor, constant: backButtonPadding),
             navigationContentView.trailingAnchor.constraint(equalTo: navigationView.trailingAnchor),
             ])
     }

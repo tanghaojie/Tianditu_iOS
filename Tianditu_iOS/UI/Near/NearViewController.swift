@@ -30,6 +30,7 @@ extension NearViewController {
         setupScrollView()
         setupScrollViewView()
         setupNearMainView()
+        setupTitle()
     }
     private func setupScrollView() {
         scrollView.isUserInteractionEnabled = true
@@ -65,6 +66,18 @@ extension NearViewController {
             nearMainView.bottomAnchor.constraint(equalTo: scrollViewView.bottomAnchor),
             nearMainView.leadingAnchor.constraint(equalTo: scrollViewView.leadingAnchor),
             nearMainView.trailingAnchor.constraint(equalTo: scrollViewView.trailingAnchor),
+            ])
+    }
+    private func setupTitle() {
+        let label = UILabel()
+        label.text = LocalizableStrings.near
+        label.translatesAutoresizingMaskIntoConstraints = false
+        navigationContent.addSubview(label)
+        NSLayoutConstraint.activate([
+            label.centerXAnchor.constraint(equalTo: navigationContent.centerXAnchor, constant: -(backButtonWidth / 2)),
+            label.centerYAnchor.constraint(equalTo: navigationContent.centerYAnchor),
+            label.widthAnchor.constraint(equalToConstant: 42),
+            label.heightAnchor.constraint(equalToConstant: 21),
             ])
     }
 }

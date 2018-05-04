@@ -10,7 +10,6 @@ import UIKit
 import JTFramework
 
 class NearMainView: UIView, JTNibLoader {
-   
     @IBAction func main_DeliciousTpuchUpInside(_ sender: Any) {
         let type = Tianditu_NameSearchType._delicious
         let v = SearchMapViewController(type: type, withEnvelope: true)
@@ -184,7 +183,6 @@ class NearMainView: UIView, JTNibLoader {
         jtGetResponder()?.navigationController?.pushViewController(v, animated: false)
     }
     
-    
     @IBAction func shoppingServiceTouchUpInside(_ sender: Any) {
         let type = Tianditu_NameSearchType.shoppingService
         let v = SearchMapViewController(type: type, withEnvelope: true)
@@ -215,7 +213,6 @@ class NearMainView: UIView, JTNibLoader {
         let v = SearchMapViewController(type: type, withEnvelope: true)
         jtGetResponder()?.navigationController?.pushViewController(v, animated: false)
     }
-    
     
     @IBAction func dailyServiceTouchUpInside(_ sender: Any) {
         let type = Tianditu_NameSearchType.dailyService
@@ -248,8 +245,6 @@ class NearMainView: UIView, JTNibLoader {
         jtGetResponder()?.navigationController?.pushViewController(v, animated: false)
     }
     
-    
-    
     @IBAction func hotelTouchUpInside(_ sender: Any) {
         let type = Tianditu_NameSearchType.hotel
         let v = SearchMapViewController(type: type, withEnvelope: true)
@@ -270,8 +265,6 @@ class NearMainView: UIView, JTNibLoader {
         let v = SearchMapViewController(type: type, withEnvelope: true)
         jtGetResponder()?.navigationController?.pushViewController(v, animated: false)
     }
-    
-    
     
     @IBAction func healthCareTouchUpInside(_ sender: Any) {
         let type = Tianditu_NameSearchType.healthCare
@@ -309,7 +302,6 @@ class NearMainView: UIView, JTNibLoader {
         jtGetResponder()?.navigationController?.pushViewController(v, animated: false)
     }
     
-    
     @IBAction func stationTouchUpInside(_ sender: Any) {
         let type = Tianditu_NameSearchType._station
         let v = SearchMapViewController(type: type, withEnvelope: true)
@@ -330,7 +322,6 @@ class NearMainView: UIView, JTNibLoader {
         let v = SearchMapViewController(type: type, withEnvelope: true)
         jtGetResponder()?.navigationController?.pushViewController(v, animated: false)
     }
-    
     
     @IBAction func financeAndInsuranceTouchUpInside(_ sender: Any) {
         let type = Tianditu_NameSearchType.financeAndInsurance
@@ -353,7 +344,6 @@ class NearMainView: UIView, JTNibLoader {
         jtGetResponder()?.navigationController?.pushViewController(v, animated: false)
     }
     
-    
     @IBAction func educationTouchUpInside(_ sender: Any) {
         let type = Tianditu_NameSearchType._education
         let v = SearchMapViewController(type: type, withEnvelope: true)
@@ -369,7 +359,6 @@ class NearMainView: UIView, JTNibLoader {
         let v = SearchMapViewController(type: type, withEnvelope: true)
         jtGetResponder()?.navigationController?.pushViewController(v, animated: false)
     }
-    
     
     @IBAction func carServiceTouchUpInside(_ sender: Any) {
         let type = Tianditu_NameSearchType.carService

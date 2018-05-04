@@ -17,7 +17,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ONv-qF-z04">
-                    <rect key="frame" x="16" y="20" width="343" height="1108"/>
+                    <rect key="frame" x="16" y="8" width="343" height="1108"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cEi-z6-xQp" customClass="JTIBView" customModule="Tianditu_iOS" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="343" height="200"/>
@@ -1831,7 +1831,7 @@
                 <bool key="isElement" value="YES"/>
             </accessibility>
             <constraints>
-                <constraint firstItem="ONv-qF-z04" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="cY5-Qw-Juo"/>
+                <constraint firstItem="ONv-qF-z04" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="cY5-Qw-Juo"/>
                 <constraint firstAttribute="trailing" secondItem="ONv-qF-z04" secondAttribute="trailing" constant="16" id="dRa-8t-p9Y"/>
                 <constraint firstItem="ONv-qF-z04" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="feF-Lo-DYH"/>
             </constraints>
