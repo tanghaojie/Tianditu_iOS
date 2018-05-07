@@ -16,7 +16,7 @@ class NearViewController: JTNavigationViewController {
     private let nearMainView = NearMainView.loadFromNib()
     
     init() {
-        super.init(nibName: nil, bundle: nil)
+        super.init()
         setupUI()
     }
     

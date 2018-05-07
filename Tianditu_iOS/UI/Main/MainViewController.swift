@@ -53,7 +53,9 @@ class MainViewController: UIViewController {
         }
     }
     @IBAction func searchTouchUpInside(_ sender: Any) {
-        let n = UINavigationController(rootViewController: SearchViewController())
+        let s = SearchViewController()
+        s.searchDelegate = self
+        let n = UINavigationController(rootViewController: s)
         n.isNavigationBarHidden = true
         present(n, animated: false, completion: nil)
     }
@@ -82,7 +84,9 @@ class MainViewController: UIViewController {
         }
     }
     @IBAction func routeTouchUpInside(_ sender: Any) {
-        
+        let n = UINavigationController(rootViewController: RouteViewController())
+        n.isNavigationBarHidden = true
+        present(n, animated: false, completion: nil)
     }
     @IBAction func compassTouchUpInside(_ sender: Any) {
         JTMapView.shareInstance.locationDisplay.autoPanMode = .off
@@ -112,5 +116,15 @@ extension MainViewController: JTMapViewDelegate {
             compassView.isHidden = false
             compassView.transform = CGAffineTransform(rotationAngle: CGFloat.pi * CGFloat(360 - rotationAngle) / 180)
         }
+    }
+}
+extension MainViewController: SearchViewControllerDelegate {
+    func searchPosition(_ searchViewController: SearchViewController, position: Object_Attribute) {
+        let v = SearchMapViewController(position: position)
+        searchViewController.navigationController?.pushViewController(v, animated: false)
+    }
+    func searchText(_ searchViewController: SearchViewController, name: String) {
+        let v = SearchMapViewController(text: name)
+        searchViewController.navigationController?.pushViewController(v, animated: false)
     }
 }

@@ -36,14 +36,14 @@ class SearchMapViewController: JTNavigationViewController {
     init(position: Object_Attribute) {
         mode = .point
         self.position = position
-        super.init(nibName: nil, bundle: nil)
+        super.init()
         delegate = self
         setupUI()
     }
     init(text: String) {
         mode = .text
         self.text = text
-        super.init(nibName: nil, bundle: nil)
+        super.init()
         delegate = self
         setupUI()
     }
@@ -51,7 +51,7 @@ class SearchMapViewController: JTNavigationViewController {
         mode = .type
         self.type = type
         self.withEnvelope = withEnvelope
-        super.init(nibName: nil, bundle: nil)
+        super.init()
         delegate = self
         setupUI()
     }
@@ -487,18 +487,18 @@ extension SearchMapViewController {
     }
 }
 extension SearchMapViewController: SearchViewControllerDelegate {
-    func popAfterSearchPosition(position: Object_Attribute) -> Bool {
+    
+    func searchPosition(_ searchViewController: SearchViewController, position: Object_Attribute) {
         hideAll()
         initPoint(position: position)
         setupModeView()
-        return true
+        searchViewController.navigationController?.popViewController(animated: false)
     }
-    
-    func popAfterSearchText(name: String) -> Bool {
+    func searchText(_ searchViewController: SearchViewController, name: String) {
         hideAll()
         initText(text: name)
         setupModeView()
-        return true
+        searchViewController.navigationController?.popViewController(animated: false)
     }
 }
 extension SearchMapViewController {

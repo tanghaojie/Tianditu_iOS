@@ -13,10 +13,24 @@ class SearchViewController: JTNavigationViewController {
     
     private let searchButton = UIButton()
     private let jtSearchBar = JTSearchBar()
+    private let mainPage = UIView()
+    private let locationView = UIView()
+    private let locationViewHeight: CGFloat
     private let historyTableView = SearchHistoryTableView()
     private let contentTableView = SearchContentTableView()
     weak var searchDelegate: SearchViewControllerDelegate?
-
+    
+    init(_ showLocationView: Bool = false) {
+        if showLocationView { locationViewHeight = 60 }
+        else { locationViewHeight = 0 }
+        super.init()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        self.locationViewHeight = 0
+        super.init(coder: aDecoder)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -30,6 +44,8 @@ extension SearchViewController {
     private func setupUI() {
         setupSearchButton()
         setupJTSearchBar()
+        setupMainPage()
+        setupLocationView()
         setupSearchHistoryTableView()
         setupSearchContentTableView()
     }
@@ -61,14 +77,35 @@ extension SearchViewController {
             ])
         jtSearchBar.delegate = self
     }
+    private func setupMainPage() {
+        mainPage.translatesAutoresizingMaskIntoConstraints = false
+        mainPage.backgroundColor = .red
+        content.addSubview(mainPage)
+        NSLayoutConstraint.activate([
+            mainPage.topAnchor.constraint(equalTo: content.topAnchor),
+            mainPage.bottomAnchor.constraint(equalTo: content.bottomAnchor),
+            mainPage.leadingAnchor.constraint(equalTo: content.leadingAnchor),
+            mainPage.trailingAnchor.constraint(equalTo: content.trailingAnchor),
+            ])
+    }
+    private func setupLocationView() {
+        locationView.translatesAutoresizingMaskIntoConstraints = false
+        mainPage.addSubview(locationView)
+        NSLayoutConstraint.activate([
+            locationView.topAnchor.constraint(equalTo: mainPage.topAnchor),
+            locationView.heightAnchor.constraint(equalToConstant: locationViewHeight),
+            locationView.leadingAnchor.constraint(equalTo: mainPage.leadingAnchor),
+            locationView.trailingAnchor.constraint(equalTo: mainPage.trailingAnchor),
+            ])
+    }
     private func setupSearchHistoryTableView() {
         historyTableView.translatesAutoresizingMaskIntoConstraints = false
         content.addSubview(historyTableView)
         NSLayoutConstraint.activate([
-            historyTableView.topAnchor.constraint(equalTo: content.topAnchor),
-            historyTableView.bottomAnchor.constraint(equalTo: content.bottomAnchor),
-            historyTableView.leadingAnchor.constraint(equalTo: content.leadingAnchor),
-            historyTableView.trailingAnchor.constraint(equalTo: content.trailingAnchor),
+            historyTableView.topAnchor.constraint(equalTo: locationView.bottomAnchor),
+            historyTableView.bottomAnchor.constraint(equalTo: mainPage.bottomAnchor),
+            historyTableView.leadingAnchor.constraint(equalTo: mainPage.leadingAnchor),
+            historyTableView.trailingAnchor.constraint(equalTo: mainPage.trailingAnchor),
             ])
         historyTableView.jtDelegate = self
     }
@@ -85,14 +122,14 @@ extension SearchViewController {
         contentTableView.jtDelegate = self
     }
     private func showContent(text: String) {
-        historyTableView.isHidden = true
+        mainPage.isHidden = true
         contentTableView.isHidden = false
         contentTableView.nameSearch(text: text)
     }
     private func showHistory() {
         jtSearchBar.text = nil
         contentTableView.isHidden = true
-        historyTableView.isHidden = false
+        mainPage.isHidden = false
         contentTableView.renew()
     }
 }
@@ -172,25 +209,17 @@ extension SearchViewController: JTSearchContentTableViewDelegate {
 }
 extension SearchViewController {
     private func searchPosition(position: Object_Attribute) {
-        let x = searchDelegate?.popAfterSearchPosition(position: position)
-        if let xx = x, xx {
-            navigationController?.popViewController(animated: false)
-            return
-        }
-        let v = SearchMapViewController(position: position)
-        navigationController?.pushViewController(v, animated: false)
+        searchDelegate?.searchPosition(self, position: position)
     }
     private func searchText(name: String) {
-        let x = searchDelegate?.popAfterSearchText(name: name)
-        if let xx = x, xx {
-            navigationController?.popViewController(animated: false)
-            return
-        }
-        let v = SearchMapViewController(text: name)
-        navigationController?.pushViewController(v, animated: false)
+        searchDelegate?.searchText(self, name: name)
     }
 }
 protocol SearchViewControllerDelegate: NSObjectProtocol {
-    func popAfterSearchPosition(position: Object_Attribute) -> Bool
-    func popAfterSearchText(name: String) -> Bool
+    func searchPosition(_ searchViewController: SearchViewController, position: Object_Attribute)
+    func searchText(_ searchViewController: SearchViewController, name: String)
+}
+extension SearchViewControllerDelegate {
+    func searchPosition(_ searchViewController: SearchViewController, position: Object_Attribute) {}
+    func searchText(_ searchViewController: SearchViewController, name: String) {}
 }

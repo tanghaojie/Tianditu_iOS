@@ -23,6 +23,7 @@ class LocalizableStrings {
     static let noResponseContent = NSLocalizedString("noResponseContent", comment: "")
     static let errorResponseContentDataFormat = NSLocalizedString("errorResponseContentDataFormat", comment: "")
     
+    static let myPlace = NSLocalizedString("myPlace", comment: "")
     
     static let photoLibrary = NSLocalizedString("photoLibrary", comment: "")
     static let takePhoto = NSLocalizedString("takePhoto", comment: "")

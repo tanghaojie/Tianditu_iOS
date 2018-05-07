@@ -13,13 +13,27 @@ class JTNavigationViewController: UIViewController {
 
     private let fullView = UIView()
     private let navigationView = UIView()
-    private let navigationViewHeight: CGFloat = 50
+    private let navigationViewHeight: CGFloat
     private let contentView = UIView()
     private let backButton = UIButton()
+    private let backButtonH: CGFloat = 40
+    private let backButtonW: CGFloat = 24
     private let backButtonPadding: CGFloat = 5
     private let navigationContentView = UIView()
     weak var optionalDelegate: JTNavigationViewControllerOptionalDelegate?
     weak var delegate: JTNavigationViewControllerDelegate?
+    
+    init(_ height: CGFloat = 50) {
+        var x = height
+        if x < 50 { x = 50 }
+        navigationViewHeight = x
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        navigationViewHeight = 50
+        super.init(coder: aDecoder)
+    }
     
     public var content: UIView {
         get { return contentView }
@@ -34,7 +48,7 @@ class JTNavigationViewController: UIViewController {
         get { return fullView }
     }
     public var backButtonWidth: CGFloat {
-        get { return navigationViewHeight }
+        get { return backButtonW }
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -114,9 +128,9 @@ extension JTNavigationViewController {
         navigationView.addSubview(backButton)
         NSLayoutConstraint.activate([
             backButton.topAnchor.constraint(equalTo: navigationView.topAnchor, constant: backButtonPadding),
-            backButton.bottomAnchor.constraint(equalTo: navigationView.bottomAnchor, constant: -backButtonPadding),
             backButton.leadingAnchor.constraint(equalTo: navigationView.leadingAnchor, constant: backButtonPadding),
-            backButton.widthAnchor.constraint(equalToConstant: backButtonWidth - backButtonPadding - backButtonPadding),
+            backButton.widthAnchor.constraint(equalToConstant: backButtonW),
+            backButton.heightAnchor.constraint(equalToConstant: backButtonH),
             ])
     }
     private func setupNavigationContentView() {

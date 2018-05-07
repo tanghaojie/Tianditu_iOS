@@ -13,4 +13,5 @@ class Assets {
     static let search_zh_cn = UIImage(named: "search_zh_cn")
     static let close = UIImage(named: "close")
     static let location = UIImage(named: "location")
+    static let rightArrow = UIImage(named: "rightArrow")
 }
