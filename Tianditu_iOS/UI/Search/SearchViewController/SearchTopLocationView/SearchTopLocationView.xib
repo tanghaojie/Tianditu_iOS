@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="SearchTopLocationView" customModule="Tianditu_iOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="128"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bas-0r-7wf">
+                    <rect key="frame" x="0.0" y="0.0" width="125" height="128"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0iI-45-eTT">
+                            <rect key="frame" x="0.0" y="0.0" width="125" height="128"/>
+                            <state key="normal" title="地图选点">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="mapSelectTouchUpInside:" destination="iN0-l3-epB" eventType="touchUpInside" id="8QX-ZT-3Yl"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="0iI-45-eTT" firstAttribute="leading" secondItem="Bas-0r-7wf" secondAttribute="leading" id="9dk-wN-qmH"/>
+                        <constraint firstAttribute="trailing" secondItem="0iI-45-eTT" secondAttribute="trailing" id="CnV-U9-xpo"/>
+                        <constraint firstAttribute="bottom" secondItem="0iI-45-eTT" secondAttribute="bottom" id="QSa-md-7fu"/>
+                        <constraint firstItem="0iI-45-eTT" firstAttribute="top" secondItem="Bas-0r-7wf" secondAttribute="top" id="aG2-aB-4j6"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LZ7-sF-LZJ">
+                    <rect key="frame" x="125" y="0.0" width="125" height="128"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MNb-lg-lHK">
+                            <rect key="frame" x="0.0" y="0.0" width="125" height="128"/>
+                            <state key="normal" title="我的位置">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="myPlaceTouchUpInside:" destination="iN0-l3-epB" eventType="touchUpInside" id="CrI-nI-n4S"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="MNb-lg-lHK" firstAttribute="top" secondItem="LZ7-sF-LZJ" secondAttribute="top" id="LgY-8W-Myh"/>
+                        <constraint firstAttribute="trailing" secondItem="MNb-lg-lHK" secondAttribute="trailing" id="ORT-rZ-MRj"/>
+                        <constraint firstItem="MNb-lg-lHK" firstAttribute="leading" secondItem="LZ7-sF-LZJ" secondAttribute="leading" id="ZBk-tK-Dxl"/>
+                        <constraint firstAttribute="bottom" secondItem="MNb-lg-lHK" secondAttribute="bottom" id="dbj-av-0Fa"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dx2-mK-6w7">
+                    <rect key="frame" x="250" y="0.0" width="125" height="128"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vf9-PQ-XiW">
+                            <rect key="frame" x="0.0" y="0.0" width="125" height="128"/>
+                            <state key="normal" title="收藏的点">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="favorsTouchUpInside:" destination="iN0-l3-epB" eventType="touchUpInside" id="M7O-Md-wJE"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="Vf9-PQ-XiW" secondAttribute="trailing" id="Fkh-DJ-Rsg"/>
+                        <constraint firstItem="Vf9-PQ-XiW" firstAttribute="leading" secondItem="dx2-mK-6w7" secondAttribute="leading" id="HWO-Bp-5up"/>
+                        <constraint firstItem="Vf9-PQ-XiW" firstAttribute="top" secondItem="dx2-mK-6w7" secondAttribute="top" id="Hzc-zc-p6h"/>
+                        <constraint firstAttribute="bottom" secondItem="Vf9-PQ-XiW" secondAttribute="bottom" id="MGE-5l-O50"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="LZ7-sF-LZJ" firstAttribute="leading" secondItem="Bas-0r-7wf" secondAttribute="trailing" id="2Qg-2X-4Us"/>
+                <constraint firstAttribute="bottom" secondItem="LZ7-sF-LZJ" secondAttribute="bottom" id="5vt-3W-3yl"/>
+                <constraint firstItem="dx2-mK-6w7" firstAttribute="leading" secondItem="LZ7-sF-LZJ" secondAttribute="trailing" id="6wv-Gy-rvS"/>
+                <constraint firstItem="Bas-0r-7wf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Cb2-3E-NvL"/>
+                <constraint firstAttribute="trailing" secondItem="dx2-mK-6w7" secondAttribute="trailing" id="EEN-Bw-CW9"/>
+                <constraint firstItem="LZ7-sF-LZJ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Lr8-jJ-SWf"/>
+                <constraint firstItem="LZ7-sF-LZJ" firstAttribute="width" secondItem="Bas-0r-7wf" secondAttribute="width" id="NIK-Dd-jhf"/>
+                <constraint firstItem="LZ7-sF-LZJ" firstAttribute="leading" secondItem="Bas-0r-7wf" secondAttribute="trailing" id="Psx-3K-8Is"/>
+                <constraint firstAttribute="bottom" secondItem="Bas-0r-7wf" secondAttribute="bottom" id="Sit-Du-42B"/>
+                <constraint firstItem="dx2-mK-6w7" firstAttribute="width" secondItem="Bas-0r-7wf" secondAttribute="width" id="ZgR-K0-o8c"/>
+                <constraint firstItem="Bas-0r-7wf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="aJk-LQ-HpB"/>
+                <constraint firstItem="dx2-mK-6w7" firstAttribute="leading" secondItem="LZ7-sF-LZJ" secondAttribute="trailing" id="mfR-MT-ncv"/>
+                <constraint firstItem="dx2-mK-6w7" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="qox-wg-mnB"/>
+                <constraint firstAttribute="bottom" secondItem="dx2-mK-6w7" secondAttribute="bottom" id="sBg-8t-bU6"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="favors" destination="dx2-mK-6w7" id="P5Z-BE-Su6"/>
+                <outlet property="mapSelect" destination="Bas-0r-7wf" id="dZV-gM-mh0"/>
+                <outlet property="myPlace" destination="LZ7-sF-LZJ" id="PwO-pe-aC2"/>
+            </connections>
+            <point key="canvasLocation" x="2.5" y="-813"/>
+        </view>
+    </objects>
+</document>

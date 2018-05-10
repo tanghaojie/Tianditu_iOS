@@ -23,6 +23,11 @@ class LocalizableStrings {
     static let noResponseContent = NSLocalizedString("noResponseContent", comment: "")
     static let errorResponseContentDataFormat = NSLocalizedString("errorResponseContentDataFormat", comment: "")
     
+    static let confirmPosition = NSLocalizedString("confirmPosition", comment: "")
+    
+    static let inputStartPosition = NSLocalizedString("inputStartPosition", comment: "")
+    static let inputStopPosition = NSLocalizedString("inputStopPosition", comment: "")
+    
     static let myPlace = NSLocalizedString("myPlace", comment: "")
     
     static let photoLibrary = NSLocalizedString("photoLibrary", comment: "")

@@ -14,7 +14,7 @@ class SearchViewController: JTNavigationViewController {
     private let searchButton = UIButton()
     private let jtSearchBar = JTSearchBar()
     private let mainPage = UIView()
-    private let locationView = UIView()
+    private let locationView = SearchTopLocationView.loadFromNib()
     private let locationViewHeight: CGFloat
     private let historyTableView = SearchHistoryTableView()
     private let contentTableView = SearchContentTableView()
@@ -22,7 +22,9 @@ class SearchViewController: JTNavigationViewController {
     
     init(_ showLocationView: Bool = false) {
         if showLocationView { locationViewHeight = 60 }
-        else { locationViewHeight = 0 }
+        else {
+            locationView.isHidden = true
+            locationViewHeight = 0 }
         super.init()
     }
     
@@ -90,6 +92,7 @@ extension SearchViewController {
     }
     private func setupLocationView() {
         locationView.translatesAutoresizingMaskIntoConstraints = false
+        locationView.delegate = self
         mainPage.addSubview(locationView)
         NSLayoutConstraint.activate([
             locationView.topAnchor.constraint(equalTo: mainPage.topAnchor),
@@ -215,11 +218,18 @@ extension SearchViewController {
         searchDelegate?.searchText(self, name: name)
     }
 }
+extension SearchViewController: SearchTopLocationViewDelegate {
+    func location(_ atMyPlace: SearchTopLocationView) {
+        searchDelegate?.myPlace(self)
+    }
+}
 protocol SearchViewControllerDelegate: NSObjectProtocol {
     func searchPosition(_ searchViewController: SearchViewController, position: Object_Attribute)
     func searchText(_ searchViewController: SearchViewController, name: String)
+    func myPlace(_ searchViewController: SearchViewController)
 }
 extension SearchViewControllerDelegate {
     func searchPosition(_ searchViewController: SearchViewController, position: Object_Attribute) {}
     func searchText(_ searchViewController: SearchViewController, name: String) {}
+    func myPlace(_ searchViewController: SearchViewController) {}
 }

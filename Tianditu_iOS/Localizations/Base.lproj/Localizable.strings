@@ -24,6 +24,10 @@
 "clickToShowResultList" = "点击查看结果列表";
 "searchFailed" = "搜索失败";
 
+"confirmPosition" = "确认地点";
+
+"inputStartPosition" = "输入起点";
+"inputStopPosition" = "输入终点";
 
 "photoLibrary" = "相册";
 "takePhoto" = "拍照";
