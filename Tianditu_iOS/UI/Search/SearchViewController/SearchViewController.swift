@@ -222,6 +222,23 @@ extension SearchViewController: SearchTopLocationViewDelegate {
     func location(_ atMyPlace: SearchTopLocationView) {
         searchDelegate?.myPlace(self)
     }
+    func location(_ atPoint: AGSPoint) {
+        let i: [Any] = [
+            0,
+            atPoint.x,
+            atPoint.y,
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+        ]
+        let x = Object_Attribute(data: i)
+        searchDelegate?.searchPosition(self, position: x)
+    }
 }
 protocol SearchViewControllerDelegate: NSObjectProtocol {
     func searchPosition(_ searchViewController: SearchViewController, position: Object_Attribute)

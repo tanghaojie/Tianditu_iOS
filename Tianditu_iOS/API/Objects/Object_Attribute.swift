@@ -39,7 +39,6 @@ class Object_Attribute {
         if let t = typeStr {
             type = Tianditu_NameSearchType(rawValue: t)
             if type == nil {
-                
 //                for x in Tianditu_NameSearchType {
 //
 //                }

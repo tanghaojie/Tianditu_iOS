@@ -14,7 +14,6 @@ class MainViewController: UIViewController {
     @IBOutlet weak var mapView: UIView!
     @IBOutlet weak var transparentView: JTTransparentUIView!
     @IBOutlet weak var compassView: UIView!
-    private let centerDistance = 0.0002
     private var isFirstAppear = true
     
     override func viewDidLoad() {
@@ -41,7 +40,8 @@ class MainViewController: UIViewController {
             NSLayoutConstraint(item: functionView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 0),
             NSLayoutConstraint(item: functionView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: 0),
             NSLayoutConstraint(item: functionView, attribute: .left, relatedBy: .equal, toItem: view, attribute: .left, multiplier: 1, constant: 0),
-            NSLayoutConstraint(item: functionView, attribute: .right, relatedBy: .equal, toItem: view, attribute: .right, multiplier: 1, constant: 0)])
+            NSLayoutConstraint(item: functionView, attribute: .right, relatedBy: .equal, toItem: view, attribute: .right, multiplier: 1, constant: 0),
+            ])
         functionView.transform = CGAffineTransform(translationX: -functionView.pageWidth, y: 0)
         UIView.animate(withDuration: 0.3, animations: {
             functionView.transform = CGAffineTransform(translationX: 0, y: 0)
@@ -71,17 +71,7 @@ class MainViewController: UIViewController {
         present(n, animated: false, completion: nil)
     }
     @IBAction func locationTouchUpInside(_ sender: Any) {
-        let x = JTLocationManager.shareInstance.location
-        guard let l = x else { return }
-        let px = AGSPoint(location: l)
-        guard let p = px else { return }
-        let d = p.distance(to: JTMapView.shareInstance.visibleAreaEnvelope.center)
-        JTMapView.shareInstance.zoom(toScale: 30000, withCenter: p, animated: true)
-        if d > centerDistance {
-            JTMapView.shareInstance.locationDisplay.autoPanMode = .default
-        } else {
-            JTMapView.shareInstance.locationDisplay.autoPanMode = .compassNavigation
-        }
+        JTMapView.shareInstance.locationTouchUpInside()
     }
     @IBAction func routeTouchUpInside(_ sender: Any) {
         let n = UINavigationController(rootViewController: RouteViewController())

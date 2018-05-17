@@ -9,6 +9,7 @@
 import Moya
 enum Service {
     case nameSearch(data: Request_NameSearch)
+    case routeSearch(data: Request_RouteSearch)
 }
 extension Service: TargetType {
     var baseURL: URL { return URL(string: APIURL.baseUrl)! }
@@ -16,11 +17,13 @@ extension Service: TargetType {
         switch self {
         case .nameSearch:
             return APIURL.nameSearch
+        case .routeSearch:
+            return APIURL.routeSearch
         }
     }
     var method: Moya.Method {
         switch self {
-        case .nameSearch:
+        case .nameSearch, .routeSearch:
             return .get
         }
     }
@@ -38,13 +41,27 @@ extension Service: TargetType {
                 "StopIndex": data.StopIndex,
                 "token": (data.token ?? "") as Any,
                 "pretty": data.pretty,
-                "st": data.st
+                "st": data.st,
+                ], encoding: URLEncoding.queryString)
+        case .routeSearch(let data):
+            return Task.requestParameters(parameters: [
+                "StartX": data.StartX,
+                "starty": data.StartY,
+                "stopx": data.StopX,
+                "stopy": data.StopY,
+                "powerColumnName": data.powerColumnName,
+                "returnDirection": data.returnDirection,
+                "VIAPoints": data.VIAPoints ?? "",
+                "BarriesLocation": data.BarriesLocation ?? "",
+                "token": data.token ?? "",
+                "pretty": data.pretty,
+                "st": data.st,
                 ], encoding: URLEncoding.queryString)
         }
     }
     var sampleData: Foundation.Data {
         switch self {
-        case .nameSearch:
+        case .nameSearch, .routeSearch:
             return "nil".jtUtf8Encoded
         }
     }

@@ -10,4 +10,5 @@ class APIURL {
     static let baseUrl = "http://www.scgis.net.cn/"
     
     static let nameSearch = "imap/imapserver/defaultrest/services/Newscnamesearch/Search"
+    static let routeSearch = "imap/imapserver/defaultrest/services/newtianditushortpath/shortPath"
 }

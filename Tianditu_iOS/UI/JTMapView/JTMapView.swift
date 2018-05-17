@@ -11,7 +11,9 @@ import Foundation
 class JTMapView: AGSMapView {
     public static let shareInstance = JTMapView()
     weak var jtDelegate: JTMapViewDelegate?
+    
     private let symbolLayerName = "jtTemporaryMapSymbolLayer"
+    private let centerDistance = 0.0002
     private init() {
         super.init(frame: CGRect.zero)
         setup()
@@ -54,6 +56,25 @@ extension JTMapView: AGSMapViewLayerDelegate {
         zoom(to: envelop, animated: true)
         locationDisplay.startDataSource()
         locationDisplay.autoPanMode = .default
+    }
+}
+extension JTMapView {
+    func locationTouchUpInside(_ useCompassNavigation: Bool = true) {
+        let x = JTLocationManager.shareInstance.location
+        guard let l = x else { return }
+        let px = AGSPoint(location: l)
+        guard let p = px else { return }
+        let d = p.distance(to: visibleAreaEnvelope.center)
+        zoom(toScale: 30000, withCenter: p, animated: true)
+        if d > centerDistance {
+            locationDisplay.autoPanMode = .default
+        } else {
+            if useCompassNavigation {
+                locationDisplay.autoPanMode = .compassNavigation
+            } else {
+                locationDisplay.autoPanMode = .default
+            }
+        }
     }
 }
 extension JTMapView {

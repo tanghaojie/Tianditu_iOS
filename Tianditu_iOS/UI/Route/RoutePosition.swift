@@ -7,10 +7,10 @@
 //
 
 class RoutePosition {
-    let type: RouteType
-    let name: String?
-    let x: Double
-    let y: Double
+    var type: RouteType
+    var name: String?
+    var x: Double
+    var y: Double
     init(type: RouteType, name: String? = nil, x: Double, y: Double) {
         self.type = type
         self.name = name
@@ -21,7 +21,11 @@ class RoutePosition {
 extension RoutePosition {
     func showPosition(_ bar: UISearchBar) {
         if type == .coordinate {
-            bar.text = name
+            if name == nil || name == "" {
+                bar.text = LocalizableStrings.hasCoordinate
+            } else {
+                bar.text = name
+            }
         } else if type == .myPlace {
             bar.text = LocalizableStrings.myPlace
         }

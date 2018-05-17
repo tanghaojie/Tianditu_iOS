@@ -14,4 +14,5 @@ class Assets {
     static let close = UIImage(named: "close")
     static let location = UIImage(named: "location")
     static let rightArrow = UIImage(named: "rightArrow")
+    static let point = UIImage(named: "point")
 }

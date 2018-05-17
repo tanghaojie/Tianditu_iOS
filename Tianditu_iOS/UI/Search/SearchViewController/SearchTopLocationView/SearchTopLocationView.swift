@@ -17,7 +17,9 @@ class SearchTopLocationView: UIView, JTNibLoader {
     @IBOutlet weak var favors: UIView!
     
     @IBAction func mapSelectTouchUpInside(_ sender: Any) {
-        
+        let vc = SelectLocationViewController()
+        vc.selectLocationViewControllerDelegate = self
+        self.jtGetResponder()?.navigationController?.pushViewController(vc, animated: false)
     }
     @IBAction func myPlaceTouchUpInside(_ sender: Any) {
         delegate?.location(self)
@@ -43,6 +45,12 @@ class SearchTopLocationView: UIView, JTNibLoader {
         myPlace.layer.addSublayer(l)
     }
 }
+extension SearchTopLocationView: SelectLocationViewControllerDelegate {
+    func didSelectLocation(point: AGSPoint) {
+        delegate?.location(point)
+    }
+}
 protocol SearchTopLocationViewDelegate: NSObjectProtocol {
     func location(_ atMyPlace: SearchTopLocationView)
+    func location(_ atPoint: AGSPoint)
 }

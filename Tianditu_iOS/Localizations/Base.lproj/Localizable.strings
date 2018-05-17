@@ -29,6 +29,8 @@
 "inputStartPosition" = "输入起点";
 "inputStopPosition" = "输入终点";
 
+"selectLocation" = "选择位置";
+
 "photoLibrary" = "相册";
 "takePhoto" = "拍照";
 
@@ -38,7 +40,8 @@
 
 "myPlace" = "我的位置";
 
-
+"hasCoordinate" = "已获得坐标";
+"routeAnalysising" = "路径分析中...";
 
 "cameraDisable" = "摄像头不可用";
 "photoLibraryDisable" = "相册不可用";

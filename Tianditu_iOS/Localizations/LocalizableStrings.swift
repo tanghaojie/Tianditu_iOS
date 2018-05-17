@@ -47,5 +47,7 @@ class LocalizableStrings {
     static let doNotGetPortrait = NSLocalizedString("doNotGetPortrait", comment: "")
     static let saveHeadPortraitFailed = NSLocalizedString("saveHeadPortraitFailed", comment: "")
     
-    
+    static let selectLocation = NSLocalizedString("selectLocation", comment: "")
+    static let hasCoordinate = NSLocalizedString("hasCoordinate", comment: "")
+    static let routeAnalysising = NSLocalizedString("routeAnalysising", comment: "")
 }
