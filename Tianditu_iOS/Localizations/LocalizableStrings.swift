@@ -50,4 +50,6 @@ class LocalizableStrings {
     static let selectLocation = NSLocalizedString("selectLocation", comment: "")
     static let hasCoordinate = NSLocalizedString("hasCoordinate", comment: "")
     static let routeAnalysising = NSLocalizedString("routeAnalysising", comment: "")
+    static let routeAnalysisFailed = NSLocalizedString("routeAnalysisFailed", comment: "")
+    static let savedCoordinate = NSLocalizedString("savedCoordinate", comment: "")
 }

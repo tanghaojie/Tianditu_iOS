@@ -8,6 +8,7 @@
 
 import UIKit
 import MJRefresh
+import JTFramework
 
 class SearchContentTableView: UITableView {
     

@@ -13,6 +13,7 @@ class JTMapView: AGSMapView {
     weak var jtDelegate: JTMapViewDelegate?
     
     private let symbolLayerName = "jtTemporaryMapSymbolLayer"
+    private let symbolLineLayerName = "jtTemporaryMapSymbolLineLayer"
     private let centerDistance = 0.0002
     private init() {
         super.init(frame: CGRect.zero)
@@ -78,6 +79,50 @@ extension JTMapView {
     }
 }
 extension JTMapView {
+    func removeAllAdded() {
+        removeSymbolLayer()
+        removeSymbolLayerPolyline()
+    }
+}
+extension JTMapView {
+    func symbolLayerPolyline(isVisible: Bool = true) {
+        let layer = mapLayer(forName: symbolLineLayerName)
+        layer?.isVisible = isVisible
+    }
+    func removeSymbolLayerPolyline() {
+        removeMapLayer(mapLayer(forName: symbolLineLayerName))
+    }
+    private func createPolyline(points: [(x: Double, y: Double)]) -> AGSPolyline? {
+        if points.count <= 1 { return nil }
+        let spatialReference = JTMapView.shareInstance.spatialReference
+        let line = AGSMutablePolyline(spatialReference: spatialReference)
+        line?.addPathToPolyline()
+        for point in points {
+            let agsP = AGSPoint(location: CLLocation(latitude: point.x, longitude: point.y))
+            line?.addPoint(toPath: agsP)
+        }
+        return line
+    }
+    func addSymbolLayerPolyline(points: [(x: Double, y: Double)]) {
+        let polyline = createPolyline(points: points)
+        guard let pLine = polyline else { return }
+        let layer = mapLayer(forName: symbolLineLayerName)
+        var graphicLayer = layer as? AGSGraphicsLayer
+        let sr = spatialReference
+        if graphicLayer == nil {
+            removeMapLayer(layer)
+            graphicLayer = AGSGraphicsLayer(spatialReference: sr)
+            addMapLayer(graphicLayer, withName: symbolLineLayerName)
+        }
+        guard let gl = graphicLayer else { abort() }
+        let lineSymbol = AGSSimpleLineSymbol.init(color: .red, width: 3)
+        lineSymbol?.style = .solid
+        let graphic = AGSGraphic(geometry: pLine, symbol: lineSymbol, attributes: nil)
+        gl.addGraphic(graphic)
+        symbolLayerPolyline()
+    }
+}
+extension JTMapView {
     func removeSymbolLayer() {
         removeMapLayer(mapLayer(forName: symbolLayerName))
     }
@@ -91,8 +136,8 @@ extension JTMapView {
             graphicLayer = AGSGraphicsLayer(spatialReference: sr)
             addMapLayer(graphicLayer, withName: symbolLayerName)
         }
-        guard let gl = graphicLayer else { abort() }
-        guard let img = Assets.location else { abort() }
+        guard let gl = graphicLayer, let img = Assets.location else { abort() }
+        gl.removeAllGraphics()
         let markerSymbol = AGSPictureMarkerSymbol(image: img)
         markerSymbol?.offset = CGPoint(x: 0, y: 15)
         for p in points {
@@ -101,6 +146,7 @@ extension JTMapView {
             graphic.symbol = markerSymbol
             gl.addGraphic(graphic)
         }
+        gl.isVisible = true
     }
 }
 protocol JTMapViewDelegate: NSObjectProtocol {

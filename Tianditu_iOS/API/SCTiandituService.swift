@@ -7,23 +7,20 @@
 //
 
 import Moya
-enum Service {
+enum SCTiandituService {
     case nameSearch(data: Request_NameSearch)
-    case routeSearch(data: Request_RouteSearch)
 }
-extension Service: TargetType {
-    var baseURL: URL { return URL(string: APIURL.baseUrl)! }
+extension SCTiandituService: TargetType {
+    var baseURL: URL { return URL(string: APIURL_SCTianditu.baseUrl)! }
     var path: String {
         switch self {
         case .nameSearch:
-            return APIURL.nameSearch
-        case .routeSearch:
-            return APIURL.routeSearch
+            return APIURL_SCTianditu.nameSearch
         }
     }
     var method: Moya.Method {
         switch self {
-        case .nameSearch, .routeSearch:
+        case .nameSearch:
             return .get
         }
     }
@@ -43,25 +40,11 @@ extension Service: TargetType {
                 "pretty": data.pretty,
                 "st": data.st,
                 ], encoding: URLEncoding.queryString)
-        case .routeSearch(let data):
-            return Task.requestParameters(parameters: [
-                "StartX": data.StartX,
-                "starty": data.StartY,
-                "stopx": data.StopX,
-                "stopy": data.StopY,
-                "powerColumnName": data.powerColumnName,
-                "returnDirection": data.returnDirection,
-                "VIAPoints": data.VIAPoints ?? "",
-                "BarriesLocation": data.BarriesLocation ?? "",
-                "token": data.token ?? "",
-                "pretty": data.pretty,
-                "st": data.st,
-                ], encoding: URLEncoding.queryString)
         }
     }
     var sampleData: Foundation.Data {
         switch self {
-        case .nameSearch, .routeSearch:
+        case .nameSearch:
             return "nil".jtUtf8Encoded
         }
     }

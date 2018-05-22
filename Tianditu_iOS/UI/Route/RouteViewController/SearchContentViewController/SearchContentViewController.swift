@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import JTFramework
 
 class SearchContentViewController: JTNavigationViewController {
     

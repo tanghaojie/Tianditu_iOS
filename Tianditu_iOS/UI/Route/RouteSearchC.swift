@@ -11,19 +11,19 @@ import Moya
 class RouteSearchC {
     public static let shareInstance = RouteSearchC()
     private init() {}
-    
+
     private var cancellable: Cancellable?
-    
+
     private func cancel() {
         guard let cancel = cancellable else { return }
         if cancel.isCancelled { return }
         cancel.cancel()
     }
-    
-    func routeSearch(startX: Double, startY: Double, stopX: Double, stopY: Double, powerColumnName: String = "length", returnDirection: Bool = true, Complete: @escaping (Bool, Response_RouteSearch?, String?) -> Void) {
+
+    func routeSearch(startX: Double, startY: Double, stopX: Double, stopY: Double, style: RouteStyle = .short, Complete: @escaping (Bool, Response_RouteSearch?, String?) -> Void) {
         cancel()
-        let data = Request_RouteSearch(startX: startX, startY: startY, stopX: stopX, stopY: stopY, powerColumnName: powerColumnName, returnDirection: returnDirection)
-        cancellable = ServiceManager.shareInstance.provider.request(.routeSearch(data: data)) {
+        let data = Request_RouteSearch(startX: startX, startY: startY, stopX: stopX, stopY: stopY, style: style)
+        cancellable = ServiceManager.shareInstance.tiandituProvider.request(.routeSearch(data: data)) {
             result in
             switch result {
             case let .success(moyaResponse):

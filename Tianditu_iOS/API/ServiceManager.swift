@@ -13,9 +13,10 @@ class ServiceManager {
     static let shareInstance = ServiceManager()
     private init() {}
     
-    let provider = MoyaProvider<Service>(manager: DefaultAlamofireManager.sharedManager)
-    let provider_2s = MoyaProvider<Service>(manager: DefaultAlamofireManager_2.sharedManager)
-    let provider_300s = MoyaProvider<Service>(manager: DefaultAlamofireManager_300.sharedManager)
+    let scTiandituProvider = MoyaProvider<SCTiandituService>(manager: DefaultAlamofireManager.sharedManager)
+    let tiandituProvider = MoyaProvider<TiandituService>(manager: DefaultAlamofireManager.sharedManager)
+    //let provider_2s = MoyaProvider<SCTiandituService>(manager: DefaultAlamofireManager_2.sharedManager)
+    //let provider_300s = MoyaProvider<SCTiandituService>(manager: DefaultAlamofireManager_300.sharedManager)
 
     private class DefaultAlamofireManager: Alamofire.SessionManager {
         static let sharedManager: DefaultAlamofireManager = {

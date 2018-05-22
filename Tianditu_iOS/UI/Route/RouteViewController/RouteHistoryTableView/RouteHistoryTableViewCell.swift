@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import JTFramework
 
 class RouteHistoryTableViewCell: UITableViewCell {
     
@@ -58,7 +59,7 @@ extension RouteHistoryTableViewCell {
     }
     private func setupViewLayer() {
         let layer = CALayer()
-        layer.frame = CGRect(x: 0, y: 0, width: ScreenWidth, height: 1)
+        layer.frame = CGRect(x: 0, y: 0, width: Global_Common.shareInstance.ScreenWidth, height: 1)
         layer.backgroundColor = UIColor(r: 233, g: 233, b: 233).cgColor
         contentView.layer.addSublayer(layer)
     }
@@ -113,12 +114,18 @@ extension RouteHistoryTableViewCell {
         var l: String = ""
         var r: String = ""
         if vm.startType == .coordinate {
-            if let r = vm.startName { l = r }
+            if vm.startName == nil || vm.startName == "" { l = LocalizableStrings.savedCoordinate }
+            else {
+                l = vm.startName!
+            }
         } else if vm.startType == .myPlace {
             l = LocalizableStrings.myPlace
         }
         if vm.stopType == .coordinate {
-            if let p = vm.stopName { r = p }
+            if vm.stopName == nil || vm.stopName == "" { r = LocalizableStrings.savedCoordinate }
+            else {
+                r = vm.stopName!
+            }
         } else if vm.stopType == .myPlace {
             r = LocalizableStrings.myPlace
         }

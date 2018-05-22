@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import JTFramework
 
 class SearchHistoryTableViewCell: UITableViewCell {
     
@@ -67,7 +68,7 @@ extension SearchHistoryTableViewCell {
     }
     private func setupViewLayer() {
         let layer = CALayer()
-        layer.frame = CGRect(x: 0, y: 0, width: ScreenWidth, height: 1)
+        layer.frame = CGRect(x: 0, y: 0, width: Global_Common.shareInstance.ScreenWidth, height: 1)
         layer.backgroundColor = UIColor(r: 233, g: 233, b: 233).cgColor
         contentView.layer.addSublayer(layer)
     }

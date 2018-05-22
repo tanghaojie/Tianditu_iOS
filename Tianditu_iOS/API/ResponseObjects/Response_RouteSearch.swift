@@ -8,13 +8,20 @@
 
 import ObjectMapper
 
-class Response_RouteSearch: Response_Base {
-    var message: Object_RouteSearch?
-    required init?(map: Map) {
-        super.init(map: map)
-    }
-    override func mapping(map: Map) {
-        super.mapping(map: map)
-        message    <- map["message"]
+class Response_RouteSearch: Mappable {
+    var distance: String?
+    var simpleItems: Any?
+    var routeItems: [Object_RouteItem]?
+    var center: String?
+    var scale: String?
+    var routelatlon: String?
+    required init?(map: Map) {}
+    func mapping(map: Map) {
+        distance     <- map["distance"]
+        simpleItems  <- map["simpleItems"]
+        routeItems  <- map["routeItems"]
+        center     <- map["center"]
+        scale  <- map["scale"]
+        routelatlon  <- map["routelatlon"]
     }
 }

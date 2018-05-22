@@ -25,7 +25,7 @@ class RouteViewController: JTNavigationViewController {
     private let routeResultViewHeight: CGFloat = 120
     var start: RoutePosition?
     var stop: RoutePosition?
-    private let toleranceDistence = 0.02
+    private let toleranceDistence = 0.0006
     
     init() {
         start = RoutePosition(type: .myPlace, x: 0, y: 0)
@@ -43,6 +43,11 @@ class RouteViewController: JTNavigationViewController {
         startX = X(startSearchBar, vc: self)
         stopX = X(stopSearchBar, vc: self)
         setupUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        JTMapView.shareInstance.symbolLayerPolyline(isVisible: true)
     }
 
 }
@@ -181,20 +186,75 @@ extension RouteViewController: JTRouteHistoryTableViewDelegate {
 }
 extension RouteViewController {
     func showRoute() {
+        routeResultView(false)
         guard let i = start, let j = stop else { return }
-        if i.type == .myPlace && j.type == .myPlace { return }
-        let xx = i.x - j.x
-        let yy = i.y - j.y
-        if abs(xx) < toleranceDistence && abs(yy) < toleranceDistence { return }
         mapView(show: true)
+        if i.type == .myPlace && j.type == .myPlace { return }
+        var x1 = i.x
+        var y1 = i.y
+        var x2 = j.x
+        var y2 = j.y
+        if i.type == .myPlace {
+            guard let l = JTLocationManager.shareInstance.location else { return }
+            x1 = l.coordinate.longitude
+            y1 = l.coordinate.latitude
+        }
+        if j.type == .myPlace {
+            guard let l = JTLocationManager.shareInstance.location else { return }
+            x2 = l.coordinate.longitude
+            y2 = l.coordinate.latitude
+        }
+        let xx = x1 - x2
+        let yy = y1 - y2
+        if abs(xx) < toleranceDistence && abs(yy) < toleranceDistence { return }
         routeResultView(true)
         let hud = JTHUD(view: routeResultView).indeterminateWithText(LocalizableStrings.routeAnalysising)
-        RouteSearchC.shareInstance.routeSearch(startX: i.x, startY: i.y, stopX: j.x, stopY: j.y) {
+        RouteSearchC.shareInstance.routeSearch(startX: x1, startY: y1, stopX: x2, stopY: y2) {
+            [weak self]
             success, result, msg in
-            Thread.sleep(forTimeInterval: TimeInterval.init(5))
             hud.hide(animated: true)
+            guard let this = self else { return }
+            guard success, let r = result else {
+                this.routeResultView(false)
+                _ = JTHUD(view: this.view).textOnly(msg ?? LocalizableStrings.routeAnalysisFailed, removeOnHide: true, delayTimeIfAutoHide: TimeInterval(1.5))
+                return
+            }
+            this.saveHistory(s: i, p: j)
+            this.addSymbolLayerPolyline(r: r)
+            this.centerShowSymbolLayerPolyline(r: r)
             
+            
+            
+            this.routeResultView.backgroundColor = .red
         }
+    }
+}
+extension RouteViewController {
+    private func saveHistory(s: RoutePosition, p: RoutePosition) {
+        _ = Data_RouteHistoryOperate.shareInstance.insert(startType: s.type, startName: s.name, startX: s.x, startY: s.y, stopType: p.type, stopName: p.name, stopX: p.x, stopY: p.y)
+    }
+    private func addSymbolLayerPolyline(r: Response_RouteSearch) {
+        JTMapView.shareInstance.removeAllAdded()
+        guard let routelatlin = r.routelatlon else { return }
+        let subStrings = routelatlin.split(separator: ";")
+        guard subStrings.count > 0 else { return }
+        var points = [(Double,Double)]()
+        for subString in subStrings {
+            let subs = subString.split(separator: ",").map(Double.init)
+            guard subs.count == 2 else { return }
+            guard let x = subs[1], let y = subs[0] else { return }
+            points.append((x,y))
+        }
+        JTMapView.shareInstance.addSymbolLayerPolyline(points: points)
+    }
+    private func centerShowSymbolLayerPolyline(r: Response_RouteSearch) {
+        guard let center = r.center else { return }
+        let subs = center.split(separator: ",").map(Double.init)
+        guard subs.count == 2, let x = subs[0], let y = subs[1], let i = r.scale, let ii = Int(i), let scale = Tianditu_TileLevel(rawValue: ii) else { return }
+        JTMapView.shareInstance.zoom(toScale: scale.scale, withCenter: AGSPoint(location: CLLocation(latitude: y, longitude: x)), animated: true)
+    }
+    private func showRouteResultView() {
+        
     }
 }
 extension RouteViewController {

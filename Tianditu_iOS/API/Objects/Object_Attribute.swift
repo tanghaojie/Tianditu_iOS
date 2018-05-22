@@ -6,6 +6,8 @@
 //  Copyright © 2018年 JT. All rights reserved.
 //
 
+import JTFramework
+
 class Object_Attribute {
     var id: Int?
     var x: Double?

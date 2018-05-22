@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import JTFramework
 
 class SearchHistoryTableView: UITableView {
 
@@ -76,7 +77,7 @@ extension SearchHistoryTableView {
         b.translatesAutoresizingMaskIntoConstraints = false
         b.setTitleColor(UIColor(r: 160, g: 160, b: 160), for: .normal)
         let layer = CALayer()
-        layer.frame = CGRect(x: 0, y: 0, width: ScreenWidth, height: 1)
+        layer.frame = CGRect(x: 0, y: 0, width: Global_Common.shareInstance.ScreenWidth, height: 1)
         layer.backgroundColor = UIColor(r: 233, g: 233, b: 233).cgColor
         b.layer.addSublayer(layer)
         view.addSubview(b)

@@ -7,6 +7,7 @@
 //
 
 import Moya
+import JTFramework
 
 class Search_NameSearchC {
     public static let shareInstance = Search_NameSearchC()
@@ -27,7 +28,7 @@ class Search_NameSearchC {
             return
         }
         let data = Request_NameSearch(name: text, start: start, end: end)
-        cancellable = ServiceManager.shareInstance.provider.request(.nameSearch(data: data)) {
+        cancellable = ServiceManager.shareInstance.scTiandituProvider.request(.nameSearch(data: data)) {
             result in
             switch result {
             case let .success(moyaResponse):
@@ -60,7 +61,7 @@ class Search_NameSearchC {
             return
         }
         let data = Request_NameSearch(type: type.strNum, start: start, end: end, searchEnvelope: envelope)
-        cancellable = ServiceManager.shareInstance.provider.request(.nameSearch(data: data)) {
+        cancellable = ServiceManager.shareInstance.scTiandituProvider.request(.nameSearch(data: data)) {
             result in
             switch result {
             case let .success(moyaResponse):

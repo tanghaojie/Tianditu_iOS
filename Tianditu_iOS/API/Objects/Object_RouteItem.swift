@@ -1,18 +1,17 @@
 //
-//  Object_Route.swift
+//  Object_RouteItem.swift
 //  Tianditu_iOS
 //
-//  Created by JT on 2018/5/17.
+//  Created by JT on 2018/5/18.
 //  Copyright © 2018年 JT. All rights reserved.
 //
 
 import ObjectMapper
 
-class Object_Route: Mappable {
-    var paths: [[[Double]]]?
-
+class Object_RouteItem: Mappable {
+    var strguide: String?
     required init?(map: Map) {}
     func mapping(map: Map) {
-        paths            <- map["paths"]
+        strguide  <- map["strguide"]
     }
 }

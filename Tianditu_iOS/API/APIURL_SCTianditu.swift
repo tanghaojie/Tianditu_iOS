@@ -6,7 +6,7 @@
 //  Copyright © 2018年 JT. All rights reserved.
 //
 
-class APIURL {
+class APIURL_SCTianditu {
     static let baseUrl = "http://www.scgis.net.cn/"
     
     static let nameSearch = "imap/imapserver/defaultrest/services/Newscnamesearch/Search"

@@ -17,7 +17,7 @@ class PointResultView: UIView, JTNibLoader {
     
     override func draw(_ rect: CGRect) {
         let layer = CALayer()
-        layer.frame = CGRect(x: 0, y: 0, width: ScreenWidth, height: 1)
+        layer.frame = CGRect(x: 0, y: 0, width: Global_Common.shareInstance.ScreenWidth, height: 1)
         layer.backgroundColor = UIColor(r: 180, g: 180, b: 180).cgColor
         bottom.layer.addSublayer(layer)
         

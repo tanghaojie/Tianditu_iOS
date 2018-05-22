@@ -6,30 +6,34 @@
 //  Copyright © 2018年 JT. All rights reserved.
 //
 
+import ObjectMapper
+
 class Request_RouteSearch {
+    var orig: String?
+    var dest: String?
+    var mid: String?
+    var style: String?
     
-    let StartX: Double
-    let StartY: Double
-    let StopX: Double
-    let StopY: Double
-    let powerColumnName: String
-    let returnDirection: Bool
-    let VIAPoints: String?
-    let BarriesLocation: String?
-    let token: String?
-    let pretty: Bool
-    let st: Int64 = Int64(Date().timeIntervalSince1970)
-    
-    init(startX: Double, startY: Double, stopX: Double, stopY: Double, powerColumnName: String = "length", returnDirection: Bool = true, VIAPoints: String? = nil, BarriesLocation: String? = nil, token: String? = nil, pretty: Bool = false) {
-        StartX = startX
-        StartY = startY
-        StopX = stopX
-        StopY = stopY
-        self.powerColumnName = powerColumnName
-        self.returnDirection = returnDirection
-        self.VIAPoints = VIAPoints
-        self.BarriesLocation = BarriesLocation
-        self.token = token
-        self.pretty = pretty
+    init(startX: Double, startY: Double, stopX: Double, stopY: Double, style: RouteStyle = .short) {
+        orig = String(startX) + "," + String(startY)
+        dest = String(stopX) + "," + String(stopY)
+        mid = nil
+        self.style = style.rawValue
     }
+    required init?(map: Map) {}
+}
+extension Request_RouteSearch: Mappable {
+    
+    func mapping(map: Map) {
+        orig     <- map["orig"]
+        dest  <- map["dest"]
+        mid  <- map["mid"]
+        style  <- map["style"]
+    }
+}
+enum RouteStyle: String {
+    case fast = "0"
+    case short = "1"
+    case avoidHighWay = "2"
+    case walk = "3"
 }

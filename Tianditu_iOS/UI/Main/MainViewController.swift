@@ -22,7 +22,7 @@ class MainViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        JTMapView.shareInstance.removeSymbolLayer()
+        JTMapView.shareInstance.removeAllAdded()
         JTMapView.shareInstance.jtDelegate = self
         guard mapView.subviews.count <= 0 else { return }
         setupJTMapView()

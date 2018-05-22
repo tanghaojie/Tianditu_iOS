@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import JTFramework
 
 class SelectLocationViewController: JTNavigationViewController {
     
@@ -24,6 +25,11 @@ class SelectLocationViewController: JTNavigationViewController {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        JTMapView.shareInstance.symbolLayerPolyline(isVisible: false)
     }
 }
 extension SelectLocationViewController {
