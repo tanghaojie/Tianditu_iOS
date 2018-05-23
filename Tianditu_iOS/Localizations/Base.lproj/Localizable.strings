@@ -50,6 +50,9 @@
 
 "savedCoordinate" = "保存的坐标";
 
+"about" = "约";
+"km" = "千米";
+
 
 "selectHeadPortrait" = "选择头像";
 "doNotGetPortrait" = "未能获取头像";

@@ -22,10 +22,22 @@ class RouteViewController: JTNavigationViewController {
     private let routeHistoryTableView = RouteHistoryTableView()
     private let routeMapViewView = UIView()
     private let routeResultView = UIView()
+    private var routeResultTopView: UIView?
+    private var routeResultTopLeftView: UIView?
+    private var routeResultTopLeftViewButton: UIButton?
+    private var routeResultTopRightView: UIView?
+    private var routeResultTopRightViewButton: UIButton?
+    private var routeResultTopCenterLabel: UILabel?
+    private var routeResultBottomView: UIView?
+    private var routeResultBottomLeftView: UIView?
+    private var routeResultBottomRightView: UIView?
+
+    
     private let routeResultViewHeight: CGFloat = 120
     var start: RoutePosition?
     var stop: RoutePosition?
     private let toleranceDistence = 0.0006
+    private var routeResult: Response_RouteSearch?
     
     init() {
         start = RoutePosition(type: .myPlace, x: 0, y: 0)
@@ -148,6 +160,181 @@ extension RouteViewController {
                 ])
         }
     }
+    
+    
+    
+    
+    
+    private func addTopView() {
+        routeResultTopView = UIView()
+        guard let t = routeResultTopView else { return }
+        t.backgroundColor = .red
+        t.translatesAutoresizingMaskIntoConstraints = false
+        routeResultView.addSubview(t)
+        NSLayoutConstraint.activate([
+            t.leadingAnchor.constraint(equalTo: routeResultView.leadingAnchor),
+            t.trailingAnchor.constraint(equalTo: routeResultView.trailingAnchor),
+            t.topAnchor.constraint(equalTo: routeResultView.topAnchor),
+            t.heightAnchor.constraint(equalTo: routeResultView.heightAnchor, multiplier: 0.5),
+            ])
+        addTopLeft()
+        addTopRight()
+        addTopCenter()
+    }
+    private func addTopLeft() {
+        routeResultTopLeftView = UIView()
+        routeResultTopLeftViewButton = UIButton()
+        guard let t = routeResultTopView, let left = routeResultTopLeftView, let btn = routeResultTopLeftViewButton else { return }
+        left.translatesAutoresizingMaskIntoConstraints = false
+        t.addSubview(left)
+        left.backgroundColor = .yellow
+        NSLayoutConstraint.activate([
+            left.leadingAnchor.constraint(equalTo: t.leadingAnchor),
+            left.topAnchor.constraint(equalTo: t.topAnchor),
+            left.bottomAnchor.constraint(equalTo: t.bottomAnchor),
+            left.widthAnchor.constraint(equalTo: t.heightAnchor),
+            ])
+
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        btn.addTarget(self, action: #selector(leftRightTouchUpInside), for: .touchUpInside)
+        left.addSubview(btn)
+        NSLayoutConstraint.activate([
+            btn.leadingAnchor.constraint(equalTo: left.leadingAnchor),
+            btn.trailingAnchor.constraint(equalTo: left.trailingAnchor),
+            btn.topAnchor.constraint(equalTo: left.topAnchor),
+            btn.bottomAnchor.constraint(equalTo: left.bottomAnchor),
+            ])
+    }
+    private func addTopRight() {
+        routeResultTopRightView = UIView()
+        routeResultTopRightViewButton = UIButton()
+        guard let t = routeResultTopView, let right = routeResultTopRightView, let btn = routeResultTopRightViewButton else { return }
+        right.translatesAutoresizingMaskIntoConstraints = false
+        t.addSubview(right)
+        right.backgroundColor = .green
+        NSLayoutConstraint.activate([
+            right.trailingAnchor.constraint(equalTo: t.trailingAnchor),
+            right.topAnchor.constraint(equalTo: t.topAnchor),
+            right.bottomAnchor.constraint(equalTo: t.bottomAnchor),
+            right.widthAnchor.constraint(equalTo: t.heightAnchor),
+            ])
+        
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        btn.addTarget(self, action: #selector(leftRightTouchUpInside), for: .touchUpInside)
+        right.addSubview(btn)
+        NSLayoutConstraint.activate([
+            btn.leadingAnchor.constraint(equalTo: right.leadingAnchor),
+            btn.trailingAnchor.constraint(equalTo: right.trailingAnchor),
+            btn.topAnchor.constraint(equalTo: right.topAnchor),
+            btn.bottomAnchor.constraint(equalTo: right.bottomAnchor),
+            ])
+    }
+    private func addTopCenter() {
+        routeResultTopCenterLabel = UILabel()
+        guard let t = routeResultTopView, let center = routeResultTopCenterLabel, let left = routeResultTopLeftView, let right = routeResultTopRightView else { return }
+        center.font = UIFont.systemFont(ofSize: 14)
+        center.textAlignment = .center
+        center.lineBreakMode = .byWordWrapping
+        center.numberOfLines = 3
+        center.translatesAutoresizingMaskIntoConstraints = false
+        t.addSubview(center)
+        center.backgroundColor = .white
+        NSLayoutConstraint.activate([
+            center.leadingAnchor.constraint(equalTo: left.trailingAnchor),
+            center.topAnchor.constraint(equalTo: t.topAnchor),
+            center.bottomAnchor.constraint(equalTo: t.bottomAnchor),
+            center.trailingAnchor.constraint(equalTo: right.leadingAnchor),
+            ])
+        center.tag = 0
+        setRouteResultViewTopCenterLabel()
+    }
+    
+    private func addBottomView() {
+        routeResultBottomView = UIView()
+        guard let b = routeResultBottomView else { return }
+        b.translatesAutoresizingMaskIntoConstraints = false
+        routeResultView.addSubview(b)
+        NSLayoutConstraint.activate([
+            b.leadingAnchor.constraint(equalTo: routeResultView.leadingAnchor),
+            b.trailingAnchor.constraint(equalTo: routeResultView.trailingAnchor),
+            b.bottomAnchor.constraint(equalTo: routeResultView.bottomAnchor),
+            b.heightAnchor.constraint(equalTo: routeResultView.heightAnchor, multiplier: 0.5),
+            ])
+        addBottomLeft()
+        addBottomRight()
+    }
+    private func addBottomLeft() {
+        routeResultBottomLeftView = UIView()
+        guard let left = routeResultBottomLeftView, let v = routeResultBottomView else { return }
+        left.translatesAutoresizingMaskIntoConstraints = false
+        v.addSubview(left)
+        left.backgroundColor = .yellow
+        NSLayoutConstraint.activate([
+            left.leadingAnchor.constraint(equalTo: v.leadingAnchor),
+            left.topAnchor.constraint(equalTo: v.topAnchor),
+            left.bottomAnchor.constraint(equalTo: v.bottomAnchor),
+            left.widthAnchor.constraint(equalTo: v.widthAnchor, multiplier: 0.5),
+            ])
+        
+        let btn = UIButton()
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        left.addSubview(btn)
+        NSLayoutConstraint.activate([
+            btn.leadingAnchor.constraint(equalTo: left.leadingAnchor),
+            btn.trailingAnchor.constraint(equalTo: left.trailingAnchor),
+            btn.topAnchor.constraint(equalTo: left.topAnchor),
+            btn.bottomAnchor.constraint(equalTo: left.bottomAnchor),
+            ])
+    }
+    private func addBottomRight() {
+        routeResultBottomRightView = UIView()
+        guard let right = routeResultBottomRightView, let v = routeResultBottomView else { return }
+        right.translatesAutoresizingMaskIntoConstraints = false
+        v.addSubview(right)
+        NSLayoutConstraint.activate([
+            right.trailingAnchor.constraint(equalTo: v.trailingAnchor),
+            right.topAnchor.constraint(equalTo: v.topAnchor),
+            right.bottomAnchor.constraint(equalTo: v.bottomAnchor),
+            right.widthAnchor.constraint(equalTo: v.widthAnchor, multiplier: 0.5),
+            ])
+        
+        let label = UILabel()
+        if let r = routeResult, let d = r.distance {
+            label.text = "\(LocalizableStrings.about) \(d) \(LocalizableStrings.km)"
+        }
+        label.textAlignment = .right
+        label.font = UIFont.boldSystemFont(ofSize: 18)
+        label.textColor = UIColor(r: 120, g: 120, b: 120)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        right.addSubview(label)
+        NSLayoutConstraint.activate([
+            label.leadingAnchor.constraint(equalTo: right.leadingAnchor),
+            label.trailingAnchor.constraint(equalTo: right.trailingAnchor, constant: -10),
+            label.topAnchor.constraint(equalTo: right.topAnchor),
+            label.bottomAnchor.constraint(equalTo: right.bottomAnchor),
+            ])
+    }
+}
+extension RouteViewController {
+    private func setRouteResultViewTopCenterLabel() {
+        guard let center = routeResultTopCenterLabel, let r = routeResult else { return }
+        var tag = center.tag
+        guard let items = r.routeItems else { return }
+        if tag < 0 { tag = tag + items.count }
+        center.tag = tag % items.count
+        tag = center.tag
+        guard tag < items.count && tag >= 0 else { return }
+        center.text = items[tag].strguide
+    }
+    @objc private func leftRightTouchUpInside(sender: UIButton) {
+        guard let center = routeResultTopCenterLabel else { return }
+        if sender == routeResultTopLeftViewButton {
+            center.tag = center.tag - 1
+        } else if sender == routeResultTopRightViewButton {
+            center.tag = center.tag + 1
+        }
+        setRouteResultViewTopCenterLabel()
+    }
 }
 extension RouteViewController: UISearchBarDelegate {
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
@@ -187,6 +374,7 @@ extension RouteViewController: JTRouteHistoryTableViewDelegate {
 extension RouteViewController {
     func showRoute() {
         routeResultView(false)
+        routeResult = nil
         guard let i = start, let j = stop else { return }
         mapView(show: true)
         if i.type == .myPlace && j.type == .myPlace { return }
@@ -219,13 +407,13 @@ extension RouteViewController {
                 _ = JTHUD(view: this.view).textOnly(msg ?? LocalizableStrings.routeAnalysisFailed, removeOnHide: true, delayTimeIfAutoHide: TimeInterval(1.5))
                 return
             }
+            this.routeResult = r
             this.saveHistory(s: i, p: j)
-            this.addSymbolLayerPolyline(r: r)
-            this.centerShowSymbolLayerPolyline(r: r)
-            
-            
-            
-            this.routeResultView.backgroundColor = .red
+            this.addSymbolLayerPolyline()
+            this.centerShowSymbolLayerPolyline()
+            this.showRouteResultView()
+
+            this.routeResultView.backgroundColor = .white
         }
     }
 }
@@ -233,9 +421,9 @@ extension RouteViewController {
     private func saveHistory(s: RoutePosition, p: RoutePosition) {
         _ = Data_RouteHistoryOperate.shareInstance.insert(startType: s.type, startName: s.name, startX: s.x, startY: s.y, stopType: p.type, stopName: p.name, stopX: p.x, stopY: p.y)
     }
-    private func addSymbolLayerPolyline(r: Response_RouteSearch) {
+    private func addSymbolLayerPolyline() {
         JTMapView.shareInstance.removeAllAdded()
-        guard let routelatlin = r.routelatlon else { return }
+        guard let r = routeResult, let routelatlin = r.routelatlon else { return }
         let subStrings = routelatlin.split(separator: ";")
         guard subStrings.count > 0 else { return }
         var points = [(Double,Double)]()
@@ -247,15 +435,20 @@ extension RouteViewController {
         }
         JTMapView.shareInstance.addSymbolLayerPolyline(points: points)
     }
-    private func centerShowSymbolLayerPolyline(r: Response_RouteSearch) {
-        guard let center = r.center else { return }
+    private func centerShowSymbolLayerPolyline() {
+        guard let r = routeResult, let center = r.center else { return }
         let subs = center.split(separator: ",").map(Double.init)
         guard subs.count == 2, let x = subs[0], let y = subs[1], let i = r.scale, let ii = Int(i), let scale = Tianditu_TileLevel(rawValue: ii) else { return }
         JTMapView.shareInstance.zoom(toScale: scale.scale, withCenter: AGSPoint(location: CLLocation(latitude: y, longitude: x)), animated: true)
     }
     private func showRouteResultView() {
+        for view in routeResultView.subviews { view.removeFromSuperview() }
+        if routeResult == nil { return }
+        addTopView()
+        addBottomView()
         
     }
+    
 }
 extension RouteViewController {
     private func routeResultView(_ show: Bool) {

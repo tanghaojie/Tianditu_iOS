@@ -115,7 +115,7 @@ extension JTMapView {
             addMapLayer(graphicLayer, withName: symbolLineLayerName)
         }
         guard let gl = graphicLayer else { abort() }
-        let lineSymbol = AGSSimpleLineSymbol.init(color: .red, width: 3)
+        let lineSymbol = AGSSimpleLineSymbol.init(color: .blue, width: 5)
         lineSymbol?.style = .solid
         let graphic = AGSGraphic(geometry: pLine, symbol: lineSymbol, attributes: nil)
         gl.addGraphic(graphic)

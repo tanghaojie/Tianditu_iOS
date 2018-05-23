@@ -52,4 +52,7 @@ class LocalizableStrings {
     static let routeAnalysising = NSLocalizedString("routeAnalysising", comment: "")
     static let routeAnalysisFailed = NSLocalizedString("routeAnalysisFailed", comment: "")
     static let savedCoordinate = NSLocalizedString("savedCoordinate", comment: "")
+    
+    static let about = NSLocalizedString("about", comment: "")
+    static let km = NSLocalizedString("km", comment: "")
 }
