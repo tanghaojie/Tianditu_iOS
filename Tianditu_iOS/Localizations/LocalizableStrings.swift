@@ -15,6 +15,7 @@ class LocalizableStrings {
     static let warn = NSLocalizedString("warn", comment: "")
     static let error = NSLocalizedString("error", comment: "")
     static let search = NSLocalizedString("search", comment: "")
+    static let delete = NSLocalizedString("delete", comment: "")
     
     static let clearHistory = NSLocalizedString("clearHistory", comment: "")
     
@@ -55,4 +56,7 @@ class LocalizableStrings {
     
     static let about = NSLocalizedString("about", comment: "")
     static let km = NSLocalizedString("km", comment: "")
+    static let from = NSLocalizedString("from", comment: "")
+    static let startOff = NSLocalizedString("startOff", comment: "")
+    static let arrive = NSLocalizedString("arrive", comment: "")
 }

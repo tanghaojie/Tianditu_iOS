@@ -78,8 +78,11 @@ extension SelectLocationViewController {
     private func setupConfirmButton() {
         confirmButton.translatesAutoresizingMaskIntoConstraints = false
         confirmButton.addTarget(self, action: #selector(confirmButtonTouchUpInside), for: .touchUpInside)
-        confirmButton.layer.cornerRadius = confirmButtomHeight / 2
+        confirmButton.layer.cornerRadius = confirmButtomHeight / 5
         confirmButton.backgroundColor = UIColor(r: 0, g: 122, b: 255)
+        confirmButton.setTitle(LocalizableStrings.ok, for: .normal)
+        confirmButton.setTitleColor(.white, for: .normal)
+        confirmButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 22)
         content.addSubview(confirmButton)
         NSLayoutConstraint.activate([
             confirmButton.widthAnchor.constraint(equalToConstant: confirmButtonWidth),

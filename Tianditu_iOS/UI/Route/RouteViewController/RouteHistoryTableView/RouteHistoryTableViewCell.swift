@@ -18,13 +18,11 @@ class RouteHistoryTableViewCell: UITableViewCell {
     private let fullViewLeft: CGFloat = 10
     private let fullViewRight: CGFloat = 10
     private let leftView = UIView()
-    
     private let centerView = UIView()
-    
+    private let centerViewLeft: CGFloat = 10
     private let rightView = UIView()
     private let leftViewWidth: CGFloat = 30
     private let rightViewWidth: CGFloat = 0
-    
     private let label = UILabel()
 
     init(reuseIdentifier: String?) {
@@ -72,6 +70,17 @@ extension RouteHistoryTableViewCell {
             leftView.leadingAnchor.constraint(equalTo: fullView.leadingAnchor),
             leftView.widthAnchor.constraint(equalToConstant: leftViewWidth),
             ])
+        
+        let imageView = UIImageView(image: Assets.historyRecord)
+        imageView.contentMode = .center
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        leftView.addSubview(imageView)
+        NSLayoutConstraint.activate([
+            imageView.leadingAnchor.constraint(equalTo: leftView.leadingAnchor),
+            imageView.trailingAnchor.constraint(equalTo: leftView.trailingAnchor),
+            imageView.topAnchor.constraint(equalTo: leftView.topAnchor),
+            imageView.bottomAnchor.constraint(equalTo: leftView.bottomAnchor),
+            ])
     }
     private func setupRightView() {
         rightView.translatesAutoresizingMaskIntoConstraints = false
@@ -89,7 +98,7 @@ extension RouteHistoryTableViewCell {
         NSLayoutConstraint.activate([
             centerView.topAnchor.constraint(equalTo: fullView.topAnchor),
             centerView.bottomAnchor.constraint(equalTo: fullView.bottomAnchor),
-            centerView.leadingAnchor.constraint(equalTo: leftView.trailingAnchor),
+            centerView.leadingAnchor.constraint(equalTo: leftView.trailingAnchor, constant: centerViewLeft),
             centerView.trailingAnchor.constraint(equalTo: rightView.leadingAnchor),
             ])
     }

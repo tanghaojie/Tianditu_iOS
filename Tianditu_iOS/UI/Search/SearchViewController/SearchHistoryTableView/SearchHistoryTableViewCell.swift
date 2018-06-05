@@ -15,18 +15,17 @@ class SearchHistoryTableViewCell: UITableViewCell {
     private let fullViewMinHeight: CGFloat = 50
     private let fullViewTop: CGFloat = 10
     private let fullViewBottom: CGFloat = 10
-    private let fullViewLeft: CGFloat = 10
+    private let fullViewLeft: CGFloat = 5
     private let fullViewRight: CGFloat = 10
     private let leftView = UIView()
-    
+    private let leftImageView = UIImageView()
     private let centerView = UIView()
     private let topView = UIView()
     private let bottomView = UIView()
-    
     private let rightView = UIView()
     private let leftViewWidth: CGFloat = 50
     private let rightViewWidth: CGFloat = 50
-    
+    private let centerViewLeft: CGFloat = 5
     private let centerLabel = UILabel()
     private let title = UILabel()
     private let detail = UILabel()
@@ -81,6 +80,16 @@ extension SearchHistoryTableViewCell {
             leftView.leadingAnchor.constraint(equalTo: fullView.leadingAnchor),
             leftView.widthAnchor.constraint(equalToConstant: leftViewWidth),
             ])
+        
+        leftImageView.contentMode = .center
+        leftImageView.translatesAutoresizingMaskIntoConstraints = false
+        leftView.addSubview(leftImageView)
+        NSLayoutConstraint.activate([
+            leftImageView.leadingAnchor.constraint(equalTo: leftView.leadingAnchor),
+            leftImageView.trailingAnchor.constraint(equalTo: leftView.trailingAnchor),
+            leftImageView.topAnchor.constraint(equalTo: leftView.topAnchor),
+            leftImageView.bottomAnchor.constraint(equalTo: leftView.bottomAnchor),
+            ])
     }
     private func setupRightView() {
         rightView.translatesAutoresizingMaskIntoConstraints = false
@@ -98,7 +107,7 @@ extension SearchHistoryTableViewCell {
         NSLayoutConstraint.activate([
             centerView.topAnchor.constraint(equalTo: fullView.topAnchor),
             centerView.bottomAnchor.constraint(equalTo: fullView.bottomAnchor),
-            centerView.leadingAnchor.constraint(equalTo: leftView.trailingAnchor),
+            centerView.leadingAnchor.constraint(equalTo: leftView.trailingAnchor, constant: centerViewLeft),
             centerView.trailingAnchor.constraint(equalTo: rightView.leadingAnchor),
             ])
     }
@@ -165,10 +174,16 @@ extension SearchHistoryTableViewCell {
             title.text = ""
             detail.text = ""
             centerLabel.text = vm.title
+            leftImageView.image = Assets.search
         } else {
             title.text = vm.title
             detail.text = vm.detail
             centerLabel.text = ""
+            if let i = vm.data?.type?.image {
+                leftImageView.image = i
+            } else {
+                
+            }
         }
     }
     

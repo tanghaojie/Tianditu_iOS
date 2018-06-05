@@ -18,10 +18,11 @@ class RouteViewController: JTNavigationViewController {
     private let exchangeButton = UIButton()
     private let exchangeButtonWidth: CGFloat = 40
     private let exchangeButtonHeight: CGFloat = 80
-    private let exchangeButtonMargin: CGFloat = 10
+    private let exchangeButtonMargin: CGFloat = 5
     private let routeHistoryTableView = RouteHistoryTableView()
     private let routeMapViewView = UIView()
     private let routeResultView = UIView()
+    private let routeResultViewHeight: CGFloat = 120
     private var routeResultTopView: UIView?
     private var routeResultTopLeftView: UIView?
     private var routeResultTopLeftViewButton: UIButton?
@@ -31,9 +32,7 @@ class RouteViewController: JTNavigationViewController {
     private var routeResultBottomView: UIView?
     private var routeResultBottomLeftView: UIView?
     private var routeResultBottomRightView: UIView?
-
-    
-    private let routeResultViewHeight: CGFloat = 120
+    private var routeResultDetailView: RouteResultDetailTableView?
     var start: RoutePosition?
     var stop: RoutePosition?
     private let toleranceDistence = 0.0006
@@ -78,10 +77,12 @@ extension RouteViewController {
     }
     private func setupExchangeButton() {
         exchangeButton.translatesAutoresizingMaskIntoConstraints = false
-        exchangeButton.backgroundColor = .red
+        exchangeButton.addTarget(self, action: #selector(exchangeTouchUpInside), for: .touchUpInside)
+        exchangeButton.backgroundColor = .white
+        exchangeButton.setImage(Assets.exchange, for: .normal)
         navigationContent.addSubview(exchangeButton)
         NSLayoutConstraint.activate([
-            exchangeButton.trailingAnchor.constraint(equalTo: navigationContent.trailingAnchor, constant: exchangeButtonMargin),
+            exchangeButton.trailingAnchor.constraint(equalTo: navigationContent.trailingAnchor, constant: -exchangeButtonMargin),
             exchangeButton.centerYAnchor.constraint(equalTo: navigationContent.centerYAnchor),
             exchangeButton.widthAnchor.constraint(equalToConstant: exchangeButtonWidth),
             exchangeButton.heightAnchor.constraint(equalToConstant: exchangeButtonHeight),
@@ -160,15 +161,11 @@ extension RouteViewController {
                 ])
         }
     }
-    
-    
-    
-    
-    
+
     private func addTopView() {
         routeResultTopView = UIView()
         guard let t = routeResultTopView else { return }
-        t.backgroundColor = .red
+        t.backgroundColor = .white
         t.translatesAutoresizingMaskIntoConstraints = false
         routeResultView.addSubview(t)
         NSLayoutConstraint.activate([
@@ -187,7 +184,6 @@ extension RouteViewController {
         guard let t = routeResultTopView, let left = routeResultTopLeftView, let btn = routeResultTopLeftViewButton else { return }
         left.translatesAutoresizingMaskIntoConstraints = false
         t.addSubview(left)
-        left.backgroundColor = .yellow
         NSLayoutConstraint.activate([
             left.leadingAnchor.constraint(equalTo: t.leadingAnchor),
             left.topAnchor.constraint(equalTo: t.topAnchor),
@@ -196,6 +192,7 @@ extension RouteViewController {
             ])
 
         btn.translatesAutoresizingMaskIntoConstraints = false
+        btn.setImage(Assets.left, for: .normal)
         btn.addTarget(self, action: #selector(leftRightTouchUpInside), for: .touchUpInside)
         left.addSubview(btn)
         NSLayoutConstraint.activate([
@@ -211,7 +208,6 @@ extension RouteViewController {
         guard let t = routeResultTopView, let right = routeResultTopRightView, let btn = routeResultTopRightViewButton else { return }
         right.translatesAutoresizingMaskIntoConstraints = false
         t.addSubview(right)
-        right.backgroundColor = .green
         NSLayoutConstraint.activate([
             right.trailingAnchor.constraint(equalTo: t.trailingAnchor),
             right.topAnchor.constraint(equalTo: t.topAnchor),
@@ -220,6 +216,7 @@ extension RouteViewController {
             ])
         
         btn.translatesAutoresizingMaskIntoConstraints = false
+        btn.setImage(Assets.right, for: .normal)
         btn.addTarget(self, action: #selector(leftRightTouchUpInside), for: .touchUpInside)
         right.addSubview(btn)
         NSLayoutConstraint.activate([
@@ -236,6 +233,7 @@ extension RouteViewController {
         center.textAlignment = .center
         center.lineBreakMode = .byWordWrapping
         center.numberOfLines = 3
+        center.textColor = UIColor(r: 90, g: 131, b: 255)
         center.translatesAutoresizingMaskIntoConstraints = false
         t.addSubview(center)
         center.backgroundColor = .white
@@ -268,7 +266,6 @@ extension RouteViewController {
         guard let left = routeResultBottomLeftView, let v = routeResultBottomView else { return }
         left.translatesAutoresizingMaskIntoConstraints = false
         v.addSubview(left)
-        left.backgroundColor = .yellow
         NSLayoutConstraint.activate([
             left.leadingAnchor.constraint(equalTo: v.leadingAnchor),
             left.topAnchor.constraint(equalTo: v.topAnchor),
@@ -277,6 +274,9 @@ extension RouteViewController {
             ])
         
         let btn = UIButton()
+        btn.setImage(Assets.viewDetail, for: .normal)
+        btn.contentHorizontalAlignment = .left
+        btn.addTarget(self, action: #selector(bottomLeftTouchUpInside), for: .touchUpInside)
         btn.translatesAutoresizingMaskIntoConstraints = false
         left.addSubview(btn)
         NSLayoutConstraint.activate([
@@ -334,6 +334,53 @@ extension RouteViewController {
             center.tag = center.tag + 1
         }
         setRouteResultViewTopCenterLabel()
+    }
+    @objc private func bottomLeftTouchUpInside(sender: UIButton) {
+        guard let r = routeResult, let items = r.routeItems, items.count > 0 else { return }
+        if routeResultDetailView == nil {
+            var x = [RouteResultDetailTableViewCellVM]()
+            for item in items {
+                x.append(RouteResultDetailTableViewCellVM(text: item.strguide))
+            }
+            var startStr = ""
+            var endStr = ""
+            if let i = start, let j = stop {
+                if i.type == .myPlace {
+                    startStr = LocalizableStrings.myPlace
+                } else if i.type == .coordinate {
+                    if let xxx = i.name, xxx != "" {
+                        startStr = xxx
+                    } else {
+                        startStr = LocalizableStrings.selectLocation
+                    }
+                }
+                if j.type == .myPlace {
+                    endStr = LocalizableStrings.myPlace
+                } else if j.type == .coordinate {
+                    if let yyy = j.name, yyy != "" {
+                        endStr = yyy
+                    } else {
+                        endStr = LocalizableStrings.selectLocation
+                    }
+                }
+            }
+            routeResultDetailView = RouteResultDetailTableView(start: startStr, end: endStr, cellVMs: x)
+            guard let xx = routeResultDetailView, let yy = routeResultBottomView else { return }
+            xx.translatesAutoresizingMaskIntoConstraints = false
+            view.addSubview(xx)
+            NSLayoutConstraint.activate([
+                xx.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                xx.topAnchor.constraint(equalTo: view.topAnchor),
+                xx.bottomAnchor.constraint(equalTo: yy.topAnchor),
+                xx.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                ])
+            view.bringSubview(toFront: xx)
+            sender.setImage(Assets.viewMap, for: .normal)
+        } else {
+            routeResultDetailView?.removeFromSuperview()
+            routeResultDetailView = nil
+            sender.setImage(Assets.viewDetail, for: .normal)
+        }
     }
 }
 extension RouteViewController: UISearchBarDelegate {
@@ -446,9 +493,20 @@ extension RouteViewController {
         if routeResult == nil { return }
         addTopView()
         addBottomView()
-        
     }
     
+}
+extension RouteViewController {
+    @objc private func exchangeTouchUpInside() {
+        let temp = start
+        start = stop
+        stop = temp
+        startSearchBar.text = nil
+        stopSearchBar.text = nil
+        start?.showPosition(startSearchBar)
+        stop?.showPosition(stopSearchBar)
+        showRoute()
+    }
 }
 extension RouteViewController {
     private func routeResultView(_ show: Bool) {

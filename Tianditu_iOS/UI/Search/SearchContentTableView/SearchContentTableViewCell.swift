@@ -130,7 +130,6 @@ extension SearchContentTableViewCell {
         detail.font = UIFont.systemFont(ofSize: 14)
         detail.textColor = UIColor(r: 120, g: 120, b: 120)
     }
-    
 }
 extension SearchContentTableViewCell {
     

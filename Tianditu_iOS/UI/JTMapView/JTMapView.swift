@@ -11,19 +11,20 @@ import Foundation
 class JTMapView: AGSMapView {
     public static let shareInstance = JTMapView()
     weak var jtDelegate: JTMapViewDelegate?
-    
+    private let dlgLayerName = "dlgLayer"
+    private let domLayerName = "domLayer"
     private let symbolLayerName = "jtTemporaryMapSymbolLayer"
     private let symbolLineLayerName = "jtTemporaryMapSymbolLineLayer"
     private let centerDistance = 0.0002
     private init() {
         super.init(frame: CGRect.zero)
         setup()
-        addLayer()
+        addDLGLayer()
     }
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
-        addLayer()
+        addDLGLayer()
     }
 }
 extension JTMapView {
@@ -41,13 +42,22 @@ extension JTMapView: JTLocationDisplayDataSourceDelegate {
     }
 }
 extension JTMapView {
-    private func addLayer() {
-        addTilemapServerLayer(url: "http://www.scgis.net.cn/imap/imapserver/defaultrest/services/scmobile_dlg/")
+    func addDLGLayer() {
+        if let dom = mapLayer(forName: domLayerName) {
+            removeMapLayer(dom)
+        }
+        addTilemapServerLayer(url: APIURL_SCTianditu.scmobile_dlg, name: dlgLayerName)
     }
-    private func addTilemapServerLayer(url: String) {
+    func addDOMLayer() {
+        if let dlg = mapLayer(forName: dlgLayerName) {
+            removeMapLayer(dlg)
+        }
+        addTilemapServerLayer(url: APIURL_SCTianditu.sctilemap_dom_dom, name: domLayerName)
+    }
+    private func addTilemapServerLayer(url: String, name: String) {
         let tilemap = SCGISTilemapServerLayer(serviceUrlStr: url, token: nil, cacheType: SCGISTilemapCacheTypeArcGISFile)
         guard let t = tilemap else { return }
-        addMapLayer(t)
+        addMapLayer(t, withName: name)
     }
 }
 extension JTMapView: AGSMapViewLayerDelegate {

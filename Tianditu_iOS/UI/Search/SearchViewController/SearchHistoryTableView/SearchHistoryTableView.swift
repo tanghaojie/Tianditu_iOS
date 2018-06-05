@@ -116,15 +116,8 @@ extension SearchHistoryTableView {
     }
 }
 extension SearchHistoryTableView: UITableViewDataSource, UITableViewDelegate {
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cellVMs.count
-    }
-    
+    func numberOfSections(in tableView: UITableView) -> Int { return 1 }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return cellVMs.count }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell = tableView.cellForRow(at: indexPath)
         if cell == nil {
@@ -137,12 +130,20 @@ extension SearchHistoryTableView: UITableViewDataSource, UITableViewDelegate {
         }
         return cell!
     }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vm = cellVMs[indexPath.row]
         jtDelegate?.didSelectedHistory(vm: vm)
     }
-
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool { return true }
+    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? { return LocalizableStrings.delete }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        let index = indexPath.row
+        guard index < cellVMs.count else { return }
+        let vm = cellVMs[index]
+        guard let data = vm.data, let uuid = data.uuidStr else { return }
+        Data_SearchHistoryOperate.shareInstance.deleteByUUID(uuid: uuid)
+        reloadHistory()
+    }
 }
 protocol JTSearchHistoryTableViewDelegate: NSObjectProtocol {
     func didSelectedHistory(vm: SearchHistoryTableViewCellVM)

@@ -63,7 +63,15 @@ class MainViewController: UIViewController {
         print("message")
     }
     @IBAction func layerTouchUpInside(_ sender: Any) {
-        print("layer")
+        let selectLayerView = SelectLayerView.loadFromNib()
+        selectLayerView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(selectLayerView)
+        NSLayoutConstraint.activate([
+            selectLayerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            selectLayerView.topAnchor.constraint(equalTo: view.topAnchor),
+            selectLayerView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            selectLayerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            ])
     }
     @IBAction func nearTouchUpInside(_ sender: Any) {
         let n = UINavigationController(rootViewController: NearViewController())

@@ -9,7 +9,7 @@
 import Foundation
 
 class RouteHistoryTableViewCellVM {
-    
+    let uuid: String?
     let startType: RouteType
     let startName: String?
     let startX: Double
@@ -19,7 +19,7 @@ class RouteHistoryTableViewCellVM {
     let stopX: Double
     let stopY: Double
 
-    init(startType: RouteType,
+    init(uuid: String?, startType: RouteType,
          startName: String? = nil,
          startX: Double,
          startY: Double,
@@ -27,6 +27,7 @@ class RouteHistoryTableViewCellVM {
          stopName: String? = nil,
          stopX: Double,
          stopY: Double) {
+        self.uuid = uuid
         self.startType = startType
         self.startName = startName
         self.startX = startX

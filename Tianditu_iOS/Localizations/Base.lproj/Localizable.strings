@@ -13,6 +13,7 @@
 "warn" = "警告";
 "error" = "错误";
 "search" = "搜索";
+"delete" = "删除";
 
 "clearHistory" = "清空历史记录";
 
@@ -52,6 +53,9 @@
 
 "about" = "约";
 "km" = "千米";
+"from" = "从";
+"startOff" = "出发";
+"arrive" = "到达终点";
 
 
 "selectHeadPortrait" = "选择头像";

@@ -11,4 +11,7 @@ class APIURL_SCTianditu {
     
     static let nameSearch = "imap/imapserver/defaultrest/services/Newscnamesearch/Search"
     static let routeSearch = "imap/imapserver/defaultrest/services/newtianditushortpath/shortPath"
+    
+    static let scmobile_dlg = "http://www.scgis.net.cn/imap/imapserver/defaultrest/services/scmobile_dlg/"
+    static let sctilemap_dom_dom = "http://www.scgis.net.cn/iMap/iMapServer/DefaultRest/services/sctilemap_dom_dom/"
 }

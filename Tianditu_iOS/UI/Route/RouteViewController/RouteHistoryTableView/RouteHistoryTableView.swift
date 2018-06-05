@@ -111,22 +111,15 @@ extension RouteHistoryTableView {
             let t = RouteType(rawValue: i.startType)
             let p = RouteType(rawValue: i.stopType)
             guard let tt = t, let pp = p else { continue }
-            cellVMs.append(RouteHistoryTableViewCellVM(startType: tt, startName: i.startName, startX: i.startX, startY: i.startY, stopType: pp, stopName: i.stopName, stopX: i.stopX, stopY: i.stopY))
+            cellVMs.append(RouteHistoryTableViewCellVM(uuid: i.uuid, startType: tt, startName: i.startName, startX: i.startX, startY: i.startY, stopType: pp, stopName: i.stopName, stopX: i.stopX, stopY: i.stopY))
         }
         showFooterView()
         reloadData()
     }
 }
 extension RouteHistoryTableView: UITableViewDataSource, UITableViewDelegate {
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cellVMs.count
-    }
-    
+    func numberOfSections(in tableView: UITableView) -> Int { return 1 }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return cellVMs.count }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell = tableView.cellForRow(at: indexPath)
         if cell == nil {
@@ -139,12 +132,20 @@ extension RouteHistoryTableView: UITableViewDataSource, UITableViewDelegate {
         }
         return cell!
     }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vm = cellVMs[indexPath.row]
         jtDelegate?.didSelectedHistory(vm: vm)
     }
-    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool { return true }
+    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? { return LocalizableStrings.delete }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        let index = indexPath.row
+        guard index < cellVMs.count else { return }
+        let vm = cellVMs[index]
+        guard let uuid = vm.uuid else { return }
+        Data_RouteHistoryOperate.shareInstance.deleteByUUID(uuid: uuid)
+        reloadHistory()
+    }
 }
 protocol JTRouteHistoryTableViewDelegate: NSObjectProtocol {
     func didSelectedHistory(vm: RouteHistoryTableViewCellVM)
