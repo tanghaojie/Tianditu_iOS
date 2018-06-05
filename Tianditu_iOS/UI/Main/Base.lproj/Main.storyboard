@@ -142,12 +142,13 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WZT-dy-M7r">
                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                <color key="backgroundColor" red="0.70588235294117641" green="0.70588235294117641" blue="0.70588235294117641" alpha="0.59768300513698636" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" image="layer"/>
                                                 <connections>
                                                     <action selector="layerTouchUpInside:" destination="8uD-ta-P8P" eventType="touchUpInside" id="859-Jq-qSD"/>
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.37133384279999998" green="1" blue="0.32510803319999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="WZT-dy-M7r" secondAttribute="trailing" id="7db-mi-t5a"/>
                                             <constraint firstItem="WZT-dy-M7r" firstAttribute="top" secondItem="8cq-82-NDs" secondAttribute="top" id="7wB-f0-g2P"/>
@@ -156,11 +157,6 @@
                                             <constraint firstAttribute="bottom" secondItem="WZT-dy-M7r" secondAttribute="bottom" id="iba-f3-NSG"/>
                                             <constraint firstAttribute="width" constant="50" id="pn5-Pn-AmK"/>
                                         </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="25"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kDq-Cj-rOg">
                                         <rect key="frame" x="16" y="92" width="50" height="50"/>
@@ -286,5 +282,6 @@
     </scenes>
     <resources>
         <image name="compass" width="50" height="50"/>
+        <image name="layer" width="50" height="50"/>
     </resources>
 </document>

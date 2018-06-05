@@ -364,6 +364,7 @@ extension SearchMapViewController {
         let width = navigationHeight * btnAspectRatio
         closeButton.translatesAutoresizingMaskIntoConstraints = false
         closeButton.backgroundColor = .white
+        closeButton.contentHorizontalAlignment = .center
         closeButton.setImage(Assets.close, for: .normal)
         navigationContent.addSubview(closeButton)
         NSLayoutConstraint.activate([

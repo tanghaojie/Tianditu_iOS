@@ -182,7 +182,7 @@ extension SearchHistoryTableViewCell {
             if let i = vm.data?.type?.image {
                 leftImageView.image = i
             } else {
-                
+                leftImageView.image = Assets.search
             }
         }
     }

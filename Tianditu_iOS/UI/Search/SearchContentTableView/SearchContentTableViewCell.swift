@@ -15,14 +15,15 @@ class SearchContentTableViewCell: UITableViewCell {
     private let fullViewMinHeight: CGFloat = 60
     private let fullViewTop: CGFloat = 15
     private let fullViewBottom: CGFloat = 15
-    private let fullViewLeft: CGFloat = 15
+    private let fullViewLeft: CGFloat = 5
     private let fullViewRight: CGFloat = 15
     private let leftView = UIView()
+    private let leftImageView = UIImageView()
     private let topView = UIView()
     private let bottomView = UIView()
     private let rightView = UIView()
     private let leftViewWidth: CGFloat = 50
-    private let rightViewWidth: CGFloat = 50
+    private let rightViewWidth: CGFloat = 10
 
     private let title = UILabel()
     private let detail = UILabel()
@@ -74,6 +75,16 @@ extension SearchContentTableViewCell {
             leftView.bottomAnchor.constraint(equalTo: fullView.bottomAnchor),
             leftView.leadingAnchor.constraint(equalTo: fullView.leadingAnchor),
             leftView.widthAnchor.constraint(equalToConstant: leftViewWidth),
+            ])
+        
+        leftImageView.contentMode = .center
+        leftImageView.translatesAutoresizingMaskIntoConstraints = false
+        leftView.addSubview(leftImageView)
+        NSLayoutConstraint.activate([
+            leftImageView.leadingAnchor.constraint(equalTo: leftView.leadingAnchor),
+            leftImageView.trailingAnchor.constraint(equalTo: leftView.trailingAnchor),
+            leftImageView.topAnchor.constraint(equalTo: leftView.topAnchor),
+            leftImageView.bottomAnchor.constraint(equalTo: leftView.bottomAnchor),
             ])
     }
     private func setupRightView() {
@@ -136,6 +147,11 @@ extension SearchContentTableViewCell {
     func set(vm: SearchContentTableViewCellVM) {
         title.text = vm.title
         detail.text = vm.detail
+        if let i = vm.data?.type?.image {
+            leftImageView.image = i
+        } else {
+            leftImageView.image = Assets.place
+        }
     }
     
 }
