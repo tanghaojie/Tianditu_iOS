@@ -10,6 +10,20 @@ import UIKit
 import JTFramework
 
 class NearMainView: UIView, JTNibLoader {
+    
+    @IBOutlet weak var toilet: UIButton!
+    @IBOutlet weak var healthCare: UIButton!
+    @IBOutlet weak var gas: UIButton!
+    @IBOutlet weak var shopping: UIButton!
+    @IBOutlet weak var entertainment: UIButton!
+    @IBOutlet weak var ATM: UIButton!
+    @IBOutlet weak var station: UIButton!
+    @IBOutlet weak var parking: UIButton!
+    @IBOutlet weak var hotel: UIButton!
+    @IBOutlet weak var delicious: UIButton!
+    private let top: CGFloat = 16
+    private let space: CGFloat = 12
+
     @IBAction func main_DeliciousTpuchUpInside(_ sender: Any) {
         let type = Tianditu_NameSearchType._delicious
         let v = SearchMapViewController(type: type, withEnvelope: true)
@@ -393,5 +407,34 @@ class NearMainView: UIView, JTNibLoader {
         let type = Tianditu_NameSearchType.mediaAndCommunication
         let v = SearchMapViewController(type: type, withEnvelope: true)
         jtGetResponder()?.navigationController?.pushViewController(v, animated: false)
+    }
+    
+    func edge() {
+        let imageViewWidth: CGFloat = 40
+        let titleLabelWidth: CGFloat = 29
+        let titleLabelWidth2: CGFloat = 43.5
+        let deliciousSize = delicious.bounds.size
+        let imageTop = top
+        let imageLeft = (deliciousSize.width - imageViewWidth) * 0.5
+        let titleTop = imageViewWidth + top + space
+        let titleLeft = (deliciousSize.width - titleLabelWidth) * 0.5 - imageViewWidth
+        let titleLeft2 = (deliciousSize.width - titleLabelWidth2) * 0.5 - imageViewWidth
+        
+        setEdge(delicious, imageViewTop: imageTop, imageViewLeft: imageLeft, titleTop: titleTop, titleLeft: titleLeft)
+        setEdge(hotel, imageViewTop: imageTop, imageViewLeft: imageLeft, titleTop: titleTop, titleLeft: titleLeft)
+        setEdge(parking, imageViewTop: imageTop, imageViewLeft: imageLeft, titleTop: titleTop, titleLeft: titleLeft2)
+        setEdge(station, imageViewTop: imageTop, imageViewLeft: imageLeft, titleTop: titleTop, titleLeft: titleLeft)
+        setEdge(ATM, imageViewTop: imageTop, imageViewLeft: imageLeft, titleTop: titleTop, titleLeft: titleLeft)
+        setEdge(entertainment, imageViewTop: imageTop, imageViewLeft: imageLeft, titleTop: titleTop, titleLeft: titleLeft)
+        setEdge(shopping, imageViewTop: imageTop, imageViewLeft: imageLeft, titleTop: titleTop, titleLeft: titleLeft)
+        setEdge(gas, imageViewTop: imageTop, imageViewLeft: imageLeft, titleTop: titleTop, titleLeft: titleLeft2)
+        setEdge(healthCare, imageViewTop: imageTop, imageViewLeft: imageLeft, titleTop: titleTop, titleLeft: titleLeft)
+        setEdge(toilet, imageViewTop: imageTop, imageViewLeft: imageLeft, titleTop: titleTop, titleLeft: titleLeft)
+        setNeedsLayout()
+    }
+    
+    private func setEdge(_ button: UIButton,imageViewTop: CGFloat, imageViewLeft: CGFloat, titleTop: CGFloat, titleLeft: CGFloat) {
+        button.imageEdgeInsets = UIEdgeInsetsMake(imageViewTop, imageViewLeft, 0 , 0)
+        button.titleEdgeInsets = UIEdgeInsetsMake(titleTop, titleLeft, 0, 0)
     }
 }

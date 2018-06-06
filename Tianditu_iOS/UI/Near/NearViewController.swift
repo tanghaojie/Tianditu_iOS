@@ -19,6 +19,12 @@ class NearViewController: JTNavigationViewController {
         super.init()
         setupUI()
     }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        nearMainView.edge()
+        nearMainView.layoutIfNeeded()
+    }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

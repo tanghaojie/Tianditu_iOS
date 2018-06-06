@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina3_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -22,100 +22,101 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cEi-z6-xQp" customClass="JTIBView" customModule="Tianditu_iOS" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="343" height="200"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VhM-8q-7wH">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VhM-8q-7wH">
                                     <rect key="frame" x="0.0" y="0.0" width="68.5" height="100"/>
+                                    <color key="backgroundColor" red="0.70588235290000001" green="0.70588235290000001" blue="0.70588235290000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <state key="normal" title="美食">
+                                    <state key="normal" title="美食" image="test">
                                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
                                     <connections>
                                         <action selector="main_DeliciousTpuchUpInside:" destination="iN0-l3-epB" eventType="touchUpInside" id="sll-CZ-UkB"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AtJ-ma-b0t">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AtJ-ma-b0t">
                                     <rect key="frame" x="68.5" y="0.0" width="68.5" height="100"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <state key="normal" title="酒店">
+                                    <state key="normal" title="酒店" image="test">
                                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
                                     <connections>
                                         <action selector="main_HotelTouchUpInside:" destination="iN0-l3-epB" eventType="touchUpInside" id="dIx-Tk-lyf"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="est-d9-cnM">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="est-d9-cnM">
                                     <rect key="frame" x="137" y="0.0" width="69" height="100"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <state key="normal" title="停车场">
+                                    <state key="normal" title="停车场" image="test">
                                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
                                     <connections>
                                         <action selector="main_ParkingLotTouchUpInside:" destination="iN0-l3-epB" eventType="touchUpInside" id="tEv-Mu-UyH"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bBc-c9-a5E">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bBc-c9-a5E">
                                     <rect key="frame" x="206" y="0.0" width="68.5" height="100"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <state key="normal" title="车站">
+                                    <state key="normal" title="车站" image="test">
                                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
                                     <connections>
                                         <action selector="main_StationTouchUpInside:" destination="iN0-l3-epB" eventType="touchUpInside" id="1ad-0f-VzE"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YrF-2n-2Xh">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YrF-2n-2Xh">
                                     <rect key="frame" x="274.5" y="0.0" width="68.5" height="100"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <state key="normal" title="ATM">
+                                    <state key="normal" title="ATM" image="test">
                                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
                                     <connections>
                                         <action selector="main_ATMTouchUpInside:" destination="iN0-l3-epB" eventType="touchUpInside" id="sRk-pP-xXL"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="afd-ys-0Ho">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="afd-ys-0Ho">
                                     <rect key="frame" x="0.0" y="100" width="68.5" height="100"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <state key="normal" title="娱乐">
+                                    <state key="normal" title="娱乐" image="test">
                                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
                                     <connections>
                                         <action selector="main_EntertainmentTouchUpInside:" destination="iN0-l3-epB" eventType="touchUpInside" id="laE-Us-rl9"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hzm-Q2-Tum">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hzm-Q2-Tum">
                                     <rect key="frame" x="68.5" y="100" width="68.5" height="100"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <state key="normal" title="购物">
+                                    <state key="normal" title="购物" image="test">
                                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
                                     <connections>
                                         <action selector="main_shoppingTouchUpInside:" destination="iN0-l3-epB" eventType="touchUpInside" id="ZOY-9n-6tQ"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="viV-mR-Axf">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="viV-mR-Axf">
                                     <rect key="frame" x="206" y="100" width="68.5" height="100"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <state key="normal" title="医疗">
+                                    <state key="normal" title="医疗" image="test">
                                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
                                     <connections>
                                         <action selector="main_HealthCareTouchUpInside:" destination="iN0-l3-epB" eventType="touchUpInside" id="5hx-Yo-Tg1"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ks0-eW-CD1">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ks0-eW-CD1">
                                     <rect key="frame" x="274.5" y="100" width="68.5" height="100"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <state key="normal" title="厕所">
+                                    <state key="normal" title="厕所" image="test">
                                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
                                     <connections>
                                         <action selector="main_ToiletTouchUpInside:" destination="iN0-l3-epB" eventType="touchUpInside" id="bDw-3P-NXk"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7oX-6M-nll">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7oX-6M-nll">
                                     <rect key="frame" x="137" y="100" width="69" height="100"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <state key="normal" title="加油站">
+                                    <state key="normal" title="加油站" image="test">
                                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
                                     <connections>
@@ -1836,7 +1837,22 @@
                 <constraint firstItem="ONv-qF-z04" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="feF-Lo-DYH"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="ATM" destination="YrF-2n-2Xh" id="61n-SK-QZP"/>
+                <outlet property="delicious" destination="VhM-8q-7wH" id="5vb-UB-HET"/>
+                <outlet property="entertainment" destination="afd-ys-0Ho" id="Af6-Hn-Yje"/>
+                <outlet property="gas" destination="7oX-6M-nll" id="Bc3-Xq-PAY"/>
+                <outlet property="healthCare" destination="viV-mR-Axf" id="RJw-4j-64d"/>
+                <outlet property="hotel" destination="AtJ-ma-b0t" id="acL-Ak-sQc"/>
+                <outlet property="parking" destination="est-d9-cnM" id="Eeg-df-3Fx"/>
+                <outlet property="shopping" destination="Hzm-Q2-Tum" id="ZoX-gx-DGH"/>
+                <outlet property="station" destination="bBc-c9-a5E" id="diz-Dm-8U2"/>
+                <outlet property="toilet" destination="ks0-eW-CD1" id="kma-ai-xdM"/>
+            </connections>
             <point key="canvasLocation" x="24.5" y="301"/>
         </view>
     </objects>
+    <resources>
+        <image name="test" width="40" height="40"/>
+    </resources>
 </document>
