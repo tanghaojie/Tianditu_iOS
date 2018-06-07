@@ -24,9 +24,8 @@
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VhM-8q-7wH">
                                     <rect key="frame" x="0.0" y="0.0" width="68.5" height="100"/>
-                                    <color key="backgroundColor" red="0.70588235290000001" green="0.70588235290000001" blue="0.70588235290000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <state key="normal" title="美食" image="test">
+                                    <state key="normal" title="美食" image="delicious2">
                                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
                                     <connections>
@@ -36,7 +35,7 @@
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AtJ-ma-b0t">
                                     <rect key="frame" x="68.5" y="0.0" width="68.5" height="100"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <state key="normal" title="酒店" image="test">
+                                    <state key="normal" title="酒店" image="hotel2">
                                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
                                     <connections>
@@ -46,7 +45,7 @@
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="est-d9-cnM">
                                     <rect key="frame" x="137" y="0.0" width="69" height="100"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <state key="normal" title="停车场" image="test">
+                                    <state key="normal" title="停车场" image="parking">
                                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
                                     <connections>
@@ -56,7 +55,7 @@
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bBc-c9-a5E">
                                     <rect key="frame" x="206" y="0.0" width="68.5" height="100"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <state key="normal" title="车站" image="test">
+                                    <state key="normal" title="车站" image="station">
                                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
                                     <connections>
@@ -66,7 +65,7 @@
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YrF-2n-2Xh">
                                     <rect key="frame" x="274.5" y="0.0" width="68.5" height="100"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <state key="normal" title="ATM" image="test">
+                                    <state key="normal" title="ATM" image="ATM">
                                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
                                     <connections>
@@ -76,7 +75,7 @@
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="afd-ys-0Ho">
                                     <rect key="frame" x="0.0" y="100" width="68.5" height="100"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <state key="normal" title="娱乐" image="test">
+                                    <state key="normal" title="娱乐" image="entertainment2">
                                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
                                     <connections>
@@ -86,7 +85,7 @@
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hzm-Q2-Tum">
                                     <rect key="frame" x="68.5" y="100" width="68.5" height="100"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <state key="normal" title="购物" image="test">
+                                    <state key="normal" title="购物" image="shopping2">
                                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
                                     <connections>
@@ -96,7 +95,7 @@
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="viV-mR-Axf">
                                     <rect key="frame" x="206" y="100" width="68.5" height="100"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <state key="normal" title="医疗" image="test">
+                                    <state key="normal" title="医疗" image="health2">
                                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
                                     <connections>
@@ -106,7 +105,7 @@
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ks0-eW-CD1">
                                     <rect key="frame" x="274.5" y="100" width="68.5" height="100"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <state key="normal" title="厕所" image="test">
+                                    <state key="normal" title="厕所" image="toilet">
                                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
                                     <connections>
@@ -116,7 +115,7 @@
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7oX-6M-nll">
                                     <rect key="frame" x="137" y="100" width="69" height="100"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <state key="normal" title="加油站" image="test">
+                                    <state key="normal" title="加油站" image="gas">
                                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
                                     <connections>
@@ -202,7 +201,7 @@
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nld-Ti-aei">
                                             <rect key="frame" x="0.0" y="0.0" width="16" height="24"/>
-                                            <color key="backgroundColor" red="0.53379991319444442" green="0.53466796875" blue="0.53827582465277779" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" red="0.98039215686274506" green="0.59999999999999998" blue="0.14509803921568626" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="16" id="d4O-sM-a0X"/>
                                             </constraints>
@@ -210,7 +209,9 @@
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tKt-zG-f8R">
                                             <rect key="frame" x="24" y="0.0" width="30" height="24"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                            <state key="normal" title="吃"/>
+                                            <state key="normal" title="吃">
+                                                <color key="titleColor" red="0.98039215690000003" green="0.59999999999999998" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
                                             <connections>
                                                 <action selector="deliciousTouchUpInside:" destination="iN0-l3-epB" eventType="touchUpInside" id="m8E-s6-zVZ"/>
                                             </connections>
@@ -375,7 +376,7 @@
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lrn-ZJ-DJG">
                                             <rect key="frame" x="0.0" y="0.0" width="16" height="24"/>
-                                            <color key="backgroundColor" red="0.53379991319999998" green="0.5346679688" blue="0.53827582470000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" red="0.67843137254901964" green="0.77647058823529413" blue="0.32156862745098036" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="16" id="SvB-nW-BVV"/>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="16" id="rKM-5b-Laz"/>
@@ -387,7 +388,9 @@
                                                 <constraint firstAttribute="width" constant="58" id="iDF-LF-ZOv"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                            <state key="normal" title="休闲娱乐"/>
+                                            <state key="normal" title="休闲娱乐">
+                                                <color key="titleColor" red="0.67843137249999996" green="0.77647058820000003" blue="0.32156862749999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
                                             <connections>
                                                 <action selector="entertainmentTouchUpInside:" destination="iN0-l3-epB" eventType="touchUpInside" id="pFU-vT-XVc"/>
                                             </connections>
@@ -653,7 +656,7 @@
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BKy-ww-w1k">
                                             <rect key="frame" x="0.0" y="0.0" width="16" height="24"/>
-                                            <color key="backgroundColor" red="0.53379991319999998" green="0.5346679688" blue="0.53827582470000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" red="0.86274509803921573" green="0.53333333333333333" blue="0.53725490196078429" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="16" id="Viu-d5-bk4"/>
                                                 <constraint firstAttribute="width" constant="16" id="XdA-BR-Pab"/>
@@ -666,7 +669,9 @@
                                                 <constraint firstAttribute="width" constant="58" id="aIv-Ha-7vF"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                            <state key="normal" title="购物"/>
+                                            <state key="normal" title="购物">
+                                                <color key="titleColor" red="0.86274509803921573" green="0.53333333333333333" blue="0.53725490196078429" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
                                             <connections>
                                                 <action selector="shoppingServiceTouchUpInside:" destination="iN0-l3-epB" eventType="touchUpInside" id="MaL-Gi-cv0"/>
                                             </connections>
@@ -781,7 +786,7 @@
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O52-ll-UqV">
                                             <rect key="frame" x="0.0" y="0.0" width="16" height="24"/>
-                                            <color key="backgroundColor" red="0.53379991319999998" green="0.5346679688" blue="0.53827582470000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" red="0.49803921568627452" green="0.61176470588235299" blue="0.82352941176470584" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="16" id="COH-PX-Agd"/>
                                                 <constraint firstAttribute="height" constant="24" id="N6L-kA-RAm"/>
@@ -794,7 +799,9 @@
                                                 <constraint firstAttribute="width" constant="58" id="aaV-PI-2lL"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                            <state key="normal" title="生活服务"/>
+                                            <state key="normal" title="生活服务">
+                                                <color key="titleColor" red="0.49803921569999998" green="0.61176470589999998" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
                                             <connections>
                                                 <action selector="dailyServiceTouchUpInside:" destination="iN0-l3-epB" eventType="touchUpInside" id="Iv5-8P-daB"/>
                                             </connections>
@@ -909,7 +916,7 @@
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2sM-ye-P54">
                                             <rect key="frame" x="0.0" y="0.0" width="16" height="24"/>
-                                            <color key="backgroundColor" red="0.53379991319999998" green="0.5346679688" blue="0.53827582470000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" red="0.73725490196078436" green="0.70196078431372544" blue="0.39215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="16" id="CYB-gx-Grx"/>
                                                 <constraint firstAttribute="height" constant="24" id="JXd-ch-NoL"/>
@@ -922,7 +929,9 @@
                                                 <constraint firstAttribute="width" constant="58" id="sGr-40-KmW"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                            <state key="normal" title="住"/>
+                                            <state key="normal" title="住">
+                                                <color key="titleColor" red="0.73725490199999999" green="0.70196078429999997" blue="0.3921568627" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
                                             <connections>
                                                 <action selector="hotelTouchUpInside:" destination="iN0-l3-epB" eventType="touchUpInside" id="pMC-sV-uhY"/>
                                             </connections>
@@ -1031,7 +1040,7 @@
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LSJ-Dk-fN1">
                                             <rect key="frame" x="0.0" y="0.0" width="16" height="24"/>
-                                            <color key="backgroundColor" red="0.53379991319999998" green="0.5346679688" blue="0.53827582470000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" red="0.85882352941176465" green="0.42745098039215684" blue="0.41176470588235292" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="16" id="OFe-fj-XsA"/>
                                                 <constraint firstAttribute="height" constant="24" id="SrA-HV-OmC"/>
@@ -1044,7 +1053,9 @@
                                                 <constraint firstAttribute="width" constant="58" id="uaW-KQ-h49"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                            <state key="normal" title="医疗卫生"/>
+                                            <state key="normal" title="医疗卫生">
+                                                <color key="titleColor" red="0.85882352941176465" green="0.42745098039215684" blue="0.41176470588235292" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
                                             <connections>
                                                 <action selector="healthCareTouchUpInside:" destination="iN0-l3-epB" eventType="touchUpInside" id="VM9-Zc-EuK"/>
                                             </connections>
@@ -1175,7 +1186,7 @@
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jli-2X-poB">
                                             <rect key="frame" x="0.0" y="0.0" width="16" height="24"/>
-                                            <color key="backgroundColor" red="0.53379991319999998" green="0.5346679688" blue="0.53827582470000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" red="0.25319362498592446" green="0.7672311230964467" blue="0.21774577385077643" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="16" id="0cm-d5-4Vz"/>
                                                 <constraint firstAttribute="width" constant="16" id="0y9-jN-OfM"/>
@@ -1188,7 +1199,9 @@
                                                 <constraint firstAttribute="width" constant="58" id="VtK-3L-N6k"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                            <state key="normal" title="公共交通"/>
+                                            <state key="normal" title="公共交通">
+                                                <color key="titleColor" red="0.25319362499999998" green="0.76723112309999997" blue="0.21774577389999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
                                             <connections>
                                                 <action selector="stationTouchUpInside:" destination="iN0-l3-epB" eventType="touchUpInside" id="6sQ-so-588"/>
                                             </connections>
@@ -1297,7 +1310,7 @@
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="55m-0o-b3x">
                                             <rect key="frame" x="0.0" y="0.0" width="16" height="24"/>
-                                            <color key="backgroundColor" red="0.53379991319999998" green="0.5346679688" blue="0.53827582470000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" red="0.85098039215686272" green="0.41176470588235292" blue="0.83529411764705885" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="24" id="Grd-66-SHe"/>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="16" id="tbh-Z1-xtU"/>
@@ -1310,7 +1323,9 @@
                                                 <constraint firstAttribute="width" constant="58" id="XRD-6e-hiM"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                            <state key="normal" title="金融服务"/>
+                                            <state key="normal" title="金融服务">
+                                                <color key="titleColor" red="0.85098039215686272" green="0.41176470588235292" blue="0.83529411764705885" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
                                             <connections>
                                                 <action selector="financeAndInsuranceTouchUpInside:" destination="iN0-l3-epB" eventType="touchUpInside" id="gn0-v6-lLf"/>
                                             </connections>
@@ -1419,7 +1434,7 @@
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lco-WU-vza">
                                             <rect key="frame" x="0.0" y="0.0" width="16" height="24"/>
-                                            <color key="backgroundColor" red="0.53379991319999998" green="0.5346679688" blue="0.53827582470000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" red="0.57866427873568438" green="0.65136653656821664" blue="0.77974302030456855" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="24" id="J4i-gJ-Ys9"/>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="16" id="l3f-Dw-hsg"/>
@@ -1432,7 +1447,9 @@
                                                 <constraint firstAttribute="width" constant="58" id="kQx-mY-wp2"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                            <state key="normal" title="教育"/>
+                                            <state key="normal" title="教育">
+                                                <color key="titleColor" red="0.57866427870000003" green="0.65136653659999999" blue="0.77974302029999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
                                             <connections>
                                                 <action selector="educationTouchUpInside:" destination="iN0-l3-epB" eventType="touchUpInside" id="ygM-5T-DR5"/>
                                             </connections>
@@ -1538,7 +1555,7 @@
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XsK-uh-yp3">
                                             <rect key="frame" x="0.0" y="0.0" width="16" height="24"/>
-                                            <color key="backgroundColor" red="0.53379991319999998" green="0.5346679688" blue="0.53827582470000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" red="0.64419927897816587" green="0.55888683092111102" blue="0.83758328045685282" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="16" id="NGy-G1-Tcg"/>
                                                 <constraint firstAttribute="width" constant="16" id="YHQ-ek-5AG"/>
@@ -1551,7 +1568,9 @@
                                                 <constraint firstAttribute="width" constant="58" id="7nt-q7-C0m"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                            <state key="normal" title="汽车服务"/>
+                                            <state key="normal" title="汽车服务">
+                                                <color key="titleColor" red="0.64419927899999996" green="0.55888683090000002" blue="0.83758328049999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
                                             <connections>
                                                 <action selector="carServiceTouchUpInside:" destination="iN0-l3-epB" eventType="touchUpInside" id="7ZP-6i-TJw"/>
                                             </connections>
@@ -1660,7 +1679,7 @@
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WS5-Zh-8Ix">
                                             <rect key="frame" x="0.0" y="0.0" width="16" height="24"/>
-                                            <color key="backgroundColor" red="0.53379991319999998" green="0.5346679688" blue="0.53827582470000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" red="0.86700904187817263" green="0.77948141255916681" blue="0.15324135972568634" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="24" id="Hq0-ua-jq4"/>
                                                 <constraint firstAttribute="width" constant="16" id="JEY-Ke-j9g"/>
@@ -1673,7 +1692,9 @@
                                                 <constraint firstAttribute="width" constant="58" id="Vkh-5A-vfi"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                            <state key="normal" title="旅行服务"/>
+                                            <state key="normal" title="旅行服务">
+                                                <color key="titleColor" red="0.86700904190000005" green="0.77948141260000003" blue="0.1532413597" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
                                             <connections>
                                                 <action selector="travelTouchUpInside:" destination="iN0-l3-epB" eventType="touchUpInside" id="uXK-vh-xHX"/>
                                             </connections>
@@ -1695,7 +1716,7 @@
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PRs-NH-zj7">
                                             <rect key="frame" x="0.0" y="0.0" width="16" height="24"/>
-                                            <color key="backgroundColor" red="0.53379991319999998" green="0.5346679688" blue="0.53827582470000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" red="0.46439961635774418" green="0.80752300126903553" blue="0.7941710486989465" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="16" id="ZcJ-BT-mCP"/>
                                                 <constraint firstAttribute="width" constant="16" id="iFV-IJ-DCu"/>
@@ -1708,7 +1729,9 @@
                                                 <constraint firstAttribute="width" constant="58" id="J9Q-27-uCH"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                            <state key="normal" title="传媒通讯"/>
+                                            <state key="normal" title="传媒通讯">
+                                                <color key="titleColor" red="0.46439961639999999" green="0.80752300129999999" blue="0.79417104869999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
                                             <connections>
                                                 <action selector="mediaAndCommunicationTouchUpInside:" destination="iN0-l3-epB" eventType="touchUpInside" id="cqk-9i-qMi"/>
                                             </connections>
@@ -1853,6 +1876,15 @@
         </view>
     </objects>
     <resources>
-        <image name="test" width="40" height="40"/>
+        <image name="ATM" width="40" height="40"/>
+        <image name="delicious2" width="40" height="40"/>
+        <image name="entertainment2" width="40" height="40"/>
+        <image name="gas" width="40" height="40"/>
+        <image name="health2" width="40" height="40"/>
+        <image name="hotel2" width="40" height="40"/>
+        <image name="parking" width="40" height="40"/>
+        <image name="shopping2" width="40" height="40"/>
+        <image name="station" width="40" height="40"/>
+        <image name="toilet" width="40" height="40"/>
     </resources>
 </document>
