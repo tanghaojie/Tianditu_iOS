@@ -24,6 +24,27 @@ class Object_Attribute {
     
     var uuidStr: String?
     
+    init(id: Int, x: Double, y: Double, name: String?, typeStr: String?, region: String?, county: String?, phone: String?, address: String?, datafrom: Int?, imageAddress: String?) {
+        self.id = id
+        self.x = x
+        self.y = y
+        self.name = name
+        self.typeStr = typeStr
+        self.region = region
+        self.county = county
+        self.phone = phone
+        self.address = address
+        self.datafrom = datafrom
+        self.imageAddress = imageAddress
+        if let t = typeStr {
+            type = Tianditu_NameSearchType(rawValue: t)
+            if type == nil {
+                type = Tianditu_NameSearchType.unknown
+            }
+        }
+        uuidStr = nil
+    }
+    
     init(data: [Any], uuid: String? = nil) {
         guard data.count == 11 else { return }
         id = data[0] as? Int
@@ -41,9 +62,7 @@ class Object_Attribute {
         if let t = typeStr {
             type = Tianditu_NameSearchType(rawValue: t)
             if type == nil {
-//                for x in Tianditu_NameSearchType {
-//
-//                }
+                type = Tianditu_NameSearchType.unknown
             }
         }
         uuidStr = uuid

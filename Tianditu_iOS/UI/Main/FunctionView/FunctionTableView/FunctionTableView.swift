@@ -29,6 +29,7 @@ class FunctionTableView: UITableView {
         allowsSelection = true
         separatorStyle = .none
         dataSource = self
+        delegate = self
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -62,5 +63,11 @@ extension FunctionTableView: UITableViewDataSource {
             cell?.selectionStyle = .none
         }
         return cell!
+    }
+}
+extension FunctionTableView: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vm = cellVMs[indexPath.row]
+        if let handler = vm.selectedHandler { handler() }
     }
 }

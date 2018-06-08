@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="16G1314" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Data_Favorite" representedClassName="Data_Favorite" syncable="YES" codeGenerationType="class">
+        <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="county" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="datafrom" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="imageAddress" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="index" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="region" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="typeStr" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uuid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="x" optional="YES" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="y" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
+    <entity name="Data_FavoriteIndex" representedClassName="Data_FavoriteIndex" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
     <entity name="Data_RouteHistory" representedClassName="Data_RouteHistory" syncable="YES" codeGenerationType="class">
         <attribute name="startName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="startType" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -26,7 +44,9 @@
         <attribute name="y" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Data_SearchHistory" positionX="-22752" positionY="-4032" width="128" height="28"/>
         <element name="Data_RouteHistory" positionX="-22752" positionY="-4041" width="128" height="180"/>
+        <element name="Data_SearchHistory" positionX="-22752" positionY="-4032" width="128" height="28"/>
+        <element name="Data_Favorite" positionX="-22752" positionY="-3969" width="128" height="240"/>
+        <element name="Data_FavoriteIndex" positionX="-22743" positionY="-3906" width="128" height="60"/>
     </elements>
 </model>

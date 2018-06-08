@@ -37,4 +37,7 @@ class Assets {
     static let company = UIImage(named: "company")
     static let welfare = UIImage(named: "welfare")
     static let place = UIImage(named: "place")
+    static let delete = UIImage(named: "delete")
+    static let favorite = UIImage(named: "favorite")
+    static let favorite2 = UIImage(named: "favorite2")
 }

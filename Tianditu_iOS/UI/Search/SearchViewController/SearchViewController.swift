@@ -161,7 +161,7 @@ extension SearchViewController {
         guard let t = jtSearchBar.text else { return }
         let text = t.trimmingCharacters(in: .whitespaces)
         if text == "" { return }
-        Data_SearchHistoryOperate.shareInstance.deleteByName(name: text)
+        _ = Data_SearchHistoryOperate.shareInstance.deleteByName(name: text)
         _ = Data_SearchHistoryOperate.shareInstance.insert(name: text)
         historyTableView.reloadHistory()
         showHistory()
@@ -173,9 +173,9 @@ extension SearchViewController: JTSearchHistoryTableViewDelegate {
     func didSelectedHistory(vm: SearchHistoryTableViewCellVM) {
         guard let data = vm.data else { return }
         guard let n = data.name else { return }
-        Data_SearchHistoryOperate.shareInstance.deleteByName(name: n)
+        _ = Data_SearchHistoryOperate.shareInstance.deleteByName(name: n)
         if let id = data.uuidStr {
-            Data_SearchHistoryOperate.shareInstance.deleteByUUID(uuid: id)
+            _ = Data_SearchHistoryOperate.shareInstance.deleteByUUID(uuid: id)
         }
         if vm.nameOnly {
             _ = Data_SearchHistoryOperate.shareInstance.insert(name: n)
@@ -196,9 +196,9 @@ extension SearchViewController: JTSearchContentTableViewDelegate {
     func didSelectedContent(vm: SearchContentTableViewCellVM) {
         guard let data = vm.data else { return }
         guard let n = data.name else { return }
-        Data_SearchHistoryOperate.shareInstance.deleteByName(name: n)
+        _ = Data_SearchHistoryOperate.shareInstance.deleteByName(name: n)
         if let id = data.uuidStr {
-            Data_SearchHistoryOperate.shareInstance.deleteByUUID(uuid: id)
+            _ = Data_SearchHistoryOperate.shareInstance.deleteByUUID(uuid: id)
         }
         var df: Int16 = 0
         if let xx = data.datafrom { df = Int16(xx) }

@@ -23,7 +23,7 @@ class SearchMapViewController: JTNavigationViewController {
     private let closeButton = UIButton()
     private let jtSearchBar = JTSearchBar()
     private let progressView = UIView()
-    
+    private let btnAspectRatio: CGFloat = 1.2
     private var searchContentTableViewPan: UIPanGestureRecognizer?
     private var halfTransformY: CGFloat = 0
     private var mode: Mode
@@ -33,12 +33,12 @@ class SearchMapViewController: JTNavigationViewController {
     private var type: Tianditu_NameSearchType?
     private var withEnvelope: Bool = false
     
-    init(position: Object_Attribute) {
+    init(position: Object_Attribute, showSearchBar: Bool = true, titleText: String? = nil) {
         mode = .point
         self.position = position
         super.init()
         delegate = self
-        setupUI()
+        setupUI(showSearchBar: showSearchBar, titleText: titleText)
     }
     init(text: String) {
         mode = .text
@@ -150,7 +150,7 @@ extension SearchMapViewController {
         let county = p.county ?? ""
         let address = p.address ?? ""
         let detail = region + " " + county + " " + address
-        pointResultView.set(t: n, d: detail)
+        pointResultView.set(position: p, t: n, d: detail)
         jtSearchBar.text = n
         guard let x = p.x, let y = p.y else { return }
         JTMapView.shareInstance.removeSymbolLayer()
@@ -244,7 +244,7 @@ extension SearchMapViewController {
 }
 extension SearchMapViewController {
     
-    private func setupUI() {
+    private func setupUI(showSearchBar: Bool = true, titleText: String? = nil) {
         setupMapView()
         setupJTTransparentView()
         setupSearchPointResultView()
@@ -252,7 +252,8 @@ extension SearchMapViewController {
         setupSearchContentTableView()
         setupSearchNameResultViewOpenView()
         setupCloseButton()
-        setupJTSearchBar()
+        if showSearchBar { setupJTSearchBar() }
+        else { setupTitle(text: titleText ?? "") }
         setupProgressView()
     }
     private func setupMapView() {
@@ -360,7 +361,6 @@ extension SearchMapViewController {
         searchContentTableView.addGestureRecognizer(x)
     }
     private func setupCloseButton() {
-        let btnAspectRatio: CGFloat = 1.2
         let width = navigationHeight * btnAspectRatio
         closeButton.translatesAutoresizingMaskIntoConstraints = false
         closeButton.backgroundColor = .white
@@ -374,6 +374,22 @@ extension SearchMapViewController {
             closeButton.widthAnchor.constraint(equalToConstant: width),
             ])
         closeButton.addTarget(self, action: #selector(closeTouchUpInside), for: .touchUpInside)
+    }
+    private func setupTitle(text: String) {
+        let label = UILabel()
+        label.text = text
+        label.font = UIFont.boldSystemFont(ofSize: 18)
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        navigationContent.addSubview(label)
+        let btnWidth = navigationHeight * btnAspectRatio
+        let big = backButtonWidth > btnWidth ? backButtonWidth : btnWidth
+        NSLayoutConstraint.activate([
+            label.topAnchor.constraint(equalTo: navigationContent.topAnchor),
+            label.bottomAnchor.constraint(equalTo: navigationContent.bottomAnchor),
+            label.leadingAnchor.constraint(equalTo: navigationContent.leadingAnchor, constant: big - backButtonWidth),
+            label.trailingAnchor.constraint(equalTo: closeButton.leadingAnchor, constant: btnWidth - big),
+            ])
     }
     private func setupJTSearchBar() {
         jtSearchBar.translatesAutoresizingMaskIntoConstraints = false

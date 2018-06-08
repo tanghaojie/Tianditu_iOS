@@ -118,9 +118,18 @@ extension FunctionView {
     }
     private func setupFunctionTableView() {
         var vms = [FunctionTableViewCellVM]()
-        vms.append(FunctionTableViewCellVM(image: nil, text: "111111"))
-        vms.append(FunctionTableViewCellVM(image: nil, text: "2222222222"))
-        vms.append(FunctionTableViewCellVM(image: nil, text: "3333333333333"))
+        let favor = FunctionTableViewCellVM(text: "111111") {
+            [weak self] in
+            let n = UINavigationController(rootViewController: FavoritesViewController())
+            n.isNavigationBarHidden = true
+            self?.jtGetResponder()?.present(n, animated: false, completion: nil)
+            self?.rightViewTaped()
+        }
+        vms.append(favor)
+        vms.append(FunctionTableViewCellVM(text: "2222222222"))
+        vms.append(FunctionTableViewCellVM(text: "3333333333333"))
+
+        
         functionTableView.append(vms: vms)
         
         functionTableView.translatesAutoresizingMaskIntoConstraints = false

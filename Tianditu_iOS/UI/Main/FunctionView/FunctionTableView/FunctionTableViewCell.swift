@@ -21,7 +21,6 @@ class FunctionTableViewCell: UITableViewCell {
     init(reuseIdentifier: String?) {
         super.init(style: .default, reuseIdentifier: reuseIdentifier)
         setupUI()
-    
     }
     
     required init?(coder aDecoder: NSCoder) {

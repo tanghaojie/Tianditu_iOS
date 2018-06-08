@@ -77,6 +77,7 @@ extension NearViewController {
     private func setupTitle() {
         let label = UILabel()
         label.text = LocalizableStrings.near
+        label.font = UIFont.boldSystemFont(ofSize: 18)
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         navigationContent.addSubview(label)

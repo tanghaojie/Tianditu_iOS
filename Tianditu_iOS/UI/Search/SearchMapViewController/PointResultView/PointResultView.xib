@@ -21,11 +21,10 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RAT-9c-acz">
                             <rect key="frame" x="0.0" y="0.0" width="187.5" height="40"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fSg-cn-bAg">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fSg-cn-bAg">
                                     <rect key="frame" x="0.0" y="0.0" width="187.5" height="40"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                    <state key="normal" title="收藏">
-                                        <color key="titleColor" red="0.078431372549019607" green="0.078431372549019607" blue="0.078431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <state key="normal" title="收藏" image="favorite">
+                                        <color key="titleColor" red="0.59215686274509804" green="0.59215686274509804" blue="0.59215686274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
                                     <connections>
                                         <action selector="favoriteTouchUpInside:" destination="Dn0-zW-ikn" eventType="touchUpInside" id="xqi-s7-V3Y"/>
@@ -43,11 +42,10 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iOo-RX-a6P">
                             <rect key="frame" x="187.5" y="0.0" width="187.5" height="40"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nxq-T1-iI5">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nxq-T1-iI5">
                                     <rect key="frame" x="0.0" y="0.0" width="187.5" height="40"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                    <state key="normal" title="分享">
-                                        <color key="titleColor" red="0.078431372549019607" green="0.078431372549019607" blue="0.078431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <state key="normal" title="分享" image="share">
+                                        <color key="titleColor" red="0.59215686274509804" green="0.59215686274509804" blue="0.59215686274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
                                     <connections>
                                         <action selector="shareTouchUpInside:" destination="Dn0-zW-ikn" eventType="touchUpInside" id="0W7-E1-9VC"/>
@@ -151,10 +149,15 @@
             <connections>
                 <outlet property="bottom" destination="Dh1-uY-ksL" id="l6X-FB-x4h"/>
                 <outlet property="detail" destination="UGl-zV-s3d" id="EaN-X9-4ah"/>
+                <outlet property="favorite" destination="fSg-cn-bAg" id="6Mb-F2-QY3"/>
                 <outlet property="share" destination="nxq-T1-iI5" id="hw4-qR-zFG"/>
                 <outlet property="title" destination="rIq-xa-jbi" id="SNf-Ky-yyc"/>
             </connections>
             <point key="canvasLocation" x="-39.5" y="336"/>
         </view>
     </objects>
+    <resources>
+        <image name="favorite" width="40" height="40"/>
+        <image name="share" width="40" height="40"/>
+    </resources>
 </document>

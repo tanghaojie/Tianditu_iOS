@@ -1,22 +1,22 @@
 //
-//  Data_SearchHistory.swift
+//  Data_FavoritesOperate.swift
 //  Tianditu_iOS
 //
-//  Created by JT on 2018/4/20.
+//  Created by JT on 2018/6/7.
 //  Copyright © 2018年 JT. All rights reserved.
 //
 
 import CoreData
 
-class Data_SearchHistoryOperate {
+class Data_FavoriteOperate {
     
-    internal static let shareInstance = Data_SearchHistoryOperate()
+    internal static let shareInstance = Data_FavoriteOperate()
     private init() {}
     
-    private let entityName = "Data_SearchHistory"
-
+    private let entityName = "Data_Favorite"
+    
 }
-extension Data_SearchHistoryOperate {
+extension Data_FavoriteOperate {
     func insert(
         address: String? = nil,
         county: String? = nil,
@@ -29,17 +29,20 @@ extension Data_SearchHistoryOperate {
         typeStr: String? = nil,
         x: Double? = nil,
         y: Double? = nil) -> Bool {
-        let m = NSEntityDescription.insertNewObject(forEntityName: entityName, into: Tianditu_Datas.shareInstance.managedObjectContext) as? Data_SearchHistory
-        guard let d = m else { return false }
+        var xid: Int64 = 0
+        if let iidd = id { xid = iidd }
+        if exist(id: xid, name: name) { _ = deleteByIDAndName(id: xid, name: name) }
+        guard let d = NSEntityDescription.insertNewObject(forEntityName: entityName, into: Tianditu_Datas.shareInstance.managedObjectContext) as? Data_Favorite else { return false }
         d.address = address
         d.county = county
         if let df = datafrom { d.datafrom = df }
-        if let iidd = id { d.id = iidd }
+        d.id = xid
         d.imageAddress = imageAddress
         d.name = name
         d.phone = phone
         d.region = region
         d.typeStr = typeStr
+        d.index = Data_FavoriteIndexOperate.shareInstance.get()
         if let xx = x { d.x = xx }
         if let yy = y { d.y = yy }
         d.uuid = UUID().uuidString
@@ -49,9 +52,16 @@ extension Data_SearchHistoryOperate {
         }
         catch { return false }
     }
-    
+    func exist(id: Int64, name: String) -> Bool {
+        let fetchRequest = NSFetchRequest<Data_Favorite>(entityName: entityName)
+        fetchRequest.predicate = NSPredicate(format: "id = %@ && name = %@", String(id), name)
+        if let x = try? Tianditu_Datas.shareInstance.managedObjectContext.fetch(fetchRequest) {
+            return x.count > 0
+        }
+        return false
+    }
     func clear() -> Bool {
-        let fetchRequest = NSFetchRequest<Data_SearchHistory>(entityName: entityName)
+        let fetchRequest = NSFetchRequest<Data_Favorite>(entityName: entityName)
         guard let sr = try? Tianditu_Datas.shareInstance.managedObjectContext.fetch(fetchRequest) else { return false }
         guard sr.count > 0 else { return true }
         for x in sr {
@@ -63,25 +73,34 @@ extension Data_SearchHistoryOperate {
         }
         catch { return false }
     }
-    
-    func getByUUID(uuid: String) -> [Data_SearchHistory]? {
-        let fetchRequest = NSFetchRequest<Data_SearchHistory>(entityName: entityName)
+    func getByUUID(uuid: String) -> [Data_Favorite]? {
+        let fetchRequest = NSFetchRequest<Data_Favorite>(entityName: entityName)
         fetchRequest.predicate = NSPredicate(format: "uuid = %@", uuid)
         return try? Tianditu_Datas.shareInstance.managedObjectContext.fetch(fetchRequest)
     }
-    func getByName(name: String) -> [Data_SearchHistory]? {
-        let fetchRequest = NSFetchRequest<Data_SearchHistory>(entityName: entityName)
-        fetchRequest.predicate = NSPredicate(format: "name = %@", name)
+    func getByIDAndName(id: Int64, name: String) -> [Data_Favorite]? {
+        let fetchRequest = NSFetchRequest<Data_Favorite>(entityName: entityName)
+        fetchRequest.predicate = NSPredicate(format: "id = %@ && name = %@", String(id), name)
         return try? Tianditu_Datas.shareInstance.managedObjectContext.fetch(fetchRequest)
     }
-    
-    func getAll() -> [Data_SearchHistory]? {
-        let fetchRequest = NSFetchRequest<Data_SearchHistory>(entityName: entityName)
+    func getAll() -> [Data_Favorite]? {
+        let fetchRequest = NSFetchRequest<Data_Favorite>(entityName: entityName)
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "index", ascending: false)]
         return try? Tianditu_Datas.shareInstance.managedObjectContext.fetch(fetchRequest)
     }
-    
+    func deleteByIDAndName(id: Int64, name: String) -> Bool {
+        guard let ds = Data_FavoriteOperate.shareInstance.getByIDAndName(id: id, name: name), ds.count > 0 else { return true }
+        for d in ds {
+            Tianditu_Datas.shareInstance.managedObjectContext.delete(d as NSManagedObject)
+        }
+        do {
+            try Tianditu_Datas.shareInstance.managedObjectContext.save()
+            return true
+        }
+        catch { return false }
+    }
     func deleteByUUID(uuid: String) -> Bool {
-        guard let ds = Data_SearchHistoryOperate.shareInstance.getByUUID(uuid: uuid), ds.count > 0 else { return true }
+        guard let ds = Data_FavoriteOperate.shareInstance.getByUUID(uuid: uuid), ds.count > 0 else { return true }
         for d in ds {
             Tianditu_Datas.shareInstance.managedObjectContext.delete(d as NSManagedObject)
         }
@@ -90,33 +109,5 @@ extension Data_SearchHistoryOperate {
             return true
         }
         catch { return false }
-    }
-    func deleteByName(name: String) -> Bool {
-        guard let ds = Data_SearchHistoryOperate.shareInstance.getByName(name: name), ds.count > 0 else { return true }
-        for d in ds {
-            Tianditu_Datas.shareInstance.managedObjectContext.delete(d as NSManagedObject)
-        }
-        do {
-            try Tianditu_Datas.shareInstance.managedObjectContext.save()
-            return true
-        }
-        catch { return false }
-    }
-}
-extension Data_SearchHistory {
-    var attribute: Object_Attribute {
-        var a = [Any]()
-        a.append(id)
-        a.append(x)
-        a.append(y)
-        a.append(name ?? "")
-        a.append(typeStr ?? "")
-        a.append(region ?? "")
-        a.append(county ?? "")
-        a.append(phone ?? "")
-        a.append(address ?? "")
-        a.append(datafrom)
-        a.append(imageAddress ?? "")
-        return Object_Attribute(data: a, uuid: uuid)
     }
 }

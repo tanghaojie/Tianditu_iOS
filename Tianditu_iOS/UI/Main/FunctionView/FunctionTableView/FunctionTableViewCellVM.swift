@@ -10,9 +10,11 @@ import Foundation
 
 class FunctionTableViewCellVM {
     let image: UIImage?
-    let text: String?
-    init(image: UIImage?, text: String?) {
+    let text: String
+    let selectedHandler: (() -> ())?
+    init(text: String, image: UIImage? = nil, selectedHandler: (() -> ())? = nil) {
         self.image = image
         self.text = text
+        self.selectedHandler = selectedHandler
     }
 }

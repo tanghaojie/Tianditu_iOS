@@ -66,10 +66,15 @@ extension Data_RouteHistoryOperate {
         return try? Tianditu_Datas.shareInstance.managedObjectContext.fetch(fetchRequest)
     }
 
-    func deleteByUUID(uuid: String){
-        guard let ds = getByUUID(uuid: uuid), ds.count > 0 else { return }
+    func deleteByUUID(uuid: String) -> Bool {
+        guard let ds = getByUUID(uuid: uuid), ds.count > 0 else { return true }
         for d in ds {
             Tianditu_Datas.shareInstance.managedObjectContext.delete(d as NSManagedObject)
         }
+        do {
+            try Tianditu_Datas.shareInstance.managedObjectContext.save()
+            return true
+        }
+        catch { return false }
     }
 }

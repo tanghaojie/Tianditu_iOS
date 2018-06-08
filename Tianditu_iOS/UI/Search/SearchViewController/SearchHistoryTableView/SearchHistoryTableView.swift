@@ -141,7 +141,7 @@ extension SearchHistoryTableView: UITableViewDataSource, UITableViewDelegate {
         guard index < cellVMs.count else { return }
         let vm = cellVMs[index]
         guard let data = vm.data, let uuid = data.uuidStr else { return }
-        Data_SearchHistoryOperate.shareInstance.deleteByUUID(uuid: uuid)
+        _ = Data_SearchHistoryOperate.shareInstance.deleteByUUID(uuid: uuid)
         reloadHistory()
     }
 }

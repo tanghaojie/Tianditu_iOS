@@ -143,7 +143,7 @@ extension RouteHistoryTableView: UITableViewDataSource, UITableViewDelegate {
         guard index < cellVMs.count else { return }
         let vm = cellVMs[index]
         guard let uuid = vm.uuid else { return }
-        Data_RouteHistoryOperate.shareInstance.deleteByUUID(uuid: uuid)
+        _ = Data_RouteHistoryOperate.shareInstance.deleteByUUID(uuid: uuid)
         reloadHistory()
     }
 }
