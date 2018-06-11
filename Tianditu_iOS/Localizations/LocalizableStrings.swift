@@ -66,4 +66,8 @@ class LocalizableStrings {
     static let hasfavorite = NSLocalizedString("hasfavorite", comment: "")
     
     static let shareLocation = NSLocalizedString("shareLocation", comment: "")
+    static let language = NSLocalizedString("language", comment: "")
+    static let clearCache = NSLocalizedString("clearCache", comment: "")
+    static let cacheCleared = NSLocalizedString("cacheCleared", comment: "")
+    static let about1 = NSLocalizedString("about1", comment: "")
 }

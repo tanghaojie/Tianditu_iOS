@@ -11,11 +11,11 @@ import UIKit
 class FunctionTableViewCell: UITableViewCell {
     
     private let view = UIView()
-    private let viewLeftConstant: CGFloat = 50
+    private let viewLeftConstant: CGFloat = 60
     private let picture = UIImageView()
     private let pictureWidthAndHeight: CGFloat = 40
     private let label = UILabel()
-    private let labelTrailingSpace: CGFloat = 20
+    private let labelTrailingSpace: CGFloat = 5
     private let labelHeight: CGFloat = 21
 
     init(reuseIdentifier: String?) {
@@ -32,9 +32,16 @@ class FunctionTableViewCell: UITableViewCell {
 extension FunctionTableViewCell {
     
     private func setupUI() {
+        setupContentView()
         setupView()
         setupPicture()
         setupLabel()
+    }
+    private func setupContentView() {
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            contentView.heightAnchor.constraint(greaterThanOrEqualToConstant: 80)
+            ])
     }
     private func setupView() {
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -43,12 +50,11 @@ extension FunctionTableViewCell {
             NSLayoutConstraint(item: view, attribute: .top, relatedBy: .equal, toItem: contentView, attribute: .top, multiplier: 1, constant: 0),
             NSLayoutConstraint(item: view, attribute: .bottom, relatedBy: .equal, toItem: contentView, attribute: .bottom, multiplier: 1, constant: 0),
             NSLayoutConstraint(item: view, attribute: .left, relatedBy: .equal, toItem: contentView, attribute: .left, multiplier: 1, constant: viewLeftConstant),
-            NSLayoutConstraint(item: view, attribute: .right, relatedBy: .equal, toItem: contentView, attribute: .right, multiplier: 1, constant: 0)
+            NSLayoutConstraint(item: view, attribute: .right, relatedBy: .equal, toItem: contentView, attribute: .right, multiplier: 1, constant: 0),
             ])
     }
     private func setupPicture() {
         picture.translatesAutoresizingMaskIntoConstraints = false
-        picture.backgroundColor = UIColor(r: 180, g: 180, b: 180)
         view.addSubview(picture)
         picture.addConstraints([
             NSLayoutConstraint(item: picture, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: pictureWidthAndHeight),
@@ -62,6 +68,8 @@ extension FunctionTableViewCell {
     private func setupLabel() {
         label.numberOfLines = 1
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = UIColor(r: 151, g: 151, b: 151)
+        label.font = UIFont.systemFont(ofSize: 22, weight: UIFont.Weight.bold)
         view.addSubview(label)
         label.addConstraint(
             NSLayoutConstraint(item: label, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: labelHeight)

@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import JTFramework
+import MBProgressHUD
 
 class FunctionView: UIView {
     
@@ -117,21 +119,84 @@ extension FunctionView {
             ])
     }
     private func setupFunctionTableView() {
-        var vms = [FunctionTableViewCellVM]()
-        let favor = FunctionTableViewCellVM(text: "111111") {
+        let favor = FunctionTableViewCellVM(text: LocalizableStrings.favor, image: Assets.favorite) {
             [weak self] in
             let n = UINavigationController(rootViewController: FavoritesViewController())
             n.isNavigationBarHidden = true
             self?.jtGetResponder()?.present(n, animated: false, completion: nil)
             self?.rightViewTaped()
         }
-        vms.append(favor)
-        vms.append(FunctionTableViewCellVM(text: "2222222222"))
-        vms.append(FunctionTableViewCellVM(text: "3333333333333"))
-
-        
-        functionTableView.append(vms: vms)
-        
+        let language = FunctionTableViewCellVM(text: LocalizableStrings.language, image: Assets.favorite) {
+            [weak self] in
+            let n = UINavigationController(rootViewController: FavoritesViewController())
+            n.isNavigationBarHidden = true
+            self?.jtGetResponder()?.present(n, animated: false, completion: nil)
+            self?.rightViewTaped()
+        }
+        let clearCache = FunctionTableViewCellVM(text: LocalizableStrings.clearCache, image: Assets.favorite) {
+            [weak self] in
+            guard let this = self else { return }
+            let view = UIView()
+            guard let pView = this.jtGetResponder()?.view else { return }
+            view.backgroundColor = .clear
+            view.translatesAutoresizingMaskIntoConstraints = false
+            pView.addSubview(view)
+            NSLayoutConstraint.activate([
+                view.topAnchor.constraint(equalTo: pView.topAnchor),
+                view.bottomAnchor.constraint(equalTo: pView.bottomAnchor),
+                view.leadingAnchor.constraint(equalTo: pView.leadingAnchor),
+                view.trailingAnchor.constraint(equalTo: pView.trailingAnchor),
+                ])
+            let hudView = UIView()
+            hudView.layer.cornerRadius = 30
+            hudView.clipsToBounds = true
+            hudView.backgroundColor = .white
+            hudView.translatesAutoresizingMaskIntoConstraints = false
+            view.addSubview(hudView)
+            NSLayoutConstraint.activate([
+                hudView.widthAnchor.constraint(equalToConstant: 200),
+                hudView.heightAnchor.constraint(equalToConstant: 123),
+                hudView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                hudView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+                ])
+            let jtHUD = JTHUD(view: hudView)
+            let hud = jtHUD.indeterminate(removeOnHide: true, style: MBProgressHUDBackgroundStyle.blur)
+            let dispatchQueue = DispatchQueue(label: "queue_clearCache")
+            dispatchQueue.async {
+                let cache = JTFile.shareInstance.cacheString
+                let temp = JTFile.shareInstance.tmpDir
+                let dirs = [cache, temp]
+                let f = FileManager.default
+                for dir in dirs {
+                    guard let d = dir else { continue }
+                    let subPaths = FileManager.default.subpaths(atPath: d)
+                    guard let subs = subPaths else { return }
+                    for sub in subs {
+                        let full = d.appending("/\(sub)")
+                        try? f.removeItem(atPath: full)
+                    }
+                }
+                DispatchQueue.main.sync {
+                    hud.mode = .text
+                    hud.label.text = LocalizableStrings.cacheCleared
+                }
+                sleep(2)
+                DispatchQueue.main.sync {
+                    hud.removeFromSuperview()
+                    hudView.removeFromSuperview()
+                    view.removeFromSuperview()
+                }
+            }
+            
+        }
+        let about = FunctionTableViewCellVM(text: LocalizableStrings.about1, image: Assets.favorite) {
+            [weak self] in
+            let n = UINavigationController(rootViewController: AboutViewController())
+            n.isNavigationBarHidden = true
+            self?.jtGetResponder()?.present(n, animated: false, completion: nil)
+            self?.rightViewTaped()
+        }
+        functionTableView.append(vms: [favor, language, clearCache, about])
         functionTableView.translatesAutoresizingMaskIntoConstraints = false
         bottomView.addSubview(functionTableView)
         bottomView.addConstraints([

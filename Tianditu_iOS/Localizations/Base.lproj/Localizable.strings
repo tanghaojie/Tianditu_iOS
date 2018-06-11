@@ -68,3 +68,11 @@
 "favorite" = "收藏";
 "hasfavorite" = "已收藏";
 "shareLocation" = "给你分享一个地址";
+
+"language" = "语言";
+
+"clearCache" = "清除缓存";
+"cacheCleared" = "已清除缓存";
+
+"about1" = "关于";
+

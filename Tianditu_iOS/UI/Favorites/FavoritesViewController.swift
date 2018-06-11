@@ -134,18 +134,6 @@ extension FavoritesViewController {
             if finish { d.removeFromSuperview() }
         }
     }
-//    private func setupSearchContentTableView() {
-//        contentTableView.translatesAutoresizingMaskIntoConstraints = false
-//        content.addSubview(contentTableView)
-//        NSLayoutConstraint.activate([
-//            contentTableView.topAnchor.constraint(equalTo: content.topAnchor),
-//            contentTableView.bottomAnchor.constraint(equalTo: content.bottomAnchor),
-//            contentTableView.leadingAnchor.constraint(equalTo: content.leadingAnchor),
-//            contentTableView.trailingAnchor.constraint(equalTo: content.trailingAnchor),
-//            ])
-//        contentTableView.isHidden = true
-//        contentTableView.jtDelegate = self
-//    }
 }
 extension FavoritesViewController {
     @objc private func deleteButtonTouchUpInside() {
