@@ -11,11 +11,11 @@ enum TiandituService {
     case routeSearch(data: Request_RouteSearch)
 }
 extension TiandituService: TargetType {
-    var baseURL: URL { return URL(string: APIURL_Tianditu.baseUrl)! }
+    var baseURL: URL { return URL(string: URL_Tianditu.baseUrl)! }
     var path: String {
         switch self {
         case .routeSearch:
-            return APIURL_Tianditu.routeSearch
+            return URL_Tianditu.routeSearch
         }
     }
     var method: Moya.Method {

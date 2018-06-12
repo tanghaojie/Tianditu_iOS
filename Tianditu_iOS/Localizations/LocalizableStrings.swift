@@ -70,4 +70,8 @@ class LocalizableStrings {
     static let clearCache = NSLocalizedString("clearCache", comment: "")
     static let cacheCleared = NSLocalizedString("cacheCleared", comment: "")
     static let about1 = NSLocalizedString("about1", comment: "")
+    
+    static let weatherLanguage = NSLocalizedString("weatherLanguage", comment: "")
+    static let day = NSLocalizedString("day", comment: "")
+    static let night = NSLocalizedString("night", comment: "")
 }

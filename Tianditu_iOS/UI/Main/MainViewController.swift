@@ -15,9 +15,11 @@ class MainViewController: UIViewController {
     @IBOutlet weak var transparentView: JTTransparentUIView!
     @IBOutlet weak var compassView: UIView!
     private var isFirstAppear = true
+    private var weather: Response_Weather?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        getWeather()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -35,6 +37,15 @@ class MainViewController: UIViewController {
     @IBAction func functionTouchUpInside(_ sender: Any) {
         let functionView = FunctionView()
         functionView.translatesAutoresizingMaskIntoConstraints = false
+        if let w = weather, let r = w.results, r.count > 0, let location = r[0].location, let n = location.name, let daily = r[0].daily, daily.count > 0, let low = daily[0].low, let high = daily[0].high {
+            var x = ""
+            if let dd = daily[0].text_day, let nn = daily[0].text_night, dd != "", nn != "" {
+                x = "\(LocalizableStrings.day):\(dd) \(LocalizableStrings.night):\(nn)"
+            }
+            let text = "\(n) \(low)~\(high)℃ \(x)"
+            functionView.setWeather(text: text)
+        }
+        getWeather()
         view.addSubview(functionView)
         view.addConstraints([
             NSLayoutConstraint(item: functionView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 0),
@@ -113,6 +124,34 @@ extension MainViewController: JTMapViewDelegate {
         } else {
             compassView.isHidden = false
             compassView.transform = CGAffineTransform(rotationAngle: CGFloat.pi * CGFloat(360 - rotationAngle) / 180)
+        }
+    }
+}
+extension MainViewController {
+    private func getWeather() {
+        if let w = weather, let results = w.results, results.count > 0 {
+            for result in results {
+                guard let last = result.last_update, let lastDate = last.jtCurrentLocaleDate(format: "yyyy-MM-dd'T'HH:mm:ssZ"), (Date().timeIntervalSince(lastDate)) / 3600 < 24 else {
+                    if let location = JTLocationManager.shareInstance.location {
+                        WeatherC.shareInstance.weather(latitude: String(location.coordinate.latitude), longitude: String(location.coordinate.longitude)) {
+                            [weak self]
+                            success, result, _ in
+                            guard success, let r = result else { return }
+                            self?.weather = r
+                        }
+                    }
+                    break
+                }
+            }
+        } else {
+            if let location = JTLocationManager.shareInstance.location {
+                WeatherC.shareInstance.weather(latitude: String(location.coordinate.latitude), longitude: String(location.coordinate.longitude)) {
+                    [weak self]
+                    success, result, _ in
+                    guard success, let r = result else { return }
+                    self?.weather = r
+                }
+            }
         }
     }
 }

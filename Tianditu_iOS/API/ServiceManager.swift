@@ -16,6 +16,7 @@ class ServiceManager {
     let scTiandituProvider = MoyaProvider<SCTiandituService>(manager: DefaultAlamofireManager.sharedManager)
     let tiandituProvider = MoyaProvider<TiandituService>(manager: DefaultAlamofireManager.sharedManager)
     let tiandituProvider_10s = MoyaProvider<TiandituService>(manager: DefaultAlamofireManager_10.sharedManager)
+    let seniverseProvider = MoyaProvider<SeniverseService>(manager: DefaultAlamofireManager.sharedManager)
 
     private class DefaultAlamofireManager: Alamofire.SessionManager {
         static let sharedManager: DefaultAlamofireManager = {

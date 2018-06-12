@@ -1,29 +1,28 @@
 //
-//  RouteSearchC.swift
+//  Weather.swift
 //  Tianditu_iOS
 //
-//  Created by JT on 2018/5/17.
+//  Created by JT on 2018/6/12.
 //  Copyright © 2018年 JT. All rights reserved.
 //
 
 import Moya
 
-class RouteSearchC {
-    public static let shareInstance = RouteSearchC()
+class WeatherC {
+    public static let shareInstance = WeatherC()
     private init() {}
-
+    
     private var cancellable: Cancellable?
-
+    
     private func cancel() {
         guard let cancel = cancellable else { return }
         if cancel.isCancelled { return }
         cancel.cancel()
     }
-
-    func routeSearch(startX: Double, startY: Double, stopX: Double, stopY: Double, style: RouteStyle = .short, Complete: @escaping (Bool, Response_RouteSearch?, String?) -> Void) {
+    
+    func weather(latitude: String, longitude: String, Complete: @escaping (Bool, Response_Weather?, String?) -> Void) {
         cancel()
-        let data = Request_RouteSearch(startX: startX, startY: startY, stopX: stopX, stopY: stopY, style: style)
-        cancellable = ServiceManager.shareInstance.tiandituProvider_10s.request(.routeSearch(data: data)) {
+        cancellable = ServiceManager.shareInstance.seniverseProvider.request(.weather(data: Request_Weather(latitude: latitude, longitude: longitude))) {
             result in
             switch result {
             case let .success(moyaResponse):
@@ -36,7 +35,7 @@ class RouteSearchC {
                     Complete(false, nil, LocalizableStrings.noResponseContent)
                     return
                 }
-                let res = Response_RouteSearch(JSONString: json)
+                let res = Response_Weather(JSONString: json)
                 guard let r = res else {
                     Complete(false, nil, LocalizableStrings.errorResponseContentDataFormat)
                     return
@@ -48,4 +47,5 @@ class RouteSearchC {
             }
         }
     }
+
 }

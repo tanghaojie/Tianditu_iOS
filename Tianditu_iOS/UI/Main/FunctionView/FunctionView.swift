@@ -12,15 +12,17 @@ import MBProgressHUD
 
 class FunctionView: UIView {
     
-    let pageWidth: CGFloat = 288
+    let pageWidth: CGFloat = 266
     private let topViewHeight: CGFloat = 200
     private let headerImageViewWidthHeight: CGFloat = 100
+    private let weatherLabel2HeaderImageDistance: CGFloat = 10
     private let leftView = UIView()
     private let rightView = UIView()
     private let topView = UIView()
     private let bottomView = UIView()
     private let functionTableView = FunctionTableView()
     private let headPortraitImageView = HeadPortraitImageView()
+    private let weatherLabel = UILabel()
     init() {
         super.init(frame: CGRect.zero)
         setup()
@@ -37,6 +39,9 @@ class FunctionView: UIView {
 extension FunctionView {
     func didFinishAnimation() {
         rightView.alpha = 0.3
+    }
+    func setWeather(text: String) {
+        weatherLabel.text = text
     }
 }
 extension FunctionView {
@@ -58,6 +63,7 @@ extension FunctionView {
         setupTopView()
         setupBottomView()
         setupHeadPortraitImageView()
+        setupWeatherLabel()
         setupFunctionTableView()
     }
     private func setupLeft() {
@@ -83,7 +89,11 @@ extension FunctionView {
     }
     private func setupTopView() {
         topView.translatesAutoresizingMaskIntoConstraints = false
-        topView.backgroundColor = .blue
+        topView.backgroundColor = .white
+        let subLayer = CALayer()
+        subLayer.frame = CGRect(x: 0, y: topViewHeight - 2, width: pageWidth, height: 2)
+        subLayer.backgroundColor = UIColor(r: 220, g: 220, b: 220).cgColor
+        topView.layer.addSublayer(subLayer)
         leftView.addSubview(topView)
         leftView.addConstraints([
             NSLayoutConstraint(item: topView, attribute: .top, relatedBy: .equal, toItem: leftView, attribute: .top, multiplier: 1, constant: 0),
@@ -107,6 +117,18 @@ extension FunctionView {
             NSLayoutConstraint(item: headPortraitImageView, attribute: .centerY, relatedBy: .equal, toItem: topView, attribute: .centerY, multiplier: 1, constant: 0)
             ])
     }
+    private func setupWeatherLabel() {
+        weatherLabel.translatesAutoresizingMaskIntoConstraints = false
+        topView.addSubview(weatherLabel)
+        weatherLabel.adjustsFontSizeToFitWidth = true
+        weatherLabel.textAlignment = .center
+        weatherLabel.textColor = UIColor(r: 151, g: 151, b: 151)
+        weatherLabel.font = UIFont.systemFont(ofSize: 12)
+        topView.addConstraints([
+            NSLayoutConstraint(item: weatherLabel, attribute: .centerX, relatedBy: .equal, toItem: topView, attribute: .centerX, multiplier: 1, constant: 0),
+            NSLayoutConstraint(item: weatherLabel, attribute: .top, relatedBy: .equal, toItem: headPortraitImageView, attribute: .bottom, multiplier: 1, constant: weatherLabel2HeaderImageDistance),
+            ])
+    }
     private func setupBottomView() {
         bottomView.translatesAutoresizingMaskIntoConstraints = false
         bottomView.backgroundColor = .blue
@@ -126,14 +148,14 @@ extension FunctionView {
             self?.jtGetResponder()?.present(n, animated: false, completion: nil)
             self?.rightViewTaped()
         }
-        let language = FunctionTableViewCellVM(text: LocalizableStrings.language, image: Assets.favorite) {
+        let language = FunctionTableViewCellVM(text: LocalizableStrings.language, image: Assets.language) {
             [weak self] in
             let n = UINavigationController(rootViewController: FavoritesViewController())
             n.isNavigationBarHidden = true
             self?.jtGetResponder()?.present(n, animated: false, completion: nil)
             self?.rightViewTaped()
         }
-        let clearCache = FunctionTableViewCellVM(text: LocalizableStrings.clearCache, image: Assets.favorite) {
+        let clearCache = FunctionTableViewCellVM(text: LocalizableStrings.clearCache, image: Assets.clearCache) {
             [weak self] in
             guard let this = self else { return }
             let view = UIView()
@@ -189,7 +211,7 @@ extension FunctionView {
             }
             
         }
-        let about = FunctionTableViewCellVM(text: LocalizableStrings.about1, image: Assets.favorite) {
+        let about = FunctionTableViewCellVM(text: LocalizableStrings.about1, image: Assets.about) {
             [weak self] in
             let n = UINavigationController(rootViewController: AboutViewController())
             n.isNavigationBarHidden = true

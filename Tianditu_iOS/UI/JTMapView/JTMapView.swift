@@ -46,13 +46,13 @@ extension JTMapView {
         if let dom = mapLayer(forName: domLayerName) {
             removeMapLayer(dom)
         }
-        addTilemapServerLayer(url: APIURL_SCTianditu.scmobile_dlg, name: dlgLayerName)
+        addTilemapServerLayer(url: URL_SCTianditu.scmobile_dlg, name: dlgLayerName)
     }
     func addDOMLayer() {
         if let dlg = mapLayer(forName: dlgLayerName) {
             removeMapLayer(dlg)
         }
-        addTilemapServerLayer(url: APIURL_SCTianditu.sctilemap_dom_dom, name: domLayerName)
+        addTilemapServerLayer(url: URL_SCTianditu.sctilemap_dom_dom, name: domLayerName)
     }
     private func addTilemapServerLayer(url: String, name: String) {
         let tilemap = SCGISTilemapServerLayer(serviceUrlStr: url, token: nil, cacheType: SCGISTilemapCacheTypeArcGISFile)
@@ -71,8 +71,7 @@ extension JTMapView: AGSMapViewLayerDelegate {
 }
 extension JTMapView {
     func locationTouchUpInside(_ useCompassNavigation: Bool = true) {
-        let x = JTLocationManager.shareInstance.location
-        guard let l = x else { return }
+        guard let l = JTLocationManager.shareInstance.location else { return }
         let px = AGSPoint(location: l)
         guard let p = px else { return }
         let d = p.distance(to: visibleAreaEnvelope.center)

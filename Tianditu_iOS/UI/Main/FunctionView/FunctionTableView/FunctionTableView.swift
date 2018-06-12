@@ -30,6 +30,9 @@ class FunctionTableView: UITableView {
         separatorStyle = .none
         dataSource = self
         delegate = self
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 30))
+        view.backgroundColor = .white
+        self.tableHeaderView = view
     }
     
     required init?(coder aDecoder: NSCoder) {

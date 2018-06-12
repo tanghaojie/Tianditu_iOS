@@ -40,4 +40,7 @@ class Assets {
     static let delete = UIImage(named: "delete")
     static let favorite = UIImage(named: "favorite")
     static let favorite2 = UIImage(named: "favorite2")
+    static let language = UIImage(named: "language")
+    static let clearCache = UIImage(named: "clearCache")
+    static let about = UIImage(named: "about")
 }

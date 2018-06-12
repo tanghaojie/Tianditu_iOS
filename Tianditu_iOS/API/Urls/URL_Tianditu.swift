@@ -6,7 +6,7 @@
 //  Copyright © 2018年 JT. All rights reserved.
 //
 
-class APIURL_Tianditu {
+class URL_Tianditu {
     static let baseUrl = "http://map.tianditu.com/"
 
     static let routeSearch = "data/route"

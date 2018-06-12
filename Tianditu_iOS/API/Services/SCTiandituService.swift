@@ -11,11 +11,11 @@ enum SCTiandituService {
     case nameSearch(data: Request_NameSearch)
 }
 extension SCTiandituService: TargetType {
-    var baseURL: URL { return URL(string: APIURL_SCTianditu.baseUrl)! }
+    var baseURL: URL { return URL(string: URL_SCTianditu.baseUrl)! }
     var path: String {
         switch self {
         case .nameSearch:
-            return APIURL_SCTianditu.nameSearch
+            return URL_SCTianditu.nameSearch
         }
     }
     var method: Moya.Method {

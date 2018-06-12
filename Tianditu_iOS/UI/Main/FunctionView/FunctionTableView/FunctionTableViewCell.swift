@@ -38,9 +38,8 @@ extension FunctionTableViewCell {
         setupLabel()
     }
     private func setupContentView() {
-        contentView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            contentView.heightAnchor.constraint(greaterThanOrEqualToConstant: 80)
+            contentView.heightAnchor.constraint(greaterThanOrEqualToConstant: 60)
             ])
     }
     private func setupView() {
@@ -69,7 +68,7 @@ extension FunctionTableViewCell {
         label.numberOfLines = 1
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = UIColor(r: 151, g: 151, b: 151)
-        label.font = UIFont.systemFont(ofSize: 22, weight: UIFont.Weight.bold)
+        label.font = UIFont.systemFont(ofSize: 18, weight: UIFont.Weight.bold)
         view.addSubview(label)
         label.addConstraint(
             NSLayoutConstraint(item: label, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: labelHeight)
