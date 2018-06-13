@@ -167,4 +167,3 @@ extension FavoritesViewController: JTFavoritesTableViewDelegate {
         navigationController?.pushViewController(svc, animated: false)
     }
 }
-

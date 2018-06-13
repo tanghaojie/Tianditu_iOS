@@ -150,7 +150,7 @@ extension FunctionView {
         }
         let language = FunctionTableViewCellVM(text: LocalizableStrings.language, image: Assets.language) {
             [weak self] in
-            let n = UINavigationController(rootViewController: FavoritesViewController())
+            let n = UINavigationController(rootViewController: LanguagesViewController())
             n.isNavigationBarHidden = true
             self?.jtGetResponder()?.present(n, animated: false, completion: nil)
             self?.rightViewTaped()

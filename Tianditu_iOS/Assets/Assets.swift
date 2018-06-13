@@ -12,6 +12,7 @@ class Assets {
     static let transparent = UIImage(named: "transparent")
     static let search_zh_cn = UIImage(named: "search_zh_cn")
     static let close = UIImage(named: "close")
+    static let close2 = UIImage(named: "close2")
     static let location = UIImage(named: "location")
     static let rightArrow = UIImage(named: "rightArrow")
     static let point = UIImage(named: "point")
@@ -43,4 +44,5 @@ class Assets {
     static let language = UIImage(named: "language")
     static let clearCache = UIImage(named: "clearCache")
     static let about = UIImage(named: "about")
+    static let tick = UIImage(named: "tick")
 }

@@ -74,4 +74,9 @@ class LocalizableStrings {
     static let weatherLanguage = NSLocalizedString("weatherLanguage", comment: "")
     static let day = NSLocalizedString("day", comment: "")
     static let night = NSLocalizedString("night", comment: "")
+    
+    static let language_zh_Hans_Origin = NSLocalizedString("language_zh_Hans_Origin", comment: "")
+    static let language_zh_Hans_Current = NSLocalizedString("language_zh_Hans_Current", comment: "")
+    static let language_English_Origin = NSLocalizedString("language_English_Origin", comment: "")
+    static let language_English_Current = NSLocalizedString("language_English_Current", comment: "")
 }

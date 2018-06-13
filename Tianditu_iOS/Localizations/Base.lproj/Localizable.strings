@@ -81,3 +81,7 @@
 "day" = "日";
 "night" = "夜";
 
+"language_zh_Hans_Origin" = "简体中文";
+"language_zh_Hans_Current" = "简体中文";
+"language_English_Origin" = "English";
+"language_English_Current" = "英文";
