@@ -35,7 +35,7 @@ extension AboutViewController {
         NSLayoutConstraint.activate([
             label.centerXAnchor.constraint(equalTo: navigationContent.centerXAnchor, constant: -(backButtonWidth / 2)),
             label.centerYAnchor.constraint(equalTo: navigationContent.centerYAnchor),
-            label.widthAnchor.constraint(equalToConstant: 42),
+            label.widthAnchor.constraint(equalToConstant: 60),
             label.heightAnchor.constraint(equalToConstant: 21),
             ])
     }

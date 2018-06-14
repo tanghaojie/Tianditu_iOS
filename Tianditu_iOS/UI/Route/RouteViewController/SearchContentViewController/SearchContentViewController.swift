@@ -44,7 +44,7 @@ extension SearchContentViewController {
         NSLayoutConstraint.activate([
             label.centerXAnchor.constraint(equalTo: navigationContent.centerXAnchor, constant: -(backButtonWidth / 2)),
             label.centerYAnchor.constraint(equalTo: navigationContent.centerYAnchor),
-            label.widthAnchor.constraint(equalToConstant: 130),
+            label.widthAnchor.constraint(equalToConstant: 150),
             label.heightAnchor.constraint(equalToConstant: 21),
             ])
     }

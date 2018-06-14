@@ -1,0 +1,222 @@
+
+/* Class = "UIButton"; normalTitle = "加油站"; ObjectID = "1Ub-KP-agm"; */
+"1Ub-KP-agm.normalTitle" = "加油站";
+
+/* Class = "UIButton"; normalTitle = "日料"; ObjectID = "5VK-VL-D10"; */
+"5VK-VL-D10.normalTitle" = "日料";
+
+/* Class = "UIButton"; normalTitle = "加油站"; ObjectID = "7oX-6M-nll"; */
+"7oX-6M-nll.normalTitle" = "加油站";
+
+/* Class = "UIButton"; normalTitle = "地铁站"; ObjectID = "AH4-CZ-Ehy"; */
+"AH4-CZ-Ehy.normalTitle" = "地铁站";
+
+/* Class = "UIButton"; normalTitle = "文化设施"; ObjectID = "AZm-rs-03q"; */
+"AZm-rs-03q.normalTitle" = "文化设施";
+
+/* Class = "UIButton"; normalTitle = "酒店"; ObjectID = "AtJ-ma-b0t"; */
+"AtJ-ma-b0t.normalTitle" = "酒店";
+
+/* Class = "UIButton"; normalTitle = "瑜伽"; ObjectID = "Aur-BU-0Pa"; */
+"Aur-BU-0Pa.normalTitle" = "瑜伽";
+
+/* Class = "UIButton"; normalTitle = "银行"; ObjectID = "BLr-WL-hfC"; */
+"BLr-WL-hfC.normalTitle" = "银行";
+
+/* Class = "UIButton"; normalTitle = "健身"; ObjectID = "BWY-uf-gua"; */
+"BWY-uf-gua.normalTitle" = "健身";
+
+/* Class = "UIButton"; normalTitle = "休闲娱乐"; ObjectID = "C65-Vg-APq"; */
+"C65-Vg-APq.normalTitle" = "休闲娱乐";
+
+/* Class = "UIButton"; normalTitle = "服务区"; ObjectID = "CCf-97-Tjo"; */
+"CCf-97-Tjo.normalTitle" = "服务区";
+
+/* Class = "UIButton"; normalTitle = "医疗卫生"; ObjectID = "DSe-NO-frK"; */
+"DSe-NO-frK.normalTitle" = "医疗卫生";
+
+/* Class = "UIButton"; normalTitle = "特色美食"; ObjectID = "DYw-TP-TiM"; */
+"DYw-TP-TiM.normalTitle" = "特色美食";
+
+/* Class = "UIButton"; normalTitle = "公园"; ObjectID = "EZx-ka-Ltm"; */
+"EZx-ka-Ltm.normalTitle" = "公园";
+
+/* Class = "UIButton"; normalTitle = "商场"; ObjectID = "FBn-pq-LjG"; */
+"FBn-pq-LjG.normalTitle" = "商场";
+
+/* Class = "UIButton"; normalTitle = "汽车服务"; ObjectID = "Fbk-cL-Afx"; */
+"Fbk-cL-Afx.normalTitle" = "汽车服务";
+
+/* Class = "UIButton"; normalTitle = "体检"; ObjectID = "GSJ-DA-TRj"; */
+"GSJ-DA-TRj.normalTitle" = "体检";
+
+/* Class = "UIButton"; normalTitle = "羽毛球"; ObjectID = "HnT-gb-rd7"; */
+"HnT-gb-rd7.normalTitle" = "羽毛球";
+
+/* Class = "UIButton"; normalTitle = "购物"; ObjectID = "Hzm-Q2-Tum"; */
+"Hzm-Q2-Tum.normalTitle" = "购物";
+
+/* Class = "UIButton"; normalTitle = "网吧"; ObjectID = "ISl-VO-imP"; */
+"ISl-VO-imP.normalTitle" = "网吧";
+
+/* Class = "UIButton"; normalTitle = "超市"; ObjectID = "JoT-xK-aT0"; */
+"JoT-xK-aT0.normalTitle" = "超市";
+
+/* Class = "UIButton"; normalTitle = "生活服务"; ObjectID = "KhN-0I-AHc"; */
+"KhN-0I-AHc.normalTitle" = "生活服务";
+
+/* Class = "UIButton"; normalTitle = "水电气"; ObjectID = "L7d-eD-EF9"; */
+"L7d-eD-EF9.normalTitle" = "水电气";
+
+/* Class = "UIButton"; normalTitle = "旅行服务"; ObjectID = "MMg-NW-Xv9"; */
+"MMg-NW-Xv9.normalTitle" = "旅行服务";
+
+/* Class = "UIButton"; normalTitle = "游泳"; ObjectID = "MNN-l4-cyM"; */
+"MNN-l4-cyM.normalTitle" = "游泳";
+
+/* Class = "UIButton"; normalTitle = "药店"; ObjectID = "MW6-75-lRh"; */
+"MW6-75-lRh.normalTitle" = "药店";
+
+/* Class = "UIButton"; normalTitle = "星级酒店"; ObjectID = "Okf-r1-ule"; */
+"Okf-r1-ule.normalTitle" = "星级酒店";
+
+/* Class = "UIButton"; normalTitle = "KTV"; ObjectID = "OxF-gg-2Oq"; */
+"OxF-gg-2Oq.normalTitle" = "KTV";
+
+/* Class = "UIButton"; normalTitle = "剧院"; ObjectID = "OzT-Ub-VSp"; */
+"OzT-Ub-VSp.normalTitle" = "剧院";
+
+/* Class = "UIButton"; normalTitle = "金融服务"; ObjectID = "P9g-R6-dtj"; */
+"P9g-R6-dtj.normalTitle" = "金融服务";
+
+/* Class = "UIButton"; normalTitle = "数码电器"; ObjectID = "POC-UM-Tms"; */
+"POC-UM-Tms.normalTitle" = "数码电器";
+
+/* Class = "UIButton"; normalTitle = "川菜"; ObjectID = "Uem-h0-Njw"; */
+"Uem-h0-Njw.normalTitle" = "川菜";
+
+/* Class = "UIButton"; normalTitle = "美容美发"; ObjectID = "VeE-w5-UfM"; */
+"VeE-w5-UfM.normalTitle" = "美容美发";
+
+/* Class = "UIButton"; normalTitle = "美食"; ObjectID = "VhM-8q-7wH"; */
+"VhM-8q-7wH.normalTitle" = "美食";
+
+/* Class = "UIButton"; normalTitle = "停车场"; ObjectID = "VwO-kU-ZGW"; */
+"VwO-kU-ZGW.normalTitle" = "停车场";
+
+/* Class = "UIButton"; normalTitle = "住"; ObjectID = "VzZ-mD-ign"; */
+"VzZ-mD-ign.normalTitle" = "住";
+
+/* Class = "UIButton"; normalTitle = "购物"; ObjectID = "YTV-f1-hPT"; */
+"YTV-f1-hPT.normalTitle" = "购物";
+
+/* Class = "UIButton"; normalTitle = "ATM"; ObjectID = "YrF-2n-2Xh"; */
+"YrF-2n-2Xh.normalTitle" = "ATM";
+
+/* Class = "UIButton"; normalTitle = "网球"; ObjectID = "aDC-zO-o1X"; */
+"aDC-zO-o1X.normalTitle" = "网球";
+
+/* Class = "UIButton"; normalTitle = "娱乐"; ObjectID = "afd-ys-0Ho"; */
+"afd-ys-0Ho.normalTitle" = "娱乐";
+
+/* Class = "UIButton"; normalTitle = "车站"; ObjectID = "bBc-c9-a5E"; */
+"bBc-c9-a5E.normalTitle" = "车站";
+
+/* Class = "UIButton"; normalTitle = "小吃"; ObjectID = "bGl-xs-yUa"; */
+"bGl-xs-yUa.normalTitle" = "小吃";
+
+/* Class = "UIButton"; normalTitle = "西餐"; ObjectID = "bWL-G6-53I"; */
+"bWL-G6-53I.normalTitle" = "西餐";
+
+/* Class = "UIButton"; normalTitle = "动物医院"; ObjectID = "cz3-Pj-XtD"; */
+"cz3-Pj-XtD.normalTitle" = "动物医院";
+
+/* Class = "UIButton"; normalTitle = "熟食"; ObjectID = "dxf-Df-mnw"; */
+"dxf-Df-mnw.normalTitle" = "熟食";
+
+/* Class = "UIButton"; normalTitle = "传媒通讯"; ObjectID = "e2D-c6-4Vb"; */
+"e2D-c6-4Vb.normalTitle" = "传媒通讯";
+
+/* Class = "UIButton"; normalTitle = "停车场"; ObjectID = "est-d9-cnM"; */
+"est-d9-cnM.normalTitle" = "停车场";
+
+/* Class = "UIButton"; normalTitle = "家具建材"; ObjectID = "euB-zx-faO"; */
+"euB-zx-faO.normalTitle" = "家具建材";
+
+/* Class = "UIButton"; normalTitle = "中餐"; ObjectID = "fkI-uQ-0o3"; */
+"fkI-uQ-0o3.normalTitle" = "中餐";
+
+/* Class = "UIButton"; normalTitle = "汽车站"; ObjectID = "gJd-u4-I9R"; */
+"gJd-u4-I9R.normalTitle" = "汽车站";
+
+/* Class = "UIButton"; normalTitle = "证劵"; ObjectID = "i3a-OT-OQ9"; */
+"i3a-OT-OQ9.normalTitle" = "证劵";
+
+/* Class = "UIButton"; normalTitle = "娱乐"; ObjectID = "ifK-8n-2MT"; */
+"ifK-8n-2MT.normalTitle" = "娱乐";
+
+/* Class = "UIButton"; normalTitle = "中小学"; ObjectID = "isx-Fh-dNe"; */
+"isx-Fh-dNe.normalTitle" = "中小学";
+
+/* Class = "UIButton"; normalTitle = "诊所"; ObjectID = "j0Y-sm-hd1"; */
+"j0Y-sm-hd1.normalTitle" = "诊所";
+
+/* Class = "UIButton"; normalTitle = "火锅"; ObjectID = "jnl-RE-wQf"; */
+"jnl-RE-wQf.normalTitle" = "火锅";
+
+/* Class = "UIButton"; normalTitle = "票务"; ObjectID = "kbA-bo-Ww6"; */
+"kbA-bo-Ww6.normalTitle" = "票务";
+
+/* Class = "UIButton"; normalTitle = "厕所"; ObjectID = "ks0-eW-CD1"; */
+"ks0-eW-CD1.normalTitle" = "厕所";
+
+/* Class = "UIButton"; normalTitle = "医院"; ObjectID = "mDC-nv-yA9"; */
+"mDC-nv-yA9.normalTitle" = "医院";
+
+/* Class = "UIButton"; normalTitle = "招待所"; ObjectID = "mbl-r9-WYv"; */
+"mbl-r9-WYv.normalTitle" = "招待所";
+
+/* Class = "UIButton"; normalTitle = "高尔夫"; ObjectID = "muA-Fc-DOa"; */
+"muA-Fc-DOa.normalTitle" = "高尔夫";
+
+/* Class = "UIButton"; normalTitle = "大学"; ObjectID = "pMi-Vf-3KE"; */
+"pMi-Vf-3KE.normalTitle" = "大学";
+
+/* Class = "UIButton"; normalTitle = "公共交通"; ObjectID = "pmf-jZ-1BB"; */
+"pmf-jZ-1BB.normalTitle" = "公共交通";
+
+/* Class = "UIButton"; normalTitle = "商务宾馆"; ObjectID = "qTK-Fh-sEH"; */
+"qTK-Fh-sEH.normalTitle" = "商务宾馆";
+
+/* Class = "UIButton"; normalTitle = "电影院"; ObjectID = "qgS-uS-oqV"; */
+"qgS-uS-oqV.normalTitle" = "电影院";
+
+/* Class = "UIButton"; normalTitle = "吃"; ObjectID = "tKt-zG-f8R"; */
+"tKt-zG-f8R.normalTitle" = "吃";
+
+/* Class = "UIButton"; normalTitle = "房产中介"; ObjectID = "u2G-iV-WhJ"; */
+"u2G-iV-WhJ.normalTitle" = "房产中介";
+
+/* Class = "UIButton"; normalTitle = "ATM"; ObjectID = "uUS-A8-stk"; */
+"uUS-A8-stk.normalTitle" = "ATM";
+
+/* Class = "UIButton"; normalTitle = "厕所"; ObjectID = "v3M-yT-uoH"; */
+"v3M-yT-uoH.normalTitle" = "厕所";
+
+/* Class = "UIButton"; normalTitle = "火车站"; ObjectID = "vB3-x8-mvm"; */
+"vB3-x8-mvm.normalTitle" = "火车站";
+
+/* Class = "UIButton"; normalTitle = "医疗"; ObjectID = "viV-mR-Axf"; */
+"viV-mR-Axf.normalTitle" = "医疗";
+
+/* Class = "UIButton"; normalTitle = "教育"; ObjectID = "wPE-LX-Uq6"; */
+"wPE-LX-Uq6.normalTitle" = "教育";
+
+/* Class = "UIButton"; normalTitle = "地方特色"; ObjectID = "wYD-bs-Q7x"; */
+"wYD-bs-Q7x.normalTitle" = "地方特色";
+
+/* Class = "UIButton"; normalTitle = "酒吧"; ObjectID = "yaC-lj-2xx"; */
+"yaC-lj-2xx.normalTitle" = "酒吧";
+
+/* Class = "UIButton"; normalTitle = "保健"; ObjectID = "z8w-GB-1Yv"; */
+"z8w-GB-1Yv.normalTitle" = "保健";

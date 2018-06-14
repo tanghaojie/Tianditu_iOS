@@ -9,74 +9,75 @@
 import Foundation
 
 class LocalizableStrings {
-    static let ok = NSLocalizedString("ok", comment: "")
-    static let cancel = NSLocalizedString("cancel", comment: "")
-    static let loading = NSLocalizedString("loading", comment: "")
-    static let warn = NSLocalizedString("warn", comment: "")
-    static let error = NSLocalizedString("error", comment: "")
-    static let search = NSLocalizedString("search", comment: "")
-    static let delete = NSLocalizedString("delete", comment: "")
-    static let multiSelect = NSLocalizedString("multiSelect", comment: "")
+    static var ok: String { return NSLocalizedString("ok", comment: "") }
+    static var cancel: String { return NSLocalizedString("cancel", comment: "") }
+    static var loading: String { return NSLocalizedString("loading", comment: "") }
+    static var warn: String { return NSLocalizedString("warn", comment: "") }
+    static var error: String { return NSLocalizedString("error", comment: "") }
+    static var search: String { return NSLocalizedString("search", comment: "") }
+    static var delete: String { return NSLocalizedString("delete", comment: "") }
+    static var multiSelect: String { return NSLocalizedString("multiSelect", comment: "") }
     
-    static let clearHistory = NSLocalizedString("clearHistory", comment: "")
+    static var clearHistory: String { return NSLocalizedString("clearHistory", comment: "") }
     
-    static let noRequestContent = NSLocalizedString("noRequestContent", comment: "")
-    static let httpRequestFailed = NSLocalizedString("httpRequestFailed", comment: "")
-    static let noResponseContent = NSLocalizedString("noResponseContent", comment: "")
-    static let errorResponseContentDataFormat = NSLocalizedString("errorResponseContentDataFormat", comment: "")
+    static var noRequestContent: String { return NSLocalizedString("noRequestContent", comment: "") }
+    static var httpRequestFailed: String { return NSLocalizedString("httpRequestFailed", comment: "") }
+    static var noResponseContent: String { return NSLocalizedString("noResponseContent", comment: "") }
+    static var errorResponseContentDataFormat: String { return NSLocalizedString("errorResponseContentDataFormat", comment: "") }
     
-    static let confirmPosition = NSLocalizedString("confirmPosition", comment: "")
+    static var confirmPosition: String { return NSLocalizedString("confirmPosition", comment: "") }
     
-    static let inputStartPosition = NSLocalizedString("inputStartPosition", comment: "")
-    static let inputStopPosition = NSLocalizedString("inputStopPosition", comment: "")
+    static var inputStartPosition: String { return NSLocalizedString("inputStartPosition", comment: "") }
+    static var inputStopPosition: String { return NSLocalizedString("inputStopPosition", comment: "") }
     
-    static let myPlace = NSLocalizedString("myPlace", comment: "")
+    static var myPlace: String { return NSLocalizedString("myPlace", comment: "") }
     
-    static let photoLibrary = NSLocalizedString("photoLibrary", comment: "")
-    static let takePhoto = NSLocalizedString("takePhoto", comment: "")
+    static var photoLibrary: String { return NSLocalizedString("photoLibrary", comment: "") }
+    static var takePhoto: String { return NSLocalizedString("takePhoto", comment: "") }
     
-    static let clickToShowResultList = NSLocalizedString("clickToShowResultList", comment: "")
-    static let searchFailed = NSLocalizedString("searchFailed", comment: "")
+    static var clickToShowResultList: String { return NSLocalizedString("clickToShowResultList", comment: "") }
+    static var searchFailed: String { return NSLocalizedString("searchFailed", comment: "") }
     
-    static let cameraDisable = NSLocalizedString("cameraDisable", comment: "")
-    static let photoLibraryDisable = NSLocalizedString("photoLibraryDisable", comment: "")
-    static let takePhotoOrFromPhotoLibrary = NSLocalizedString("takePhotoOrFromPhotoLibrary", comment: "")
+    static var cameraDisable: String { return NSLocalizedString("cameraDisable", comment: "") }
+    static var photoLibraryDisable: String { return NSLocalizedString("photoLibraryDisable", comment: "") }
+    static var takePhotoOrFromPhotoLibrary: String { return NSLocalizedString("takePhotoOrFromPhotoLibrary", comment: "") }
     
-    static let unknownType = NSLocalizedString("unknownType", comment: "")
-    static let near = NSLocalizedString("near", comment: "")
+    static var unknownType: String { return NSLocalizedString("unknownType", comment: "") }
+    static var near: String { return NSLocalizedString("near", comment: "") }
     
-    static let selectHeadPortrait = NSLocalizedString("selectHeadPortrait", comment: "")
-    static let doNotGetPortrait = NSLocalizedString("doNotGetPortrait", comment: "")
-    static let saveHeadPortraitFailed = NSLocalizedString("saveHeadPortraitFailed", comment: "")
+    static var selectHeadPortrait: String { return NSLocalizedString("selectHeadPortrait", comment: "") }
+    static var doNotGetPortrait: String { return NSLocalizedString("doNotGetPortrait", comment: "") }
+    static var saveHeadPortraitFailed: String { return NSLocalizedString("saveHeadPortraitFailed", comment: "") }
     
-    static let selectLocation = NSLocalizedString("selectLocation", comment: "")
-    static let hasCoordinate = NSLocalizedString("hasCoordinate", comment: "")
-    static let routeAnalysising = NSLocalizedString("routeAnalysising", comment: "")
-    static let routeAnalysisFailed = NSLocalizedString("routeAnalysisFailed", comment: "")
-    static let savedCoordinate = NSLocalizedString("savedCoordinate", comment: "")
+    static var selectLocation: String { return NSLocalizedString("selectLocation", comment: "") }
+    static var hasCoordinate: String { return NSLocalizedString("hasCoordinate", comment: "") }
+    static var routeAnalysising: String { return NSLocalizedString("routeAnalysising", comment: "") }
+    static var routeAnalysisFailed: String { return NSLocalizedString("routeAnalysisFailed", comment: "") }
+    static var savedCoordinate: String { return NSLocalizedString("savedCoordinate", comment: "") }
     
-    static let about = NSLocalizedString("about", comment: "")
-    static let km = NSLocalizedString("km", comment: "")
-    static let from = NSLocalizedString("from", comment: "")
-    static let startOff = NSLocalizedString("startOff", comment: "")
-    static let arrive = NSLocalizedString("arrive", comment: "")
+    static var about: String { return NSLocalizedString("about", comment: "") }
+    static var km: String { return NSLocalizedString("km", comment: "") }
+    static var from: String { return NSLocalizedString("from", comment: "") }
+    static var startOff: String { return NSLocalizedString("startOff", comment: "") }
+    static var arrive: String { return NSLocalizedString("arrive", comment: "") }
     
-    static let favor = NSLocalizedString("favor", comment: "")
-    static let favorite = NSLocalizedString("favorite", comment: "")
-    static let hasfavorite = NSLocalizedString("hasfavorite", comment: "")
+    static var favor: String { return NSLocalizedString("favor", comment: "") }
+    static var favorite: String { return NSLocalizedString("favorite", comment: "") }
+    static var hasfavorite: String { return NSLocalizedString("hasfavorite", comment: "") }
     
-    static let shareLocation = NSLocalizedString("shareLocation", comment: "")
-    static let language = NSLocalizedString("language", comment: "")
-    static let clearCache = NSLocalizedString("clearCache", comment: "")
-    static let cacheCleared = NSLocalizedString("cacheCleared", comment: "")
-    static let about1 = NSLocalizedString("about1", comment: "")
+    static var shareLocation: String { return NSLocalizedString("shareLocation", comment: "") }
+    static var language: String { return NSLocalizedString("language", comment: "") }
+    static var clearCache: String { return NSLocalizedString("clearCache", comment: "") }
+    static var cacheCleared: String { return NSLocalizedString("cacheCleared", comment: "") }
     
-    static let weatherLanguage = NSLocalizedString("weatherLanguage", comment: "")
-    static let day = NSLocalizedString("day", comment: "")
-    static let night = NSLocalizedString("night", comment: "")
+    static var about1: String { return NSLocalizedString("about1", comment: "") }
     
-    static let language_zh_Hans_Origin = NSLocalizedString("language_zh_Hans_Origin", comment: "")
-    static let language_zh_Hans_Current = NSLocalizedString("language_zh_Hans_Current", comment: "")
-    static let language_English_Origin = NSLocalizedString("language_English_Origin", comment: "")
-    static let language_English_Current = NSLocalizedString("language_English_Current", comment: "")
+    static var weatherLanguage: String { return NSLocalizedString("weatherLanguage", comment: "") }
+    static var day: String { return NSLocalizedString("day", comment: "") }
+    static var night: String { return NSLocalizedString("night", comment: "") }
+    
+    static var language_zh_Hans_Origin: String { return NSLocalizedString("language_zh_Hans_Origin", comment: "") }
+    static var language_zh_Hans_Current: String { return NSLocalizedString("language_zh_Hans_Current", comment: "") }
+    static var language_English_Origin: String { return NSLocalizedString("language_English_Origin", comment: "") }
+    static var language_English_Current: String { return NSLocalizedString("language_English_Current", comment: "") }
 }

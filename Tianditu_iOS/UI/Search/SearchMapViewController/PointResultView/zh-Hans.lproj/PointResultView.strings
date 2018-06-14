@@ -1,0 +1,15 @@
+
+/* Class = "UIButton"; normalTitle = "去这里"; ObjectID = "8xI-kF-Ydq"; */
+"8xI-kF-Ydq.normalTitle" = "去这里";
+
+/* Class = "UILabel"; text = "四川省成都市武侯区XXX路XXX号"; ObjectID = "UGl-zV-s3d"; */
+"UGl-zV-s3d.text" = "四川省成都市武侯区XXX路XXX号";
+
+/* Class = "UIButton"; normalTitle = "收藏"; ObjectID = "fSg-cn-bAg"; */
+"fSg-cn-bAg.normalTitle" = "收藏";
+
+/* Class = "UIButton"; normalTitle = "分享"; ObjectID = "nxq-T1-iI5"; */
+"nxq-T1-iI5.normalTitle" = "分享";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "rIq-xa-jbi"; */
+"rIq-xa-jbi.text" = "Title";

@@ -1,0 +1,9 @@
+
+/* Class = "UIButton"; normalTitle = "地图选点"; ObjectID = "0iI-45-eTT"; */
+"0iI-45-eTT.normalTitle" = "地图选点";
+
+/* Class = "UIButton"; normalTitle = "我的位置"; ObjectID = "MNb-lg-lHK"; */
+"MNb-lg-lHK.normalTitle" = "我的位置";
+
+/* Class = "UIButton"; normalTitle = "收藏的点"; ObjectID = "Vf9-PQ-XiW"; */
+"Vf9-PQ-XiW.normalTitle" = "收藏的点";

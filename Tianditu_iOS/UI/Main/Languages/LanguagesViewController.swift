@@ -35,7 +35,7 @@ extension LanguagesViewController {
         NSLayoutConstraint.activate([
             label.centerXAnchor.constraint(equalTo: navigationContent.centerXAnchor, constant: -(backButtonWidth / 2)),
             label.centerYAnchor.constraint(equalTo: navigationContent.centerYAnchor),
-            label.widthAnchor.constraint(equalToConstant: 63),
+            label.widthAnchor.constraint(equalToConstant: 90),
             label.heightAnchor.constraint(equalToConstant: 21),
             ])
     }
@@ -54,6 +54,7 @@ extension LanguagesViewController {
             confirmButton.widthAnchor.constraint(equalToConstant: width),
             ])
         confirmButton.addTarget(self, action: #selector(confirmTouchUpInside), for: .touchUpInside)
+        confirmButton.alpha = 0.3
     }
     private func setupMainPage() {
         mainPage.translatesAutoresizingMaskIntoConstraints = false
@@ -85,6 +86,16 @@ extension LanguagesViewController {
         guard let index = languagesTableView.selectedIndex else { return }
         let vm = languagesTableView.get(index: index)
         JTLanguages.set(language: vm.data)
+        updateRootViewControllerLanguage()
+    }
+    func updateRootViewControllerLanguage() {
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        let vc = sb.instantiateViewController(withIdentifier: "MainViewController")
+        UIApplication.shared.keyWindow?.alpha = 0
+        UIApplication.shared.keyWindow?.rootViewController = vc
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.8, execute: {
+            UIView.animate(withDuration: 1, animations: { UIApplication.shared.keyWindow?.alpha = 1 })
+        })
     }
 }
 extension LanguagesViewController: JTLanguagesTableViewDelegate {

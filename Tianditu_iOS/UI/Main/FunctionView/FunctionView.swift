@@ -119,14 +119,18 @@ extension FunctionView {
     }
     private func setupWeatherLabel() {
         weatherLabel.translatesAutoresizingMaskIntoConstraints = false
-        topView.addSubview(weatherLabel)
-        weatherLabel.adjustsFontSizeToFitWidth = true
-        weatherLabel.textAlignment = .center
+        weatherLabel.sizeToFit()
         weatherLabel.textColor = UIColor(r: 151, g: 151, b: 151)
-        weatherLabel.font = UIFont.systemFont(ofSize: 12)
+        weatherLabel.font = UIFont.systemFont(ofSize: 14)
+        weatherLabel.textAlignment = .center
+        weatherLabel.numberOfLines = 0
+        weatherLabel.lineBreakMode = .byWordWrapping
+        topView.addSubview(weatherLabel)
         topView.addConstraints([
             NSLayoutConstraint(item: weatherLabel, attribute: .centerX, relatedBy: .equal, toItem: topView, attribute: .centerX, multiplier: 1, constant: 0),
             NSLayoutConstraint(item: weatherLabel, attribute: .top, relatedBy: .equal, toItem: headPortraitImageView, attribute: .bottom, multiplier: 1, constant: weatherLabel2HeaderImageDistance),
+            NSLayoutConstraint(item: weatherLabel, attribute: .leading, relatedBy: .equal, toItem: topView, attribute: .leading, multiplier: 1, constant: 15),
+            NSLayoutConstraint(item: weatherLabel, attribute: .trailing, relatedBy: .equal, toItem: topView, attribute: .trailing, multiplier: 1, constant: -15),
             ])
     }
     private func setupBottomView() {

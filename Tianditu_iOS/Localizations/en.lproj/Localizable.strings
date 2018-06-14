@@ -1,0 +1,87 @@
+/* 
+  Localizations.strings
+  Tianditu_iOS
+
+  Created by JT on 2018/4/11.
+  Copyright © 2018年 JT. All rights reserved.
+*/
+
+
+"ok" = "Done";
+"cancel" = "Cancel";
+"loading" = "Loading";
+"warn" = "Warn";
+"error" = "Error";
+"search" = "Search";
+"delete" = "Delete";
+
+"multiSelect" = "Edit";
+
+"clearHistory" = "Clear History";
+
+"noRequestContent" = "No request context";
+"httpRequestFailed" = "Http request failed";
+"noResponseContent" = "No response context";
+"errorResponseContentDataFormat" = "Unknown response format";
+
+"clickToShowResultList" = "Tap to Show List";
+"searchFailed" = "Search failed";
+
+"confirmPosition" = "Confirm Location";
+
+"inputStartPosition" = "From";
+"inputStopPosition" = "To Location";
+
+"selectLocation" = "Select Location";
+
+"photoLibrary" = "Album";
+"takePhoto" = "Camera";
+
+"unknownType" = "Unknown Tpye";
+
+"near" = "Around";
+
+"myPlace" = "My Place";
+
+"hasCoordinate" = "Had Coordinate";
+"routeAnalysising" = "Route Analysising...";
+"routeAnalysisFailed" = "Route analysising failed";
+
+"cameraDisable" = "Camera Disable";
+"photoLibraryDisable" = "Album Disable";
+"takePhotoOrFromPhotoLibrary" = "Take photo Or From album";
+
+"savedCoordinate" = "Saved Coordinate";
+
+"about" = "about";
+"km" = "km";
+"from" = "Leave";
+"startOff" = "";
+"arrive" = "Arrive";
+
+
+"selectHeadPortrait" = "Head Portrait";
+"doNotGetPortrait" = "Set portrait failed";
+"saveHeadPortraitFailed" = "Save protrait failed";
+
+"favor" = "Favor";
+"favorite" = "Favor";
+"hasfavorite" = "Favored";
+"shareLocation" = "Share Location";
+
+"language" = "Language";
+
+"clearCache" = "Clear Cache";
+"cacheCleared" = "Cleared";
+
+"about1" = "About";
+
+"weatherLanguage" = "en";
+
+"day" = "day";
+"night" = "night";
+
+"language_zh_Hans_Origin" = "简体中文";
+"language_zh_Hans_Current" = "Chinese";
+"language_English_Origin" = "English";
+"language_English_Current" = "English";
