@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import JTFramework
 
 class LanguagesTableView: UITableView {
     private let cellReuseIdentifier = "languagesTableViewCellReuseIdentifier"
     private var cellVMs: [LanguagesTableViewCellVM] = [LanguagesTableViewCellVM]()
     weak var jtDelegate: JTLanguagesTableViewDelegate?
-    private var selectedIndex: IndexPath?
+    var selectedIndex: IndexPath?
+    private var currentLanguage: JTLanguages?
     init() {
         super.init(frame: CGRect.zero, style: .plain)
         setupUI()
@@ -51,6 +53,17 @@ extension LanguagesTableView {
         selectedIndex = index
         reloadData()
     }
+    func get(index: IndexPath) -> LanguagesTableViewCellVM {
+        return cellVMs[index.row]
+    }
+    func reloadLanguage() {
+        var currentLanguage = JTLanguages.getCurrentUserLanguage()
+        if currentLanguage == nil { currentLanguage = JTLanguages.getAppleLanguage() }
+        for index in cellVMs.enumerated() {
+            if index.element.data == currentLanguage { selectedIndex = IndexPath(row: index.offset, section: 0) }
+        }
+        reloadData()
+    }
 }
 extension LanguagesTableView: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -67,11 +80,8 @@ extension LanguagesTableView: UITableViewDataSource, UITableViewDelegate {
             cell?.selectionStyle = .none
         }
         if let c = cell as? LanguagesTableViewCell {
-            if indexPath == selectedIndex {
-                c.setRightImage(img: Assets.tick)
-            } else {
-                c.setRightImage()
-            }
+            if indexPath == selectedIndex { c.setRightImage(img: Assets.tick) }
+            else { c.setRightImage() }
         }
         return cell!
     }

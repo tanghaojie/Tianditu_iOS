@@ -6,12 +6,16 @@
 //  Copyright © 2018年 JT. All rights reserved.
 //
 
+import JTFramework
+
 class LanguagesTableViewCellVM {
     let currentLanguage: String
     let originLanguage: String
+    let data: JTLanguages
     
-    init(currentLanguage: String, originLanguage: String) {
+    init(currentLanguage: String, originLanguage: String, data: JTLanguages) {
         self.currentLanguage = currentLanguage
         self.originLanguage = originLanguage
+        self.data = data
     }
 }
