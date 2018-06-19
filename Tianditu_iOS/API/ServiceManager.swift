@@ -15,7 +15,7 @@ class ServiceManager {
     
     let scTiandituProvider = MoyaProvider<SCTiandituService>(manager: DefaultAlamofireManager.sharedManager)
     let tiandituProvider = MoyaProvider<TiandituService>(manager: DefaultAlamofireManager.sharedManager)
-    let tiandituProvider_10s = MoyaProvider<TiandituService>(manager: DefaultAlamofireManager_10.sharedManager)
+    let tiandituProvider_15s = MoyaProvider<TiandituService>(manager: DefaultAlamofireManager_15.sharedManager)
     let seniverseProvider = MoyaProvider<SeniverseService>(manager: DefaultAlamofireManager.sharedManager)
 
     private class DefaultAlamofireManager: Alamofire.SessionManager {
@@ -27,11 +27,11 @@ class ServiceManager {
             return DefaultAlamofireManager(configuration: configuration)
         }()
     }
-    private class DefaultAlamofireManager_10: Alamofire.SessionManager {
+    private class DefaultAlamofireManager_15: Alamofire.SessionManager {
         static let sharedManager: DefaultAlamofireManager = {
             let configuration = URLSessionConfiguration.default
             configuration.httpAdditionalHeaders = Alamofire.SessionManager.defaultHTTPHeaders
-            configuration.timeoutIntervalForRequest = 10
+            configuration.timeoutIntervalForRequest = 15
             configuration.requestCachePolicy = .useProtocolCachePolicy
             return DefaultAlamofireManager(configuration: configuration)
         }()

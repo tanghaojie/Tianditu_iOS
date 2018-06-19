@@ -29,10 +29,10 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ico-58-nHg">
                                                 <rect key="frame" x="0.0" y="0.0" width="44" height="41"/>
-                                                <color key="backgroundColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="44" id="U8x-0U-K4e"/>
                                                 </constraints>
+                                                <state key="normal" image="setting"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                         <integer key="value" value="5"/>
@@ -190,7 +190,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="90" height="50"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                                 <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" image="route">
+                                                <state key="normal" image="route_zh">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
@@ -272,6 +272,7 @@
                     <connections>
                         <outlet property="compassView" destination="fVX-WA-jKn" id="HMO-YK-w3F"/>
                         <outlet property="mapView" destination="OiQ-zL-YkD" id="tcI-hP-0XP"/>
+                        <outlet property="routeButton" destination="NAQ-lf-SjC" id="ppZ-G4-NIa"/>
                         <outlet property="transparentView" destination="RkD-ep-5ur" id="G8H-zL-TyF"/>
                     </connections>
                 </viewController>
@@ -284,6 +285,7 @@
         <image name="compass" width="50" height="50"/>
         <image name="layer" width="50" height="50"/>
         <image name="location2" width="60" height="60"/>
-        <image name="route" width="90" height="50"/>
+        <image name="route_zh" width="90" height="50"/>
+        <image name="setting" width="41" height="41"/>
     </resources>
 </document>

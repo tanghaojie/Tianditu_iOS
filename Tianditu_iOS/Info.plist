@@ -34,9 +34,13 @@
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>允许APP使用期间访问您的位置信息</string>
 	<key>NSCameraUsageDescription</key>
-	<string>照相机</string>
+	<string>App需要你的同意，才能访问照相机</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>相册</string>
+	<string>App需要你的同意，才能访问相册</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>App需要你的同意，才能访问麦克风</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>App需要你的同意，才能访问语音识别</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>

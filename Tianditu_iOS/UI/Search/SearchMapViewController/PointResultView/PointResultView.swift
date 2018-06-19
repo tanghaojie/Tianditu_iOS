@@ -30,7 +30,10 @@ class PointResultView: UIView, JTNibLoader {
     }
   
     @IBAction func gotoTouchUpInside(_ sender: Any) {
-        print("11111111111")
+        guard let location = position, let x = location.x, let y = location.y else { return }
+        let r = RoutePosition(type: .coordinate, name: location.name, x: x, y: y)
+        let route = RouteViewController(stop: r)
+        jtGetResponder()?.navigationController?.pushViewController(route, animated: false)
     }
     @IBAction func favoriteTouchUpInside(_ sender: Any) {
         guard let p = position else { return }

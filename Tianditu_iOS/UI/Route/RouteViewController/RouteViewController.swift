@@ -38,14 +38,17 @@ class RouteViewController: JTNavigationViewController {
     private let toleranceDistence = 0.0006
     private var routeResult: Response_RouteSearch?
     
-    init() {
-        start = RoutePosition(type: .myPlace, x: 0, y: 0)
+    init(start: RoutePosition? = RoutePosition(type: .myPlace, x: 0, y: 0), stop: RoutePosition? = nil) {
+        self.start = start
+        self.stop = stop
         super.init(naviHeight)
         startX = X(startSearchBar, vc: self)
         stopX = X(stopSearchBar, vc: self)
         setupUI()
-        start?.showPosition(startSearchBar)
+        self.start?.showPosition(startSearchBar)
+        self.stop?.showPosition(stopSearchBar)
         mapView(show: false)
+        showRoute()
     }
     
     required init?(coder aDecoder: NSCoder) {

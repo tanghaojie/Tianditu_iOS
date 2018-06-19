@@ -80,4 +80,11 @@ class LocalizableStrings {
     static var language_zh_Hans_Current: String { return NSLocalizedString("language_zh_Hans_Current", comment: "") }
     static var language_English_Origin: String { return NSLocalizedString("language_English_Origin", comment: "") }
     static var language_English_Current: String { return NSLocalizedString("language_English_Current", comment: "") }
+    
+    static var image_Route: String { return NSLocalizedString("image_Route", comment: "") }
+    static var image_ViewDetail: String { return NSLocalizedString("image_ViewDetail", comment: "") }
+    static var image_ViewMap: String { return NSLocalizedString("image_ViewMap", comment: "") }
+    static var image_start: String { return NSLocalizedString("image_start", comment: "") }
+    static var image_end: String { return NSLocalizedString("image_end", comment: "") }
+    static var image_search: String { return NSLocalizedString("image_search", comment: "") }
 }

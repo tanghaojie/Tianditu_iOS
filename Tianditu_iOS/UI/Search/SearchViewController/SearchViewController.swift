@@ -10,7 +10,7 @@ import UIKit
 import JTFramework
 
 class SearchViewController: JTNavigationViewController {
-    
+    private var voiceButton: UIButton?
     private let searchButton = UIButton()
     private let jtSearchBar = JTSearchBar()
     private let mainPage = UIView()
@@ -50,6 +50,7 @@ extension SearchViewController {
         setupLocationView()
         setupSearchHistoryTableView()
         setupSearchContentTableView()
+        if #available(iOS 10, *) { setupVoiceButton() }
     }
     private func setupJTNavigation() {
         view.backgroundColor = .white
@@ -58,7 +59,7 @@ extension SearchViewController {
         let btnAspectRatio: CGFloat = 1.5
         let width = navigationHeight * btnAspectRatio
         searchButton.translatesAutoresizingMaskIntoConstraints = false
-        searchButton.setImage(Assets.search_zh_cn, for: .normal)
+        searchButton.setImage(Assets.search2, for: .normal)
         navigationContent.addSubview(searchButton)
         NSLayoutConstraint.activate([
             searchButton.topAnchor.constraint(equalTo: navigationContent.topAnchor),
@@ -135,9 +136,41 @@ extension SearchViewController {
         mainPage.isHidden = false
         contentTableView.renew()
     }
+    @available(iOS 10, *)
+    private func setupVoiceButton() {
+        voiceButton?.removeFromSuperview()
+        voiceButton = nil
+        voiceButton = UIButton()
+        guard let b = voiceButton else { return }
+        b.addTarget(self, action: #selector(voiceButtonTouchUpInside), for: .touchUpInside)
+        b.translatesAutoresizingMaskIntoConstraints = false
+        b.setImage(Assets.speech2, for: .normal)
+        jtSearchBar.addSubview(b)
+        NSLayoutConstraint.activate([
+            b.topAnchor.constraint(equalTo: jtSearchBar.topAnchor),
+            b.bottomAnchor.constraint(equalTo: jtSearchBar.bottomAnchor),
+            b.trailingAnchor.constraint(equalTo: jtSearchBar.trailingAnchor),
+            b.widthAnchor.constraint(equalToConstant: navigationHeight),
+            ])
+    }
+}
+extension SearchViewController {
+    @objc private func voiceButtonTouchUpInside() {
+        if #available(iOS 10.0, *) {
+            let vc = SpeechViewController()
+            vc.speechDelegate = self
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    }
 }
 extension SearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText == "" {
+            if #available(iOS 10, *) { setupVoiceButton() }
+        } else {
+            voiceButton?.removeFromSuperview()
+            voiceButton = nil
+        }
         searchContent(text: searchText)
     }
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -166,6 +199,16 @@ extension SearchViewController {
         historyTableView.reloadHistory()
         showHistory()
         searchText(name: text)
+    }
+}
+extension SearchViewController: SpeechViewControllerDelegate {
+    func speech(text: String) {
+        jtSearchBar.text = text
+        searchContent(text: text)
+        if text != "" {
+            voiceButton?.removeFromSuperview()
+            voiceButton = nil
+        }
     }
 }
 extension SearchViewController: JTSearchHistoryTableViewDelegate {

@@ -11,6 +11,7 @@ import JTFramework
 
 class MainViewController: UIViewController {
 
+    @IBOutlet weak var routeButton: UIButton!
     @IBOutlet weak var mapView: UIView!
     @IBOutlet weak var transparentView: JTTransparentUIView!
     @IBOutlet weak var compassView: UIView!
@@ -19,6 +20,7 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        routeButton.setImage(Assets.route, for: .normal)
         getWeather()
     }
     

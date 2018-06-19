@@ -23,7 +23,7 @@ class RouteSearchC {
     func routeSearch(startX: Double, startY: Double, stopX: Double, stopY: Double, style: RouteStyle = .short, Complete: @escaping (Bool, Response_RouteSearch?, String?) -> Void) {
         cancel()
         let data = Request_RouteSearch(startX: startX, startY: startY, stopX: stopX, stopY: stopY, style: style)
-        cancellable = ServiceManager.shareInstance.tiandituProvider_10s.request(.routeSearch(data: data)) {
+        cancellable = ServiceManager.shareInstance.tiandituProvider_15s.request(.routeSearch(data: data)) {
             result in
             switch result {
             case let .success(moyaResponse):

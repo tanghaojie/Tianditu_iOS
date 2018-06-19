@@ -53,7 +53,7 @@
 
 "savedCoordinate" = "Saved Coordinate";
 
-"about" = "about";
+"about" = "About";
 "km" = "km";
 "from" = "Leave";
 "startOff" = "";
@@ -85,3 +85,10 @@
 "language_zh_Hans_Current" = "Chinese";
 "language_English_Origin" = "English";
 "language_English_Current" = "English";
+
+"image_Route" = "route_en";
+"image_ViewDetail" = "viewDetail_en";
+"image_ViewMap" = "viewMap_en";
+"image_start" = "start_en";
+"image_end" = "end_en";
+"image_search" = "search_en";
