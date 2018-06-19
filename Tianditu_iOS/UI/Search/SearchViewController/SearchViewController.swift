@@ -40,6 +40,11 @@ class SearchViewController: JTNavigationViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         historyTableView.reloadHistory()
+        if #available(iOS 10, *) {
+            if (jtSearchBar.text == nil || jtSearchBar.text == "") && voiceButton == nil {
+                setupVoiceButton()
+            }
+        }
     }
 }
 extension SearchViewController {
@@ -157,9 +162,15 @@ extension SearchViewController {
 extension SearchViewController {
     @objc private func voiceButtonTouchUpInside() {
         if #available(iOS 10.0, *) {
-            let vc = SpeechViewController()
-            vc.speechDelegate = self
-            navigationController?.pushViewController(vc, animated: true)
+            AVCaptureDevice.requestAccess(for: .audio) { _ in }
+            let status = AVCaptureDevice.authorizationStatus(for: .audio)
+            if status == .authorized {
+                let vc = SpeechViewController()
+                vc.speechDelegate = self
+                navigationController?.pushViewController(vc, animated: true)
+            } else {
+                jtAlertWithUIAlertAction(title: "", message: LocalizableStrings.openMicophoneInSet, uiAlertAction: [UIAlertAction(title: LocalizableStrings.ok, style: .default, handler: nil)])
+            }
         }
     }
 }

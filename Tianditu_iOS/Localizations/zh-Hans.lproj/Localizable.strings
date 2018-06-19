@@ -26,6 +26,7 @@
 
 "clickToShowResultList" = "点击查看结果列表";
 "searchFailed" = "搜索失败";
+"openMicophoneInSet" = "请在设置中打开麦克风授权";
 
 "confirmPosition" = "确认地点";
 

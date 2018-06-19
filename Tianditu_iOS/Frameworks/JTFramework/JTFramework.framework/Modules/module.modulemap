@@ -1,0 +1,11 @@
+framework module JTFramework {
+  umbrella header "JTFramework.h"
+
+  export *
+  module * { export * }
+}
+
+module JTFramework.Swift {
+    header "JTFramework-Swift.h"
+    requires objc
+}

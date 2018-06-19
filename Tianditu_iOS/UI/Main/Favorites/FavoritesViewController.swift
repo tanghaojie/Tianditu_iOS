@@ -89,7 +89,7 @@ extension FavoritesViewController {
         if deleteView == nil { deleteView = UIView() }
         guard let d = deleteView else { return }
         d.translatesAutoresizingMaskIntoConstraints = false
-        d.backgroundColor = .white
+        d.backgroundColor = UIColor(r: 230, g: 230, b: 230)
         mainPage.addSubview(d)
         NSLayoutConstraint.activate([
             d.bottomAnchor.constraint(equalTo: mainPage.bottomAnchor),

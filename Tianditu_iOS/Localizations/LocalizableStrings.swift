@@ -37,7 +37,8 @@ class LocalizableStrings {
     
     static var clickToShowResultList: String { return NSLocalizedString("clickToShowResultList", comment: "") }
     static var searchFailed: String { return NSLocalizedString("searchFailed", comment: "") }
-    
+    static var openMicophoneInSet: String { return NSLocalizedString("openMicophoneInSet", comment: "") }
+
     static var cameraDisable: String { return NSLocalizedString("cameraDisable", comment: "") }
     static var photoLibraryDisable: String { return NSLocalizedString("photoLibraryDisable", comment: "") }
     static var takePhotoOrFromPhotoLibrary: String { return NSLocalizedString("takePhotoOrFromPhotoLibrary", comment: "") }
