@@ -162,14 +162,24 @@ extension SearchViewController {
 extension SearchViewController {
     @objc private func voiceButtonTouchUpInside() {
         if #available(iOS 10.0, *) {
-            AVCaptureDevice.requestAccess(for: .audio) { _ in }
             let status = AVCaptureDevice.authorizationStatus(for: .audio)
             if status == .authorized {
                 let vc = SpeechViewController()
                 vc.speechDelegate = self
                 navigationController?.pushViewController(vc, animated: true)
-            } else {
-                jtAlertWithUIAlertAction(title: "", message: LocalizableStrings.openMicophoneInSet, uiAlertAction: [UIAlertAction(title: LocalizableStrings.ok, style: .default, handler: nil)])
+            }
+            else {
+                AVCaptureDevice.requestAccess(for: .audio) {
+                    [weak self]
+                    a in
+                    if a {
+                        let vc = SpeechViewController()
+                        vc.speechDelegate = self
+                        self?.navigationController?.pushViewController(vc, animated: true)
+                    }
+                    else { self?.jtAlertWithUIAlertAction(title: "", message: LocalizableStrings.openMicophoneInSet, uiAlertAction: [UIAlertAction(title: LocalizableStrings.ok, style: .default, handler: nil)]) }
+                }
+                
             }
         }
     }
