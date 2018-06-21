@@ -7,3 +7,4 @@
 */
 
 CFBundleDisplayName = "天地图";
+CFBundleName = "天地图";

@@ -18,10 +18,10 @@ class AboutMainView: UIView, JTNibLoader {
         super.draw(rect)
         let tap = UITapGestureRecognizer(target: self, action: #selector(appIconTaped))
         appIcon.addGestureRecognizer(tap)
+        name.text = LocalizableStrings.appName
         if let i = Bundle.main.infoDictionary {
-            name.text = i["CFBundleName"] as? String
             if let v = i["CFBundleShortVersionString"] as? String {
-                version.text = "V" + v
+                version.text = v
             }
         }
     }

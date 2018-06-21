@@ -9,6 +9,7 @@
 import Foundation
 
 class LocalizableStrings {
+    static var appName: String { return NSLocalizedString("appName", comment: "") }
     static var ok: String { return NSLocalizedString("ok", comment: "") }
     static var cancel: String { return NSLocalizedString("cancel", comment: "") }
     static var loading: String { return NSLocalizedString("loading", comment: "") }

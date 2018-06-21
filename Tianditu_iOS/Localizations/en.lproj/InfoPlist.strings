@@ -7,3 +7,4 @@
 */
 
 CFBundleDisplayName = "Tianditu";
+CFBundleName = "Tianditu";
