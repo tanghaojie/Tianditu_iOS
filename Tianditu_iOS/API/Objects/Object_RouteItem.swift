@@ -11,6 +11,11 @@ import ObjectMapper
 class Object_RouteItem: Mappable {
     var strguide: String?
     required init?(map: Map) {}
+    
+    public init(strguide: String) {
+        self.strguide = strguide
+    }
+    
     func mapping(map: Map) {
         strguide  <- map["strguide"]
     }

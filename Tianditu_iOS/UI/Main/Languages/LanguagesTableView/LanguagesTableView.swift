@@ -39,7 +39,7 @@ extension LanguagesTableView {
         separatorStyle = .none
         backgroundColor = UIColor(r: 233, g: 233, b: 233)
         estimatedRowHeight = 50
-        rowHeight = UITableViewAutomaticDimension
+        rowHeight = UITableView.automaticDimension
         dataSource = self
         delegate = self
     }

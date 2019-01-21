@@ -31,7 +31,7 @@ extension HeadPortraitImageView: UIImagePickerControllerDelegate, UINavigationCo
             guard let this = self else { return }
             guard let responder = this.jtGetResponder() else { return }
             guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else {
-                responder.jtAlertWithUIAlertAction(title: LocalizableStrings.warn, message: LocalizableStrings.photoLibraryDisable, uiAlertAction: [UIAlertAction(title: LocalizableStrings.ok, style: UIAlertActionStyle.default, handler: nil)])
+                responder.jtAlertWithUIAlertAction(title: LocalizableStrings.warn, message: LocalizableStrings.photoLibraryDisable, uiAlertAction: [UIAlertAction(title: LocalizableStrings.ok, style: UIAlertAction.Style.default, handler: nil)])
                 return
             }
             let picker = UIImagePickerController()
@@ -44,7 +44,7 @@ extension HeadPortraitImageView: UIImagePickerControllerDelegate, UINavigationCo
             guard let this = self else { return }
             guard let responder = this.jtGetResponder() else { return }
             guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
-                responder.jtAlertWithUIAlertAction(title: LocalizableStrings.warn, message: LocalizableStrings.cameraDisable, uiAlertAction: [UIAlertAction(title: LocalizableStrings.ok, style: UIAlertActionStyle.default, handler: nil)])
+                responder.jtAlertWithUIAlertAction(title: LocalizableStrings.warn, message: LocalizableStrings.cameraDisable, uiAlertAction: [UIAlertAction(title: LocalizableStrings.ok, style: UIAlertAction.Style.default, handler: nil)])
                 return
             }
             let picker = UIImagePickerController()
@@ -60,11 +60,14 @@ extension HeadPortraitImageView: UIImagePickerControllerDelegate, UINavigationCo
         guard let responder = jtGetResponder() else { return }
         responder.jtTopViewController().present(actionController, animated: true, completion: nil)
     }
-    internal func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    internal func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+// Local variable inserted by Swift 4.2 migrator.
+let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+
         picker.dismiss(animated: true, completion: nil)
         guard let responder = jtGetResponder() else { return }
-        guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else {
-            responder.jtAlertWithUIAlertAction(title: LocalizableStrings.error, message: LocalizableStrings.doNotGetPortrait, uiAlertAction: [UIAlertAction(title: LocalizableStrings.ok, style: UIAlertActionStyle.default, handler: nil)])
+        guard let image = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as? UIImage else {
+            responder.jtAlertWithUIAlertAction(title: LocalizableStrings.error, message: LocalizableStrings.doNotGetPortrait, uiAlertAction: [UIAlertAction(title: LocalizableStrings.ok, style: UIAlertAction.Style.default, handler: nil)])
             return
         }
         
@@ -72,13 +75,13 @@ extension HeadPortraitImageView: UIImagePickerControllerDelegate, UINavigationCo
         let dataAndExt = image.jtData()
         guard let data = dataAndExt.0, let fileUrl = headPortraitFile else {
             hud.hide(animated: true)
-            responder.jtAlertWithUIAlertAction(title: LocalizableStrings.error, message: LocalizableStrings.saveHeadPortraitFailed, uiAlertAction: [UIAlertAction(title: LocalizableStrings.ok, style: UIAlertActionStyle.default, handler: nil)])
+            responder.jtAlertWithUIAlertAction(title: LocalizableStrings.error, message: LocalizableStrings.saveHeadPortraitFailed, uiAlertAction: [UIAlertAction(title: LocalizableStrings.ok, style: UIAlertAction.Style.default, handler: nil)])
             return
         }
         _ = JTFile.shareInstance.deleteFile(url: fileUrl)
         guard JTFile.shareInstance.saveFile(url: fileUrl, data: data) else {
             hud.hide(animated: true)
-            responder.jtAlertWithUIAlertAction(title: LocalizableStrings.error, message: LocalizableStrings.saveHeadPortraitFailed, uiAlertAction: [UIAlertAction(title: LocalizableStrings.ok, style: UIAlertActionStyle.default, handler: nil)])
+            responder.jtAlertWithUIAlertAction(title: LocalizableStrings.error, message: LocalizableStrings.saveHeadPortraitFailed, uiAlertAction: [UIAlertAction(title: LocalizableStrings.ok, style: UIAlertAction.Style.default, handler: nil)])
             return
         }
         hud.hide(animated: true)
@@ -115,4 +118,14 @@ extension HeadPortraitImageView {
             }
         }
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
+	return input.rawValue
 }

@@ -90,8 +90,8 @@ extension AboutViewController: AboutMainViewDelegate {
         guard let d = date else { return }
         let timeInterval = Date().timeIntervalSince(d)
         date = nil
-        guard abs(timeInterval) < 10 else { return }
-        let action = UIAlertAction(title: "queding", style: .default, handler: nil)
-        jtAlertWithUIAlertAction(title: "212321", message: nil, uiAlertAction: [action])
+        guard abs(timeInterval) < 6 else { return }
+        let action = UIAlertAction(title: "~知道啦~", style: .default, handler: nil)
+        jtAlertWithUIAlertAction(title: "被你发现啦～凭接头暗码919191~发送到thj3360016@gmail.com领取奖励~", message: nil, uiAlertAction: [action])
     }
 }

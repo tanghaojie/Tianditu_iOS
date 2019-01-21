@@ -434,7 +434,7 @@ class NearMainView: UIView, JTNibLoader {
     }
     
     private func setEdge(_ button: UIButton,imageViewTop: CGFloat, imageViewLeft: CGFloat, titleTop: CGFloat, titleLeft: CGFloat) {
-        button.imageEdgeInsets = UIEdgeInsetsMake(imageViewTop, imageViewLeft, 0 , 0)
-        button.titleEdgeInsets = UIEdgeInsetsMake(titleTop, titleLeft, 0, 0)
+        button.imageEdgeInsets = UIEdgeInsets.init(top: imageViewTop, left: imageViewLeft, bottom: 0 , right: 0)
+        button.titleEdgeInsets = UIEdgeInsets.init(top: titleTop, left: titleLeft, bottom: 0, right: 0)
     }
 }

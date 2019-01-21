@@ -140,7 +140,7 @@ extension RouteHistoryTableViewCell {
         }
         l += " -> "
         let s = NSMutableAttributedString(string: l + r)
-        s.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor(r: 160, g: 160, b: 160), range: NSRange(location: 0, length: l.count))
+        s.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(r: 160, g: 160, b: 160), range: NSRange(location: 0, length: l.count))
         label.attributedText = s
     }
 

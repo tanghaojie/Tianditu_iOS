@@ -61,12 +61,12 @@ class SearchMapViewController: JTNavigationViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupModeView()
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         guard mapView.subviews.count <= 0 else { return }
         setupJTMapView()
+        setupModeView()
     }
     
 }
@@ -346,7 +346,7 @@ extension SearchMapViewController {
             view.leadingAnchor.constraint(equalTo: contentResultView.leadingAnchor),
             view.trailingAnchor.constraint(equalTo: contentResultView.trailingAnchor),
             ])
-        contentResultView.bringSubview(toFront: view)
+        contentResultView.bringSubviewToFront(view)
         view.gestureRecognizers?.removeAll()
         view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(searchNameResultViewPaned)))
         let t = UITapGestureRecognizer(target: self, action: #selector(searchNameResultViewTaped))
@@ -417,7 +417,7 @@ extension SearchMapViewController {
             ])
     }
     private func setupActivityIndicatorView() -> UIActivityIndicatorView {
-        let a = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        let a = UIActivityIndicatorView(style: .gray)
         a.translatesAutoresizingMaskIntoConstraints = false
         progressView.addSubview(a)
         NSLayoutConstraint.activate([

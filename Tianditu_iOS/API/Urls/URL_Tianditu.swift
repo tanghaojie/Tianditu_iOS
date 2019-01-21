@@ -10,4 +10,5 @@ class URL_Tianditu {
     static let baseUrl = "http://map.tianditu.com/"
 
     static let routeSearch = "data/route"
+
 }

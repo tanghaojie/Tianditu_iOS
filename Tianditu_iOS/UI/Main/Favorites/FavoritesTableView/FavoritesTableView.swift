@@ -38,7 +38,7 @@ extension FavoritesTableView {
         separatorStyle = .none
         backgroundColor = UIColor(r: 233, g: 233, b: 233)
         estimatedRowHeight = 90
-        rowHeight = UITableViewAutomaticDimension
+        rowHeight = UITableView.automaticDimension
         allowsMultipleSelectionDuringEditing = true
         dataSource = self
         delegate = self
@@ -86,7 +86,7 @@ extension FavoritesTableView: UITableViewDataSource, UITableViewDelegate {
     }
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool { return true }
     func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? { return LocalizableStrings.delete }
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         let index = indexPath.row
         guard index < cellVMs.count else { return }
         let vm = cellVMs[index]

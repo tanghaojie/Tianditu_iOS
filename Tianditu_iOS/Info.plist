@@ -17,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>1.1.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>LSHasLocalizedDisplayName</key>
@@ -30,21 +30,21 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>App需要你的同意，才能访问照相机</string>
+	<string>天地图需要您同意访问相机，以设置头像照片。</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>允许访问您的位置信息</string>
+	<string>天地图会在搜索、路线查询等服务中使用您的位置信息。</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>允许APP一直访问您的位置信息</string>
+	<string>天地图会在搜索、路线查询等服务中使用您的位置信息。</string>
 	<key>NSLocationUsageDescription</key>
-	<string>允许APP访问您的位置信息</string>
+	<string>天地图会在搜索、路线查询等服务中使用您的位置信息。</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>允许APP使用期间访问您的位置信息</string>
+	<string>天地图会在搜索、路线查询等服务中使用您的位置信息。</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>App需要你的同意，才能访问麦克风</string>
+	<string>天地图会在语音搜索时使用您的麦克风。</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>App需要你的同意，才能访问相册</string>
+	<string>天地图需要您同意访问相册，以设置头像图片。</string>
 	<key>NSSpeechRecognitionUsageDescription</key>
-	<string>App需要你的同意，才能访问语音识别</string>
+	<string>天地图会在语音搜索时使用语音识别。</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>

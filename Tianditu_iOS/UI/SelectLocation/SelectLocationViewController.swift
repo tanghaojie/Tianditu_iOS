@@ -90,9 +90,9 @@ extension SelectLocationViewController {
             confirmButton.centerXAnchor.constraint(equalTo: content.centerXAnchor),
             confirmButton.bottomAnchor.constraint(equalTo: content.bottomAnchor, constant: -confirmButtonToBottom)
             ])
-        content.sendSubview(toBack: JTMapView.shareInstance)
-        content.bringSubview(toFront: confirmButton)
-        JTMapView.shareInstance.bringSubview(toFront: confirmButton)
+        content.sendSubviewToBack(JTMapView.shareInstance)
+        content.bringSubviewToFront(confirmButton)
+        JTMapView.shareInstance.bringSubviewToFront(confirmButton)
     }
 }
 extension SelectLocationViewController {

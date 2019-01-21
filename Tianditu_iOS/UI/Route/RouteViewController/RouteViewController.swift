@@ -377,7 +377,7 @@ extension RouteViewController {
                 xx.bottomAnchor.constraint(equalTo: yy.topAnchor),
                 xx.trailingAnchor.constraint(equalTo: view.trailingAnchor),
                 ])
-            view.bringSubview(toFront: xx)
+            view.bringSubviewToFront(xx)
             sender.setImage(Assets.viewMap, for: .normal)
         } else {
             routeResultDetailView?.removeFromSuperview()
@@ -447,7 +447,27 @@ extension RouteViewController {
         if abs(xx) < toleranceDistence && abs(yy) < toleranceDistence { return }
         routeResultView(true)
         let hud = JTHUD(view: routeResultView).indeterminateWithText(LocalizableStrings.routeAnalysising)
-        RouteSearchC.shareInstance.routeSearch(startX: x1, startY: y1, stopX: x2, stopY: y2) {
+
+// old api code
+//        RouteSearchC.shareInstance.routeSearch(startX: x1, startY: y1, stopX: x2, stopY: y2) {
+//            [weak self]
+//            success, result, msg in
+//            hud.hide(animated: true)
+//            guard let this = self else { return }
+//            guard success, let r = result else {
+//                this.routeResultView(false)
+//                _ = JTHUD(view: this.view).textOnly(msg ?? LocalizableStrings.routeAnalysisFailed, removeOnHide: true, delayTimeIfAutoHide: TimeInterval(1.5))
+//                return
+//            }
+//            this.routeResult = r
+//            this.saveHistory(s: i, p: j)
+//            this.addSymbolLayerPolyline()
+//            this.centerShowSymbolLayerPolyline()
+//            this.showRouteResultView()
+//
+//            this.routeResultView.backgroundColor = .white
+//        }
+        DriveSearchC.shareInstance.driveSearch(startX: x1, startY: y1, stopX: x2, stopY: y2) {
             [weak self]
             success, result, msg in
             hud.hide(animated: true)
@@ -515,10 +535,10 @@ extension RouteViewController {
     private func routeResultView(_ show: Bool) {
         if show {
             routeResultView.isHidden = false
-            content.bringSubview(toFront: routeResultView)
+            content.bringSubviewToFront(routeResultView)
         } else {
             routeResultView.isHidden = true
-            content.sendSubview(toBack: routeResultView)
+            content.sendSubviewToBack(routeResultView)
         }
     }
 }

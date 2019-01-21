@@ -52,10 +52,10 @@ extension JTMapView {
         if let dlg = mapLayer(forName: dlgLayerName) {
             removeMapLayer(dlg)
         }
-        addTilemapServerLayer(url: URL_SCTianditu.sctilemap_dom_dom, name: domLayerName)
+        addTilemapServerLayer(url: URL_SCTianditu.sctilemap_dom, name: domLayerName, token: URL_SCTianditu.sctianditu_token)
     }
-    private func addTilemapServerLayer(url: String, name: String) {
-        let tilemap = SCGISTilemapServerLayer(serviceUrlStr: url, token: nil, cacheType: SCGISTilemapCacheTypeArcGISFile)
+    private func addTilemapServerLayer(url: String, name: String, token: String? = nil) {
+        let tilemap = SCGISTilemapServerLayer(serviceUrlStr: url, token: token, cacheType: SCGISTilemapCacheTypeArcGISFile)
         guard let t = tilemap else { return }
         addMapLayer(t, withName: name)
     }
@@ -138,24 +138,19 @@ extension JTMapView {
     func addSymbolLayerLocationPoints(points: [(x: Double, y: Double)]) {
         if points.count <= 0 { return }
         let layer = mapLayer(forName: symbolLayerName)
-        var graphicLayer = layer as? AGSGraphicsLayer
-        let sr = spatialReference
-        if graphicLayer == nil {
-            removeMapLayer(layer)
-            graphicLayer = AGSGraphicsLayer(spatialReference: sr)
-            addMapLayer(graphicLayer, withName: symbolLayerName)
-        }
+        removeMapLayer(layer)
+        let graphicLayer = AGSGraphicsLayer(spatialReference: spatialReference)
+        addMapLayer(graphicLayer, withName: symbolLayerName)
+        
         guard let gl = graphicLayer, let img = Assets.location else { abort() }
+        gl.isVisible = true
         gl.removeAllGraphics()
         let markerSymbol = AGSPictureMarkerSymbol(image: img)
         markerSymbol?.offset = CGPoint(x: 0, y: 15)
         for p in points {
-            let graphic = AGSGraphic()
-            graphic.geometry = AGSPoint(x: p.x, y: p.y, spatialReference: sr)
-            graphic.symbol = markerSymbol
+            let graphic = AGSGraphic(geometry: AGSPoint(x: p.x, y: p.y, spatialReference: spatialReference), symbol: markerSymbol, attributes: nil)
             gl.addGraphic(graphic)
         }
-        gl.isVisible = true
     }
 }
 protocol JTMapViewDelegate: NSObjectProtocol {

@@ -39,7 +39,7 @@ class SearchContentTableView: UITableView {
         delegate = self
         separatorStyle = .none
         estimatedRowHeight = 90
-        rowHeight = UITableViewAutomaticDimension
+        rowHeight = UITableView.automaticDimension
         backgroundColor = UIColor(r: 233, g: 233, b: 233)
         
         let footer = MJRefreshAutoGifFooter()

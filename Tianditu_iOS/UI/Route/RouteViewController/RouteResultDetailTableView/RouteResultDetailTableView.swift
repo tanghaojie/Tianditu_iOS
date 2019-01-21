@@ -35,7 +35,7 @@ class RouteResultDetailTableView: UITableView {
         delegate = self
         separatorStyle = .none
         estimatedRowHeight = 30
-        rowHeight = UITableViewAutomaticDimension
+        rowHeight = UITableView.automaticDimension
         backgroundColor = .white
 
         dataSource = self

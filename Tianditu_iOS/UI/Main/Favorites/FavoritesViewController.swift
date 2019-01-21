@@ -97,7 +97,7 @@ extension FavoritesViewController {
             d.trailingAnchor.constraint(equalTo: mainPage.trailingAnchor),
             d.heightAnchor.constraint(equalToConstant: deleteViewHeight),
             ])
-        mainPage.bringSubview(toFront: d)
+        mainPage.bringSubviewToFront(d)
         setupDeleteButton(view: d)
     }
     private func setupDeleteButton(view: UIView) {
