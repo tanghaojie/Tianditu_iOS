@@ -5,6 +5,7 @@ use_frameworks!
 target ‘Tianditu_iOS’ do
         pod 'MJRefresh'
 	pod 'MBProgressHUD'
+	pod 'Alamofire'
 	pod 'Moya’
 	pod 'ObjectMapper'
         pod 'SwiftyXMLParser'

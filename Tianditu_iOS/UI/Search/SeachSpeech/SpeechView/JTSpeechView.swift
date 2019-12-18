@@ -100,6 +100,8 @@ extension JTSpeechView {
             case .authorized:
                 msg = nil
                 authorizaed = true
+            @unknown default:
+                fatalError()
             }
             OperationQueue.main.addOperation {
                 self?.setupSpeech(isEnable: authorizaed)

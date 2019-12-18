@@ -99,7 +99,7 @@ extension SearchContentTableView {
         searchText = ""
         pagenum = 1
         first = true
-        mj_footer.endRefreshing()
+        mj_footer?.endRefreshing()
         cellVMs.removeAll()
         reloadData()
     }
@@ -107,7 +107,7 @@ extension SearchContentTableView {
 }
 extension SearchContentTableView {
     @objc private func footerRefresh() {
-        if mj_footer.state == .noMoreData { return }
+        if mj_footer?.state == .noMoreData { return }
         if type == .name {
             searchNameData()
         } else if type == .type {
@@ -139,7 +139,7 @@ extension SearchContentTableView {
                 return
             }
             guard fs.count > 0 else {
-                self?.mj_footer.state = .noMoreData
+                self?.mj_footer?.state = .noMoreData
                 if let s = self, s.first, let h = handler {
                     s.first = false
                     h(true)
@@ -153,7 +153,7 @@ extension SearchContentTableView {
                 self?.append(vm)
             }
             self?.pagenum += 1
-            self?.mj_footer.endRefreshing()
+            self?.mj_footer?.endRefreshing()
             self?.reloadData()
             if let s = self, s.first, let h = handler {
                 s.first = false
@@ -183,7 +183,7 @@ extension SearchContentTableView {
                 return
             }
             guard fs.count > 0 else {
-                self?.mj_footer.state = .noMoreData
+                self?.mj_footer?.state = .noMoreData
                 if let s = self, s.first, let h = handler {
                     s.first = false
                     h(true)
@@ -197,7 +197,7 @@ extension SearchContentTableView {
                 self?.append(vm)
             }
             self?.pagenum += 1
-            self?.mj_footer.endRefreshing()
+            self?.mj_footer?.endRefreshing()
             self?.reloadData()
             if let s = self, s.first, let h = handler {
                 s.first = false

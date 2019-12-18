@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class JTMapView: AGSMapView {
     public static let shareInstance = JTMapView()
