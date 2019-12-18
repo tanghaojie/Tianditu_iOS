@@ -21,9 +21,6 @@ DerivedData/
 *.xcscmblueprint
 SCGCFramework*
 
-podfile
-Podfile.lock
-
 #o Obj-C/Swift specific
 *.hmap
 *.ipa

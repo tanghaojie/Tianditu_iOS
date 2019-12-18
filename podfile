@@ -1,0 +1,11 @@
+# Uncomment the next line to define a global platform for your project
+ platform :ios, ‘9.0’
+use_frameworks!
+
+target ‘Tianditu_iOS’ do
+        pod 'MJRefresh'
+	pod 'MBProgressHUD'
+	pod 'Moya’
+	pod 'ObjectMapper'
+        pod 'SwiftyXMLParser'
+end
