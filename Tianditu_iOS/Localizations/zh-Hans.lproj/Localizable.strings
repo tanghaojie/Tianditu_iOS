@@ -6,7 +6,7 @@
   Copyright © 2018年 JT. All rights reserved.
 */
 
-"appName" = "天地图";
+"appName" = "北斗导航与位置服务高精度基础数据平台天地图移动端";
 
 "ok" = "确定";
 "cancel" = "取消";

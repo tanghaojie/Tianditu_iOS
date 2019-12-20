@@ -65,6 +65,7 @@ class MainViewController: UIViewController {
             }
         }
     }
+    
     @IBAction func searchTouchUpInside(_ sender: Any) {
         let s = SearchViewController()
         s.searchDelegate = self
@@ -127,6 +128,10 @@ extension MainViewController: JTMapViewDelegate {
             compassView.isHidden = false
             compassView.transform = CGAffineTransform(rotationAngle: CGFloat.pi * CGFloat(360 - rotationAngle) / 180)
         }
+    }
+    override func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)? = nil){
+        viewControllerToPresent.modalPresentationStyle = .fullScreen
+        super.present(viewControllerToPresent, animated: flag, completion: completion)
     }
 }
 extension MainViewController {

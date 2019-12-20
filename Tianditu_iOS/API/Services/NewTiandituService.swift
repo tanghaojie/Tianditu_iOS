@@ -31,7 +31,7 @@ extension NewTiandituService: TargetType {
             return Task.requestParameters(parameters: [
                 "postStr": data.toJSONString() ?? "",
                 "type": "search",
-                "tk":"a61cfc1bb88c5b989473b757656d400b",
+                "tk":"547bcd6a63bd42146ffb898cc0ed0b01",
                 ], encoding: URLEncoding.queryString)
         }
     }

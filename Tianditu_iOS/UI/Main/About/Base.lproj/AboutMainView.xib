@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -24,7 +22,7 @@
                     <color key="textColor" red="0.47058823529411764" green="0.47058823529411764" blue="0.47058823529411764" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Copyright © 2018" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ekQ-OD-AFb">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Copyright © 2018-2020" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ekQ-OD-AFb">
                     <rect key="frame" x="16" y="565" width="343" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="JDJ-Vd-29c"/>
@@ -39,17 +37,17 @@
                     <color key="textColor" red="0.47058823529411764" green="0.47058823529411764" blue="0.47058823529411764" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="图正天地图" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dtS-Fi-85n">
-                    <rect key="frame" x="16" y="436" width="343" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="北斗导航与位置服务高精度基础数据平台天地图移动端" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dtS-Fi-85n">
+                    <rect key="frame" x="40" y="397" width="295" height="60"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="21" id="LEX-0c-uu5"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="LEX-0c-uu5"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="aboutLogo" translatesAutoresizingMaskIntoConstraints="NO" id="n9E-uQ-Zlu">
-                    <rect key="frame" x="137.5" y="328" width="100" height="100"/>
+                    <rect key="frame" x="137.5" y="289" width="100" height="100"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="100" id="Ish-Od-vwa"/>
                         <constraint firstAttribute="height" constant="100" id="PLh-6D-WTe"/>
@@ -82,7 +80,7 @@
                 <constraint firstAttribute="trailing" secondItem="Ut0-ES-Tr6" secondAttribute="trailing" constant="16" id="ED8-e0-gcd"/>
                 <constraint firstAttribute="trailing" secondItem="52v-gC-3DG" secondAttribute="trailing" constant="16" id="EtL-7j-duT"/>
                 <constraint firstAttribute="trailing" secondItem="Ut0-ES-Tr6" secondAttribute="trailing" constant="16" id="PtA-mM-U9W"/>
-                <constraint firstItem="dtS-Fi-85n" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="PwX-F9-gZL"/>
+                <constraint firstItem="dtS-Fi-85n" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="40" id="PwX-F9-gZL"/>
                 <constraint firstItem="S4g-rx-Eb3" firstAttribute="top" secondItem="ekQ-OD-AFb" secondAttribute="bottom" id="Wan-wy-D59"/>
                 <constraint firstItem="ekQ-OD-AFb" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="WkR-TK-DT3"/>
                 <constraint firstItem="Ut0-ES-Tr6" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="YAP-hP-aAC"/>
@@ -92,7 +90,7 @@
                 <constraint firstItem="Gj9-DW-WcB" firstAttribute="top" secondItem="Ut0-ES-Tr6" secondAttribute="bottom" constant="38" id="lsE-BM-LCs"/>
                 <constraint firstItem="ekQ-OD-AFb" firstAttribute="top" secondItem="52v-gC-3DG" secondAttribute="bottom" constant="8" id="mxa-lo-wVL"/>
                 <constraint firstAttribute="trailing" secondItem="ekQ-OD-AFb" secondAttribute="trailing" constant="16" id="ntQ-OC-xkw"/>
-                <constraint firstAttribute="trailing" secondItem="dtS-Fi-85n" secondAttribute="trailing" constant="16" id="oAx-PH-aqk"/>
+                <constraint firstAttribute="trailing" secondItem="dtS-Fi-85n" secondAttribute="trailing" constant="40" id="oAx-PH-aqk"/>
                 <constraint firstItem="S4g-rx-Eb3" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="qL0-Lv-Gg8"/>
                 <constraint firstItem="dtS-Fi-85n" firstAttribute="top" secondItem="n9E-uQ-Zlu" secondAttribute="bottom" constant="8" id="uaa-hg-XJW"/>
             </constraints>

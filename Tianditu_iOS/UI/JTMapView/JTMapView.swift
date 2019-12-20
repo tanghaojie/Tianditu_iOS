@@ -53,7 +53,7 @@ extension JTMapView {
         if let dlg = mapLayer(forName: dlgLayerName) {
             removeMapLayer(dlg)
         }
-        addTilemapServerLayer(url: URL_SCTianditu.sctilemap_dom, name: domLayerName, token: URL_SCTianditu.sctianditu_token)
+        addTilemapServerLayer(url: URL_SCTianditu.sctilemap_dom2, name: domLayerName, token: URL_SCTianditu.sctianditu_token)
     }
     private func addTilemapServerLayer(url: String, name: String, token: String? = nil) {
         let tilemap = SCGISTilemapServerLayer(serviceUrlStr: url, token: token, cacheType: SCGISTilemapCacheTypeArcGISFile)

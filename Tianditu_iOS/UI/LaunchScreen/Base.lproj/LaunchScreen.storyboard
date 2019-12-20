@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
-    <device id="retina5_5" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -23,10 +20,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch" translatesAutoresizingMaskIntoConstraints="NO" id="MMT-ah-Dms">
-                                <rect key="frame" x="20" y="20" width="374" height="716"/>
+                                <rect key="frame" x="20" y="0.0" width="374" height="736"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="天地图" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f7T-fe-4Lg">
-                                <rect key="frame" x="174.33333333333334" y="669.66666666666663" width="67" height="26.333333333333371"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="北斗导航与位置服务高精度基础数据平台天地图移动端" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f7T-fe-4Lg">
+                                <rect key="frame" x="40" y="616" width="334" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="LiY-tb-iq1"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                 <color key="textColor" red="0.4638943142361111" green="0.46839735243055558" blue="0.46259223090277779" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="highlightedColor" red="0.71427408854166663" green="0.72536892361111116" blue="0.74717881944444442" alpha="1" colorSpace="calibratedRGB"/>
@@ -39,16 +39,18 @@
                             <constraint firstAttribute="trailingMargin" secondItem="MMT-ah-Dms" secondAttribute="trailing" id="SOq-m0-uQV"/>
                             <constraint firstItem="dVN-Ze-hvc" firstAttribute="top" secondItem="MMT-ah-Dms" secondAttribute="bottom" id="ou2-4X-fAf"/>
                             <constraint firstItem="dVN-Ze-hvc" firstAttribute="top" secondItem="f7T-fe-4Lg" secondAttribute="bottom" constant="40" id="sJv-gw-6Ok"/>
+                            <constraint firstItem="f7T-fe-4Lg" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" constant="40" id="sy7-Qj-Aw7"/>
+                            <constraint firstAttribute="trailing" secondItem="f7T-fe-4Lg" secondAttribute="trailing" constant="40" id="t7b-k9-iC2"/>
                             <constraint firstItem="MMT-ah-Dms" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="topMargin" id="zmQ-92-F9H"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1748" y="364.7676161919041"/>
+            <point key="canvasLocation" x="-1749.2753623188407" y="364.4021739130435"/>
         </scene>
     </scenes>
     <resources>
-        <image name="launch" width="213" height="284"/>
+        <image name="launch" width="213.33332824707031" height="284.33334350585938"/>
     </resources>
 </document>
